@@ -132,3 +132,6 @@ STATIC_URL = '/static/'
 
 # Heroku cloud upload settings...
 django_heroku.settings(locals())
+
+
+#TODO : To write https production settings here...

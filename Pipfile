@@ -11,6 +11,11 @@ gunicorn = "*"
 django-heroku = "*"
 django-crispy-forms = "*"
 pillow = "*"
+djangorestframework = "*"
+djangorestframework-jwt = "*"
+django-phonenumber-field = "*"
+phonenumbers = "*"
+cloudinary = "*"
 
 [requires]
 python_version = "3.7"
