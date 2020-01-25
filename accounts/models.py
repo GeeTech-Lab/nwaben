@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 
 # Create your models here.
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
 from phonenumber_field.modelfields import PhoneNumberField
 
 from nwaben.utils import unique_slug_generator
@@ -52,9 +52,10 @@ class Profile(models.Model):
     image_tag.allow_tags = True
 
 
-def post_save_profile_reciever(sender, instance, created, *args, **kwargs):
+def post_save_profile_receiver(sender, created, instance, *args, **kwargs):
     if created:
         if not instance.slug:
             instance.slug = unique_slug_generator(instance)
+            instance.save()
 
-pre_save.connect(post_save_profile_reciever, sender=Profile)
+post_save.connect(post_save_profile_receiver, sender=Profile)

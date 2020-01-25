@@ -16,6 +16,8 @@ djangorestframework-jwt = "*"
 django-phonenumber-field = "*"
 phonenumbers = "*"
 cloudinary = "*"
+django-cors-headers = "*"
+sendgrid = "*"
 
 [requires]
 python_version = "3.7"

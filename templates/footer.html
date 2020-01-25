@@ -1,0 +1,91 @@
+{% if request.path == 'home' %}
+    <footer class="footer   footer-white ">
+    <div class="container">
+      <div class="row">
+        <nav class="footer-nav">
+          <ul>
+            <li>
+              <a href="https://www.geetechlab.com" target="_blank">geetechlab</a>
+            </li>
+            <li>
+              <a href="http://blog.creative-tim.com/" target="_blank">Blog</a>
+            </li>
+            <li>
+              <a href="https://www.creative-tim.com/license" target="_blank">Licenses</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="credits ml-auto">
+          <span class="copyright">
+            ©
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, made with <i class="fa fa-heart heart"></i> by geetechlab
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+{% else %}
+    <footer class="footer footer-black footer-big">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-4 ml-auto mr-auto">
+          <div class="logo text-center">
+            <h3>GeeTech Lab</h3>
+          </div>
+        </div>
+        <div class="col-md-6 offset-md-2 col-sm-8">
+          <div class="links">
+            <ul>
+              <li>
+                <a href="{% url 'home' %}">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  Music Archive
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  Contact
+                </a>
+              </li>
+            </ul>
+            <hr />
+            <div class="copyright">
+              <div class="pull-left">
+                ©
+                <script>
+                  document.write(new Date().getFullYear())
+                </script>, made with <i class="fa fa-heart heart"></i> in NIG
+              </div>
+              <div class="pull-right">
+                <ul>
+                  <li>
+                    <a href="www.geetechlab.com">
+                      Terms
+                    </a>
+                  </li>
+                  |
+                  <li>
+                    <a href="#paper-kit">
+                      Privacy
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+{% endif %}

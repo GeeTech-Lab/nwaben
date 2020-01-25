@@ -1,0 +1,89 @@
+{% url 'home' as home %}
+{% url 'about' as home %}
+
+
+<!-- Navbar -->
+  <nav class="navbar navbar-expand-lg nav-down navbar-absolute navbar-transparent" color-on-scroll="500">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="{% url 'home' %}" rel="tooltip" title="nwaben" data-placement="bottom" target="_blank">
+          NWABEN.COM
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" data-nav-image="../assets/img/blurred-image-1.jpg" data-color="orange">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            {% if request.page == home %}
+                <a href="{% url 'home' %}" class="nav-link  active">
+                home <span class="sr-only">(current)</span> </a>
+            {% else %}
+                <a href="{% url 'home' %}" class="nav-link">home
+                </a>
+            {% endif %}
+          </li>
+
+
+          <li class="nav-item">
+            {% if request.page == about %}
+                <a href="{% url 'about' %}" class="nav-link  active">
+                about <span class="sr-only">(current)</span> </a>
+            {% else %}
+                <a href="{% url 'about' %}" class="nav-link">about
+                </a>
+            {% endif %}
+          </li>
+
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">blog</a>
+          </li>
+
+        {% if user.is_authenticated %}
+            <li class="dropdown nav-item">
+            <a href="#" class="nav-link"> profile
+            </a>
+          </li>
+        {% else %}
+            <li class="dropdown nav-item">
+                <a href="#" class="nav-link" data-toggle="dropdown">
+                  account
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-danger" aria-labelledby="navbarDropdownMenuLink1">
+                  <a class="dropdown-item" href="{% url 'account-url:login' %}">
+                    <i class="nc-icon nc-bank"></i> login
+                  </a>
+                  <a class="dropdown-item" href="{% url 'account-url:register' %}">
+                    <i class="nc-icon nc-bank"></i> register
+                  </a>
+                </div>
+            </li>
+        {% endif %}
+
+          <!-- <li class="nav-item">
+					<a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank">
+						<i class="fab fa-twitter"></i>
+						<p class="hidden-lg-up">Twitter</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank">
+						<i class="fab fa-facebook-square"></i>
+						<p class="hidden-lg-up">Facebook</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank">
+						<i class="fab fa-instagram"></i>
+						<p class="hidden-lg-up">Instagram</p>
+					</a>
+				</li> -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- End Navbar -->

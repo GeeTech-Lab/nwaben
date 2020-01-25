@@ -8,7 +8,7 @@ User = get_user_model()
 
 # Create your views here.
 
-
+#TODO: ensure that registration html page is working correctly
 class RegisterView(View):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -16,6 +16,7 @@ class RegisterView(View):
         return render(request, template_name='accounts/register.html')
 
 
+#TODO: ensure that registration html page is working correctly
 class LoginView(View):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:

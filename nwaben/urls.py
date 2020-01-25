@@ -14,8 +14,27 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+from django.conf import settings
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.generic import TemplateView
+from nwaben.views import ContactView
+
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin', admin.site.urls),
+    path('page-not-found/', TemplateView.as_view(template_name='404_.html'), name='404_'),
+    path('', TemplateView.as_view(template_name='index.html'), name='home'),
+    path('about/', ContactView.as_view(), name='about'),
+    path('api/auth/', include(('accounts.api.urls', 'api-auth'), namespace='api-auth')),
+    path('account/', include(('accounts.urls', 'account-url'), namespace='account-url')),
+    path('api/auth/', include(('accounts.api.urls', 'api-auth'), namespace='api-auth')),
 ]
+
+
+urlpatterns += staticfiles_urlpatterns()
+# Remove this conditional check if you want to upload to Heroku
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

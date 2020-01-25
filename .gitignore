@@ -131,3 +131,4 @@ dmypy.json
 # Django Settings
 nwaben/settings/base.py
 nwaben/settings/local.py
+nwaben/email_settings.py

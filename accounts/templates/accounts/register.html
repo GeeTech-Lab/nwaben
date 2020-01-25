@@ -1,10 +1,176 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'layout.html' %}
+{% block title %}register{% endblock %}
 
-</body>
-</html>
+{% block content %}
+<div class="register-page full-screen sidebar-collapse">
+
+  <div class="wrapper">
+    <div class="page-header" style="background-image: url('../assets/img/sections/soroush-karimi.jpg');">
+      <div class="filter"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-7 col-12 ml-auto">
+            <div class="info info-horizontal">
+              <div class="icon">
+                <i class="fa fa-umbrella"></i>
+              </div>
+              <div class="description">
+                <h3> We've got you covered </h3>
+                <p>Larger, yet dramatically thinner. More powerful, but remarkably power efficient. Everything you need in a single case.</p>
+              </div>
+            </div>
+            <div class="info info-horizontal">
+              <div class="icon">
+                <i class="fa fa-map-signs"></i>
+              </div>
+              <div class="description">
+                <h3> Clear Directions </h3>
+                <p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.</p>
+              </div>
+            </div>
+            <div class="info info-horizontal">
+              <div class="icon">
+                <i class="fa fa-user-secret"></i>
+              </div>
+              <div class="description">
+                <h3> We value your privacy </h3>
+                <p>Completely synergize resource taxing relationships via premier niche markets.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-5 col-12 mr-auto">
+            <div class="card card-register">
+              <h3 class="card-title text-center">Register</h3>
+
+              <form class="registerForm" action="{% url 'api-auth:register-api' %}" method="POST"> {% csrf_token %}
+                <input type="text" class="form-control" id="username" placeholder="Username" required="required">
+                  <input type="text" class="form-control" id="first_name" placeholder="First name" required="required">
+                  <input type="text" class="form-control" id="last_name" placeholder="Last name" required="required">
+                  <input type="text" class="form-control" id="phone" placeholder="Phone: +23480XXXXXXXX" required="required">
+                  <input type="email" class="form-control" id="email" placeholder="Email" required="required">
+                  <input type="password" name="password" class="form-control" id="password" placeholder="Password" required="required">
+                  <input type="password" name="confirm_password" class="form-control" id="confirm_password" placeholder="Retype password" required="required">
+
+                <button class="btn btn-block btn-round"  id="registerButton" type="submit">Register</button>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+
+    $( function() {
+        'use strict';
+        // $("#age").datepicker();
+
+        $(document).ready(function () {
+            // Initialize form data
+            var registerForm = $(".registerForm");
+            var registerFormMethod = registerForm.attr("method");
+            var registerFormEnpoint = registerForm.attr("action");
+
+            function displaySubmitting(submitBtn, defaultText, doSubmit) {
+                if (doSubmit) {
+                    submitBtn.addClass("disabled");
+                    submitBtn.html("<i class='fa fa-spin fa-spinner'></i> Sending Data..");
+                } else {
+                    submitBtn.removeClass("disabled");
+                    submitBtn.add(defaultText);
+                }
+            }
+
+            function handleButton(submitBtn, doSubmit) {
+                if (doSubmit){
+                    submitBtn.addClass("disabled");
+                } else {
+                    submitBtn.removeClass("disabled");
+                }
+            }
+
+            var registerFormSubmitBtn = registerForm.find("[type='submit']");
+            var registerFormSubmitBtnText = registerFormSubmitBtn.text();
+
+            registerForm.submit(function (event) {
+                event.preventDefault();
+
+                // using jQuery
+                function getCookie(name) {
+                    var cookieValue = null;
+                    if (document.cookie && document.cookie !== '') {
+                        var cookies = document.cookie.split(';');
+                        for (var i = 0; i < cookies.length; i++) {
+                            var cookie = jQuery.trim(cookies[i]);
+                            // Does this cookie string begin with the name we want?
+                            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                break;
+                            }
+                        }
+                    }
+                    return cookieValue;
+                }
+                var csrftoken = getCookie('csrftoken');
+
+                function csrfSafeMethod(method) {
+                    // these HTTP methods do not require CSRF protection
+                    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+                }
+                $.ajaxSetup({
+                    beforeSend: function(xhr, settings) {
+                        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                        }
+                    }
+                });
+
+                // var registerFormData = registerForm.serialize(); // do not serialize the data, drf would do that
+                var registerFormData = {
+                    "username": $('#username').val(),
+                    "first_name": $('#first_name').val(),
+                    "last_name": $('#last_name').val(),
+                    "phone": $('#phone').val(),
+                    "email": $('#email').val(),
+                    "password": $('#password').val(),
+                    "confirm_password": $('#confirm_password').val(),
+                };
+                console.log(registerFormData);
+                var thisForm = $(this);
+
+                displaySubmitting(registerFormSubmitBtn, "", true);
+
+                $.ajax({
+                    method: registerFormMethod,
+                    url: registerFormEnpoint,
+                    data: registerFormData,
+                    contentType: 'application/x-www-form-urlencoded',
+
+                    success: function (data) {
+                        registerForm[0].reset();
+                        console.log(data);
+                        swal("Welcome! @"+registerFormData.username , "You are successfully registered !", "success");
+                        setTimeout(function(){
+                            displaySubmitting(registerFormSubmitBtn, registerFormSubmitBtnText, false)
+                        }, 5000)
+                    }, error: function (error) {
+                        console.log(error);
+                    }
+                })
+
+            })
+        })
+    } (jQuery));
+  </script>
+
+</div>
+
+{% endblock %}
+
