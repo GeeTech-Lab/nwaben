@@ -27,6 +27,7 @@ urlpatterns = [
     path('page-not-found/', TemplateView.as_view(template_name='404_.html'), name='404_'),
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
     path('about/', ContactView.as_view(), name='about'),
+    # path('about/', contact, name='about'),
     path('api/auth/', include(('accounts.api.urls', 'api-auth'), namespace='api-auth')),
     path('account/', include(('accounts.urls', 'account-url'), namespace='account-url')),
     path('api/auth/', include(('accounts.api.urls', 'api-auth'), namespace='api-auth')),
