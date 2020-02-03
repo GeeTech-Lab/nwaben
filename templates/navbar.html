@@ -1,5 +1,5 @@
 {% url 'home' as home %}
-{% url 'about' as home %}
+{% url 'about' as about %}
 
 
 <!-- Navbar -->
@@ -55,10 +55,10 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-danger" aria-labelledby="navbarDropdownMenuLink1">
                   <a class="dropdown-item" href="{% url 'account-url:login' %}">
-                    <i class="nc-icon nc-bank"></i> login
+                    <i class="fa fa-sign-in"></i> login
                   </a>
                   <a class="dropdown-item" href="{% url 'account-url:register' %}">
-                    <i class="nc-icon nc-bank"></i> register
+                    <i class="fa fa-user-plus"></i> register
                   </a>
                 </div>
             </li>

@@ -20,11 +20,11 @@ class ContactView(SuccessMessageMixin, FormView):
         name = form.cleaned_data['name']
         phone = form.cleaned_data['phone']
         message = form.cleaned_data['message']
-        recipient_list = [email_settings.EMAIL_HOST_USER]
+        recipient_list = [email_settings.DEFAULT_FROM_EMAIL]
         sg_message = Mail(
             from_email=form.cleaned_data['email'],
             to_emails=recipient_list,
-            subject='Contact email recieved from www.nwaben.com',
+            subject=email_settings.ACCOUNT_EMAIL_SUBJECT_PREFIX,
             html_content='name: {} \n message: {} \n mobile: {}'.format(name, message, phone)
         )
         sg = SendGridAPIClient(email_settings.SENDGRID_API_KEY)
@@ -34,6 +34,11 @@ class ContactView(SuccessMessageMixin, FormView):
     def get_success_message(self, cleaned_data):
         print(cleaned_data)
         return "Message sent successfully!"
+
+
+
+
+
 
 
 # def contact(request):

@@ -2,12 +2,67 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4cb6c1b-b7d9-410a-97cb-11f6be75c540" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/templates/messages.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/tests.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nwaben/email_settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/nwaben/email_settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nwaben/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/nwaben/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nwaben/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/nwaben/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/artist.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/blog/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/blog/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/blog/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/concept/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/concept/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/concept/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/concept/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/hero-bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/how-to-bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/icons/back.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/icons/brain.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/icons/check-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/icons/next.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/icons/p-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/icons/p-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/icons/p-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/icons/pause.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/icons/play.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/icons/pointer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/icons/smartphone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/player-bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/playlist/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/playlist/10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/playlist/11.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/playlist/12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/playlist/13.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/playlist/14.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/playlist/15.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/playlist/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/playlist/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/playlist/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/playlist/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/playlist/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/playlist/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/playlist/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/playlist/9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/premium/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/premium/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/premium/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/premium/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/songs/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/songs/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/songs/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/songs/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/songs/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/songs/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/songs/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/songs/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/wave-thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/about.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,21 +90,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/about.html">
+        <entry file="file://$PROJECT_DIR$/templates/tests.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="196" column="6" selection-start-line="196" selection-start-column="6" selection-end-line="196" selection-end-column="6" />
+            <state relative-caret-position="16">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
+              <folding>
+                <element signature="e#8857#8863#0#HTML" expanded="true" />
+                <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#!!top" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/nwaben/settings/local.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/about.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="150" column="17" selection-start-line="150" selection-start-column="17" selection-end-line="150" selection-end-column="17" />
+            <state relative-caret-position="279">
+              <caret line="80" column="63" lean-forward="true" selection-start-line="80" selection-start-column="63" selection-end-line="80" selection-end-column="63" />
               <folding>
-                <element signature="e#307#316#0" expanded="true" />
+                <element signature="e#4149#4722#0#HTML" />
+                <element signature="e#5188#6532#0#HTML" />
+                <element signature="e#5223#6515#0#HTML" />
+                <element signature="e#6543#7882#0#HTML" />
               </folding>
             </state>
           </provider>
@@ -58,12 +120,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nwaben/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+            <state relative-caret-position="102">
+              <caret line="22" column="59" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="59" />
               <folding>
                 <element signature="e#0#61#0" expanded="true" />
-                <element signature="e#1386#1409#0" />
-                <marker date="1580294495143" expanded="true" signature="64:140" ph="..." />
+                <marker date="1580709857279" expanded="true" signature="64:140" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/nwaben/email_settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -81,17 +154,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/accounts/api/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1568">
+            <state relative-caret-position="333">
               <caret line="105" column="9" selection-start-line="105" selection-start-column="9" selection-end-line="105" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/accounts/templates/accounts/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="704">
-              <caret line="44" column="69" selection-start-line="44" selection-start-column="4" selection-end-line="45" selection-end-column="79" />
             </state>
           </provider>
         </entry>
@@ -99,7 +163,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/accounts/templates/accounts/register.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2160">
+            <state relative-caret-position="333">
               <caret line="135" column="40" selection-start-line="135" selection-start-column="40" selection-end-line="135" selection-end-column="40" />
             </state>
           </provider>
@@ -107,29 +171,18 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/layout.html">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/accounts/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="36" column="53" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="80">
+              <caret line="12" column="50" lean-forward="true" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/nwaben/urls.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/navbar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
-              <folding>
-                <element signature="e#630#662#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="239">
+              <caret line="32" column="69" lean-forward="true" selection-start-line="32" selection-start-column="69" selection-end-line="32" selection-end-column="69" />
             </state>
           </provider>
         </entry>
@@ -139,8 +192,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -148,7 +201,11 @@
     <findStrings>
       <find>site</find>
       <find>dashboard</find>
+      <find>../assets</find>
     </findStrings>
+    <replaceStrings>
+      <replace>https://cdn.nwaben.com/static/</replace>
+    </replaceStrings>
     <dirStrings>
       <dir>C:\Users\GEEMIX\PycharmProjects\nwaben\static</dir>
     </dirStrings>
@@ -185,26 +242,28 @@
         <option value="$PROJECT_DIR$/templates/footer.html" />
         <option value="$PROJECT_DIR$/static/js/plugins/bootstrap-datetimepicker.js" />
         <option value="$PROJECT_DIR$/TODO.md" />
-        <option value="$PROJECT_DIR$/templates/navbar.html" />
         <option value="$PROJECT_DIR$/nwaben/settings/production.py" />
         <option value="$PROJECT_DIR$/nwaben/forms.py" />
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/nwaben/settings/local.py" />
-        <option value="$PROJECT_DIR$/accounts/templates/accounts/login.html" />
         <option value="$PROJECT_DIR$/accounts/models.py" />
         <option value="$PROJECT_DIR$/accounts/api/serializers.py" />
         <option value="$PROJECT_DIR$/accounts/templates/accounts/register.html" />
         <option value="$PROJECT_DIR$/accounts/views.py" />
-        <option value="$PROJECT_DIR$/templates/about.html" />
-        <option value="$PROJECT_DIR$/nwaben/email_settings.py" />
-        <option value="$PROJECT_DIR$/templates/layout.html" />
-        <option value="$PROJECT_DIR$/nwaben/views.py" />
         <option value="$PROJECT_DIR$/nwaben/urls.py" />
+        <option value="$PROJECT_DIR$/accounts/templates/accounts/login.html" />
+        <option value="$PROJECT_DIR$/nwaben/email_settings.py" />
+        <option value="$PROJECT_DIR$/nwaben/views.py" />
+        <option value="$PROJECT_DIR$/templates/layout.html" />
+        <option value="$PROJECT_DIR$/templates/messages.html" />
+        <option value="$PROJECT_DIR$/templates/navbar.html" />
+        <option value="$PROJECT_DIR$/templates/tests.html" />
+        <option value="$PROJECT_DIR$/templates/about.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-6" />
     <option name="width" value="701" />
     <option name="height" value="735" />
@@ -217,6 +276,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -227,13 +287,23 @@
             <path>
               <item name="nwaben" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="C:\Users\GEEMIX\PycharmProjects\nwaben" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="nwaben" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="static" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="nwaben" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="C:\Users\GEEMIX\PycharmProjects\nwaben" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="static" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="img" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="nwaben" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="C:\Users\GEEMIX\PycharmProjects\nwaben" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="templates" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -320,12 +390,14 @@
       <workItem from="1579912017944" duration="5944000" />
       <workItem from="1579928410428" duration="578000" />
       <workItem from="1580119887254" duration="5922000" />
-      <workItem from="1580292816666" duration="1445000" />
+      <workItem from="1580292816666" duration="2927000" />
+      <workItem from="1580645812179" duration="1855000" />
+      <workItem from="1580708417707" duration="7661000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105780000" />
+    <option name="totallyTimeSpent" value="116778000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -338,13 +410,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12405446" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12708019" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.34042552" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32405892" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -353,7 +426,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3289689" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50075644" side_tool="true" weight="0.3289689" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49924356" visible="true" weight="0.9492635" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49924356" weight="0.18657938" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -361,29 +434,6 @@
       <window_info anchor="right" id="Database" order="3" weight="0.32980332" />
       <window_info anchor="right" id="SciView" order="4" weight="0.31694403" />
     </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19969743" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3289689" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3289689" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50075644" side_tool="true" weight="0.3289689" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49924356" weight="0.32242227" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.3289689" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" weight="0.32980332" />
-      <window_info anchor="right" id="SciView" order="4" weight="0.31694403" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -628,13 +678,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/navbar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="33" column="21" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TODO.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -672,12 +715,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nwaben/email_settings.py">
+    <entry file="file://$PROJECT_DIR$/nwaben/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+        <state relative-caret-position="292">
+          <caret line="37" column="18" lean-forward="true" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#630#662#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nwaben/settings/local.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2384">
+          <caret line="150" column="17" selection-start-line="150" selection-start-column="17" selection-end-line="150" selection-end-column="17" />
+          <folding>
+            <element signature="e#307#316#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -689,30 +742,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/api/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1568">
-          <caret line="105" column="9" selection-start-line="105" selection-start-column="9" selection-end-line="105" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/templates/accounts/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="44" column="69" selection-start-line="44" selection-start-column="4" selection-end-line="45" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/templates/accounts/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2160">
-          <caret line="135" column="40" selection-start-line="135" selection-start-column="40" selection-end-line="135" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/layout.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/accounts/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
@@ -723,41 +752,89 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nwaben/settings/local.py">
+    <entry file="file://$PROJECT_DIR$/nwaben/email_settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="150" column="17" selection-start-line="150" selection-start-column="17" selection-end-line="150" selection-end-column="17" />
+        <state relative-caret-position="240">
+          <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
           <folding>
-            <element signature="e#307#316#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nwaben/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="22" column="59" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#61#0" expanded="true" />
+            <marker date="1580709857279" expanded="true" signature="64:140" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/messages.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="2" column="62" lean-forward="true" selection-start-line="2" selection-start-column="62" selection-end-line="2" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/templates/accounts/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/api/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="105" column="9" selection-start-line="105" selection-start-column="9" selection-end-line="105" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/templates/accounts/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="135" column="40" selection-start-line="135" selection-start-column="40" selection-end-line="135" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/navbar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="32" column="69" lean-forward="true" selection-start-line="32" selection-start-column="69" selection-end-line="32" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="12" column="50" lean-forward="true" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/tests.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+          <folding>
+            <element signature="e#8857#8863#0#HTML" expanded="true" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/about.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="196" column="6" selection-start-line="196" selection-start-column="6" selection-end-line="196" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nwaben/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+        <state relative-caret-position="279">
+          <caret line="80" column="63" lean-forward="true" selection-start-line="80" selection-start-column="63" selection-end-line="80" selection-end-column="63" />
           <folding>
-            <element signature="e#0#61#0" expanded="true" />
-            <element signature="e#1386#1409#0" />
-            <marker date="1580294495143" expanded="true" signature="64:140" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nwaben/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
-          <folding>
-            <element signature="e#630#662#0" expanded="true" />
+            <element signature="e#4149#4722#0#HTML" />
+            <element signature="e#5188#6532#0#HTML" />
+            <element signature="e#5223#6515#0#HTML" />
+            <element signature="e#6543#7882#0#HTML" />
           </folding>
         </state>
       </provider>
