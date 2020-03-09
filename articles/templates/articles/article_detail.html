@@ -1,0 +1,256 @@
+{% extends 'layout.html' %}
+{% load humanize %}
+{% block title %}Articles{% endblock %}
+
+{% block content %}
+
+
+<div class="blog-post sidebar-collapse">
+
+  <div class="page-header page-header-small" data-parallax="true" style="background-image: url('{{ article.image_url }}')">
+    <div class="filter"></div>
+    <div class="content-center">
+      <div class="motto">
+        <h1 class="title-uppercase text-center">{{ article.title }}</h1>
+        <h3 class="text-center">{{ article.details|safe|truncatewords:10 }}</h3>
+          <p>Scroll below to read the rest of the contents...</p>
+        <br/>
+        <a href="#" class="btn btn-warning btn-round btn-lg">
+          <i class="fa fa-share-alt" aria-hidden="true"></i> Share Article
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="main">
+      <div class="section section-white">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 ml-auto mr-auto text-center title">
+              <h2>{{ article.title }}</h2>
+              <h3 class="title-uppercase">
+                <small>{{ article.author }}</small>
+              </h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-10 ml-auto mr-auto">
+              <div class="text-center">
+                <span class="badge badge-warning main-tag">{{ article.category }}</span>
+                <a href="javascrip: void(0);">
+                  <h3 class="title">{{ article.description|safe|linebreaks}}</h3>
+                </a>
+                <h6 class="title-uppercase">{{ article.created|naturaltime }}</h6>
+              </div>
+            </div>
+            <div class="col-md-8 ml-auto mr-auto">
+              <a href="javascrip: void(0);">
+                <div class="card" data-radius="none" style="background-image: url('{{ article.image_url }}');"></div>
+              </a>
+              <div class="article-content">
+                <p>
+                    {{ article.body|safe|linebreaks }}
+                </p>
+              </div>
+              <br/>
+                <!--
+              <div class="article-footer">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h5>Tags:</h5>
+                      <span class="label label-default">Motivational</span>
+                      <span class="label label-default">Newsletter</span>
+                      <span class="badge badge-warning">Trending</span>
+                    </div>
+                    <div class="col-md-4 ml-auto">
+                      <div class="sharing">
+                        <h5>Spread the word</h5>
+                        <button class="btn btn-just-icon btn-twitter">
+                          <i class="fa fa-twitter"></i>
+                        </button>
+                        <button class="btn btn-just-icon btn-facebook">
+                          <i class="fa fa-facebook"> </i>
+                        </button>
+                        <button class="btn btn-just-icon btn-google">
+                          <i class="fa fa-google"> </i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              -->
+              <hr>
+              <div class="container">
+                <div class="row">
+                  <div class="media">
+                    <a class="pull-left" href="#">
+                      <div class="avatar big-avatar">
+                        <img class="media-object" alt="{{ article.title }}" src="">
+                      </div>
+                    </a>
+                    <div class="media-body">
+                      <p class="media-heading">by: <strong>{{ article.author }}</strong></p>
+
+                      <p>{{ article.author.bio }}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="comments media-area">
+                    <h3 class="text-center">Comments</h3>
+                      {% for comment in comments %}
+                        <div class="media">
+                          <a class="pull-left" href="#">
+                            <div class="avatar">
+                              <img class="media-object" alt="Tim Picture" src="{{ comment.by.image_url }}">
+                            </div>
+                          </a>
+                          <div class="media-body">
+                            <h5 class="media-heading">{{ comment.by }}</h5>
+                            <div class="pull-right">
+                              <h6 class="text-muted">{{ comment.created_on }}</h6>
+                              <a href="#" class="btn btn-info btn-link pull-right "> <i class="fa fa-reply"></i> Reply</a>
+                            </div>
+                            <p>{{ comment.content }}</p>
+                              {% for reply in replies %}
+                                <div class="media">
+                                  <a class="pull-left" href="#">
+                                    <div class="avatar">
+                                      <img class="media-object" alt="64x64" src="{{ reply.replied_by.image_url }}">
+                                    </div>
+                                  </a>
+                                  <div class="media-body">
+                                    <h5 class="media-heading">{{ reply.replied_by }}</h5>
+                                    <div class="pull-right">
+                                      <h6 class="text-muted">{{ reply.replied_on }}</h6>
+                                      <a href="#" class="btn btn-info btn-link pull-right "> <i class="fa fa-reply"></i> Reply</a>
+                                    </div>
+                                    <p>{{ reply.content }}</p>
+                                  </div>
+                                </div>
+                              {% endfor %}
+                            <!-- end media -->
+                          </div>
+                        </div>
+                      {% empty %}
+                          <div class="media-body">
+                            <p>No comment yet, be the first to comment this article...</p>
+                          </div>
+                        </div>
+                      {% endfor %}
+                    <!-- end media -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+    {% if user.is_authenticated %}
+      <div class="section section-gray">
+        <div class="container tim-container">
+          <div class="row">
+            <div class="col-md-8 ml-auto mr-auto">
+              <h3 class="text-center">Post your comment</h3>
+              <div class="media media-post">
+                <a class="pull-left author" href="#paper-kit">
+                  <div class="avatar">
+                    <img class="media-object" alt="64x64" src="{{ comment.by.image_url }}">
+                  </div>
+                </a>
+                <div class="form media-body" method="POST"> {% csrf_token %}
+                  <textarea class="form-control border-input" placeholder="Write some nice stuff or nothing..." rows="4"></textarea>
+                  <div class="media-footer">
+                    <a href="#" class="btn btn-info btn-wd pull-right" type="submit">Post Comment</a>
+                  </div>
+                </div>
+              </div>
+              <!-- end media-post -->
+            {% else %}
+              <h3 class="text-center">Post your comment</h3>
+              <div class="media media-post">
+                <form class="form"> {% csrf_token %}
+                  <a class="pull-left author" href="#">
+                    <div class="avatar">
+                      <img class="media-object" alt="64x64" src="https://res.cloudinary.com/geetechlab-com/image/upload/v1581031758/nwaben.com/default_user_fph9rc.jpg" />
+                    </div>
+                  </a>
+                  <div class="media-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <input type="email" class="form-control border-input" placeholder="Your Name" />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <input type="email" class="form-control border-input" placeholder="Your email" />
+                        </div>
+                      </div>
+                    </div>
+                    <textarea class="form-control border-input" placeholder="Write some nice stuff or nothing..." rows="6"></textarea>
+                    <div class="media-footer">
+                      <h6 class="text-muted">Sign in with</h6>
+                      <a href="#twitter" class="btn btn-just-icon btn-round btn-twitter">
+                        <i class="fa fa-twitter"></i>
+                      </a>
+                      <a href="#facebook" class="btn btn-round btn-just-icon btn-facebook">
+                        <i class="fa fa-facebook"></i>
+                      </a>
+                      <a href="#google" class="btn btn-just-icon btn-round btn-google">
+                        <i class="fa fa-google-plus"></i>
+                      </a>
+                      <a href="#paper-kit" class="btn btn-info pull-right">Post Comment</a>
+                    </div>
+                  </div>
+                  <!-- end media-body -->
+                </form>
+              </div>
+              <!-- end media-post -->
+            </div>
+          </div>
+          <!-- end row -->
+        </div>
+      </div>
+    {% endif %}
+        <!--
+          <div class="row">
+            <div class="related-articles">
+              <h3 class="title">Related articles</h3>
+              <legend></legend>
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-4">
+                    <a href="pkp">
+                      <img src="../assets/img/sections/damir-bosnjak.jpg" alt="Rounded Image" class="img-rounded img-responsive">
+                    </a>
+                    <p class="blog-title">My Review of Pitchfork’s ‘Indie 500’ Album Review</p>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="pkp">
+                      <img src="../assets/img/sections/por7o.jpg" alt="Rounded Image" class="img-rounded img-responsive">
+                    </a>
+                    <p class="blog-title">Top Events This Month</p>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="pkp">
+                      <img src="../assets/img/sections/jeff-sheldon.jpg" alt="Rounded Image" class="img-rounded img-responsive">
+                    </a>
+                    <p class="blog-title">You Should Get Excited About Virtual Reality. Here’s Why.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+{% endblock %}

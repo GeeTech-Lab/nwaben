@@ -18,6 +18,9 @@ phonenumbers = "*"
 cloudinary = "*"
 django-cors-headers = "*"
 sendgrid = "*"
+django-cloudinary-storage = "*"
+django-widget-tweaks = "*"
+six = "*"
 
 [requires]
 python_version = "3.7"

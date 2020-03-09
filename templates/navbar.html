@@ -1,9 +1,17 @@
 {% url 'home' as home %}
 {% url 'about' as about %}
+{% url 'articles:article_list' as article_list %}
+{% url 'accounts:login' as login %}
+{% url 'accounts:signup' as register %}
+{% url 'accounts:profile' as profile %}
 
 
 <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg nav-down navbar-absolute navbar-transparent" color-on-scroll="500">
+{% if request.path == home or request.path == login or request.path == register or request.path == about or request.path == profile %}
+    <nav class="navbar navbar-expand-lg nav-down navbar-absolute navbar-transparent" color-on-scroll="500">
+{% else %}
+    <nav class="navbar navbar-expand-lg navbar-absolute nav-down">
+{% endif %}
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="{% url 'home' %}" rel="tooltip" title="nwaben" data-placement="bottom" target="_blank">
@@ -18,7 +26,7 @@
       <div class="collapse navbar-collapse" data-nav-image="../assets/img/blurred-image-1.jpg" data-color="orange">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            {% if request.page == home %}
+            {% if request.path == home %}
                 <a href="{% url 'home' %}" class="nav-link  active">
                 home <span class="sr-only">(current)</span> </a>
             {% else %}
@@ -29,7 +37,7 @@
 
 
           <li class="nav-item">
-            {% if request.page == about %}
+            {% if request.path == about %}
                 <a href="{% url 'about' %}" class="nav-link  active">
                 about <span class="sr-only">(current)</span> </a>
             {% else %}
@@ -40,24 +48,38 @@
 
 
           <li class="nav-item">
-            <a href="#" class="nav-link">blog</a>
+              {% if request.path == article_list %}
+                <a href="{% url 'articles:article_list' %}" class="nav-link">
+                    blog <span class="sr-only">(current)</span> </a>
+              {% else %}
+                  <a href="{% url 'articles:article_list' %}" class="nav-link">blog</a>
+              {% endif %}
           </li>
 
         {% if user.is_authenticated %}
             <li class="dropdown nav-item">
-            <a href="#" class="nav-link"> profile
+            <a href="#paper-kit" class="nav-link" data-toggle="dropdown" width="30" height="30">
+              <div class="profile-photo-small">
+                <img src="{{ user.image_url }}" alt="{{ user.username }}" class="img-circle img-responsive img-no-padding">
+              </div>
             </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-danger" aria-labelledby="navbarDropdownMenuLink1">
+              <a class="dropdown-item" href="{% url 'accounts:profile' %}">
+                <i class="fa fa-user-circle"></i> profile
+              </a>
+              <a class="dropdown-item" href="{% url 'accounts:logout' %}">
+                <i class="fa fa-sign-out"></i> logout
+              </a>
+            </div>
           </li>
         {% else %}
             <li class="dropdown nav-item">
-                <a href="#" class="nav-link" data-toggle="dropdown">
-                  account
-                </a>
+                <a href="#" class="nav-link" data-toggle="dropdown">account</a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-danger" aria-labelledby="navbarDropdownMenuLink1">
-                  <a class="dropdown-item" href="{% url 'account-url:login' %}">
+                  <a class="dropdown-item" href="{% url 'accounts:login' %}">
                     <i class="fa fa-sign-in"></i> login
                   </a>
-                  <a class="dropdown-item" href="{% url 'account-url:register' %}">
+                  <a class="dropdown-item" href="{% url 'accounts:signup' %}">
                     <i class="fa fa-user-plus"></i> register
                   </a>
                 </div>

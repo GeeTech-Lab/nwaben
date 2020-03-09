@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import django_heroku
-
+import cloudinary
+from nwaben.cloudinary_settings import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.humanize',
     'django.contrib.staticfiles',
 
     # custom apps
@@ -44,10 +46,13 @@ INSTALLED_APPS = [
     'articles.apps.ArticlesConfig',
 
     # third party apps
+    'widget_tweaks',
     'rest_framework',
     'phonenumber_field',
     'crispy_forms',
     'corsheaders',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -87,7 +92,7 @@ WSGI_APPLICATION = 'nwaben.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db_.sqlite3'),
     }
 }
 
@@ -136,9 +141,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # cloudinary media setups for images and videos
+
+
 MEDIA_URL = '/media/'
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_ROOT = MEDIA_URL
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 CRISPY_CLASS_CONVERTERS = {
@@ -152,15 +159,26 @@ CRISPY_CLASS_CONVERTERS = {
     'select': "form-control",
 }
 
+
 # Heroku cloud upload settings...
 django_heroku.settings(locals())
 
+
+#Https settings...
 CORS_REPLACE_HTTPS_REFERER = False
-HOST_SCHEME = "http://"
+HOST_SCHEME = "https://"
 SECURE_PROXY_SSL_HEADER = None
 SESSION_SSL_REDIRECT = False
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
-SECURE_HSTS_SECONDS = None
-SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_HOSTS_SECONDS = None
+SECURE_HOSTS_INCLUDE_SUBDOMAINS = False
 SECURE_FRAME_DENY = False
+
+
+# config/settings.py
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+AUTH_USER_MODEL = "accounts.User"
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_AUTHENTICATION_METHOD = "username_email"

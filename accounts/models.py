@@ -1,61 +1,97 @@
-import random
-import os
-
-from cloudinary.models import CloudinaryField
-from django.contrib.auth import get_user_model
 from django.db import models
+from django.contrib.auth.models import (
+    BaseUserManager,
+    AbstractBaseUser,
+    PermissionsMixin
+)
+from django.utils import timezone
+from cloudinary.models import CloudinaryField
 
-# Create your models here.
-from django.db.models.signals import pre_save, post_save
+
+# default_path="https://res.cloudinary.com/hwz12fud7/image/upload/v1537132883/media/Gerard%20Nwazk/musicadence_fpdfvb.jpg"
 from phonenumber_field.modelfields import PhoneNumberField
 
-from nwaben.utils import unique_slug_generator
-
-User = get_user_model()
-GENDER_CHOICE = (("M", "Male"), ("F", "Female"))
-
-def get_filename_ext(filepath):
-    base_name = os.path.basename(filepath)
-    name, ext = os.path.splitext(base_name)
-    return name, ext
-
-def upload_image_path(instance, filename):
-    new_filename = random.randint(1, 191092013)
-    name, ext = get_filename_ext(filename)
-    final_filename = "{}{}".format(new_filename=new_filename, ext=ext)
-    return "profile/{}/{}".format(new_filename=new_filename, ext=ext)
+GENDER_CHOICE = (("Male", "Male"), ("Female", "Female"))
 
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField()
+def upload_dir(instance, filename):
+    return "{}/{}".format(instance.username, filename)
+
+
+class UserManager(BaseUserManager):
+
+    def create_user(self, email, username, phone=None, gender=None, password=None):
+        """
+        Creates and saves a User with the given email, date of
+        birth and password.
+        """
+        if not email:
+            raise ValueError('Users must have an email address')
+        elif not phone:
+            raise ValueError('Pls provide your mobile number eg: +234080312345678')
+
+        user = self.model(
+            email=self.normalize_email(email),
+            username=username,
+            phone=phone,
+            gender=gender,
+        )
+
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, username, phone, gender, password):
+        """
+        Creates and saves a superuser with the given email, date of
+        birth and password.
+        """
+        user = self.create_user(
+            email,
+            username,
+            phone,
+            gender,
+            password,
+        )
+        user.is_staff = True
+        user.is_superuser = True
+        user.is_admin = True
+        user.save(using=self._db)
+        return user
+
+
+class User(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(unique=True)
+    username = models.CharField(max_length=40, unique=True)
+    bio = models.CharField(max_length=240, blank=True, default="")
+    avatar = CloudinaryField(upload_dir, null=True, blank=True)
     phone = PhoneNumberField()
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICE, blank=True, null=True)
-    image = CloudinaryField(upload_image_path, null=True, blank=True)
-    slug = models.SlugField(unique=True, blank=True, null=True)
-    time_stamp = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now_add=True)
+    gender = models.CharField(max_length=6, choices=GENDER_CHOICE, blank=True, null=True)
+    follow_count = models.PositiveIntegerField(default=0)
+    date_joined = models.DateTimeField(auto_now_add=True, )
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
 
-    class Meta:
-        db_table = 'profile'
-        verbose_name = 'Profile'
-        verbose_name_plural = 'Profiles'
-        unique_together = ('phone', 'slug')
+    objects = UserManager()
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ['username', 'phone', 'gender']
 
     def __str__(self):
-        return str(self.user.username)
+        return "@{}".format(self.username)
 
-    def image_tag(self):
-        from django.utils.safestring import mark_safe
-        return mark_safe('<img src="{}" width="100" height="100"/>'.format(self.image.url))
-    image_tag.short_description='Profile Image'
-    image_tag.allow_tags = True
+    @property
+    def image_url(self):
+        if self.avatar:
+            return self.avatar.url
+        else:
+            return 'https://res.cloudinary.com/geetechlab-com/image/upload/v1583147406/nwaben.com/user_azjdde_sd2oje.jpg'
+            # return "static/img/icons/musicadence.png"
 
+    def get_full_name(self):
+        # The user is identified by their
+        return self.username
 
-def post_save_profile_receiver(sender, created, instance, *args, **kwargs):
-    if created:
-        if not instance.slug:
-            instance.slug = unique_slug_generator(instance)
-            instance.save()
-
-post_save.connect(post_save_profile_receiver, sender=Profile)
+    def get_short_name(self):
+        # The user is identified by their
+        return "{} ({})".format(self.username, self.email)

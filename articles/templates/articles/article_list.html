@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+{% load humanize %}
+
+{% block title %}Articles{% endblock %}
+
+{% block content %}
+<div class="blog-posts sidebar-collapse">
+
+  <div class="wrapper">
+    <div class="main">
+      <div class="section section-white">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 ml-auto mr-auto text-center title">
+              <h2>A place for storytelling</h2>
+              <h3 class="title-uppercase">
+                <small>Written by designers for designers</small>
+              </h3>
+            </div>
+          </div>
+        {% for article in articles %}
+          <div class="article">
+            <div class="row">
+              <div class="col-md-8 ml-auto mr-auto">
+                <div class="card card-blog card-plain text-center">
+                  <div class="card-image">
+                    <a href="{% url 'articles:article_detail' slug=article.slug %}">
+                      <img class="img img-raised" src="{{ article.image_url }}">
+                    </a>
+                  </div>
+                  <div class="card-body">
+                    <div class="card-category">
+                      <span class="badge badge-primary main-tag">{{ article.category }}</span>
+                    </div>
+                    <a href="javascrip: void(0);">
+                      <h3 class="card-title">{{ article.title }}</h3>
+                    </a>
+                    <div class="card-description">
+                      <p>{{ article.description|safe|truncatewords:7|linebreaks }}</p>
+                        <p class="author">
+                      by
+                      <a href="#">
+                        <b>{{ article.author }}</b>
+                      </a>, {{ article.created|naturaltime }}, <span class="badge badge-danger main-tag">{{ article.view_count }} views</span>
+                    </p>
+                    </div>
+                  </div>
+                  <a class="btn btn-danger btn-round btn-sm" href="{% url 'articles:article_detail' slug=article.slug %}">Read more</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        {% empty %}
+            {% if user.is_superuser %}
+                <hr>
+                <div class="col-md-6 ml-auto mr-auto text-center">
+                    <h4 class="info-title text-center"> Articles are empty for now </h4>
+                    <p class="text-center">Start an article now</p>
+                    <br>
+                    <p class="text-center"><a href="{% url 'articles:article_create' %}">Create an Article</a></p>
+                </div>
+            {% else %}
+                <div class="info">
+                    <div class="icon icon-primary">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <div class="description">
+                        <h4 class="info-title"> Articles are empty for now </h4>
+                        <p>No articles yet please visit more often to view our available articles...</p>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        <hr>
+            {% if user.is_superuser %}
+                <div class="info">
+                    <div class="icon icon-primary">
+                        <i class="fa fa-user-md"></i>
+                    </div>
+                    <div class="description">
+                        <h4 class="info-title"> ADMIN Article Panel Section </h4>
+                        <p class="text-center">Click here to visit article<a href="{% url 'articles:article_dashboard' %}"><i class="fa fa-user-md"></i>admin panel</a></p>
+                    </div>
+                </div>
+            {% endif %}
+        {% include 'articles/pagination.html' %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

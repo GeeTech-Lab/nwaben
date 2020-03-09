@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}Create an Category{% endblock %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="col-md-6 ml-auto mr-auto text-center">
+        <h4 class="info-title text-center"> Create Category </h4>
+        <p class="text-center">Start a new category</p>
+        <br>
+        <form method="post">
+            {% csrf_token %}
+            {% include 'includes/form.html' %}
+            <button class="btn btn-rotate btn-round" type="submit"><i class="fa fa-paper-plane"></i>create category</button>
+        </form>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+{% endblock %}

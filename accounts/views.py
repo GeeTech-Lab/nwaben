@@ -1,37 +1,79 @@
-from django.contrib.auth import get_user_model, authenticate, login
-from django.http import JsonResponse
-from django.shortcuts import render, redirect
-from django.urls import reverse
-from django.views.generic.base import View
-User = get_user_model()
-
+from django.contrib.auth import login, logout
+from django.contrib.auth.forms import AuthenticationForm
+from django.shortcuts import render
+from .models import User
+from .forms import UserChangeForm
 
 # Create your views here.
+from django.urls import reverse_lazy, reverse
+from django.views import generic, View
 
-#TODO: ensure that registration html page is working correctly
-class RegisterView(View):
+from accounts import forms
+
+
+class LoginView(generic.FormView):
+    form_class = AuthenticationForm
+    success_url = reverse_lazy("home")
+    template_name = "accounts/login.html"
+
+    def get_form(self, form_class=None):
+        if form_class is None:
+            form_class = self.get_form_class()
+        return form_class(self.request, **self.get_form_kwargs())
+
+    # Takes users to success_url if the login...
+    def form_valid(self, form):
+        login(self.request, form.get_user())
+        return super(LoginView, self).form_valid(form)
+
+
+class LogoutView(generic.RedirectView):
+    url = reverse_lazy("home")
+
     def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return redirect(reverse('404_'))
-        return render(request, template_name='accounts/register.html')
+        logout(request)
+        return super(LogoutView, self).get(request, *args, **kwargs)
 
 
-#TODO: ensure that registration html page is working correctly
-class LoginView(View):
-    def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return redirect(reverse('404_'))
-        return render(request, template_name='accounts/login.html')
+# The default django signup form uses only username tp log users
+# if you want to use email, then create form.py
+class SignupView(generic.CreateView):
+    form_class = forms.UserCreateForm
+    success_url = reverse_lazy("login")
+    template_name = "accounts/register.html"
 
-    def post(self, request, *args, **kwargs):
-        if request.is_ajax():
-            data = request.POST
-            username = data['username']
-            password = data['password']
-            user_qs = User.objects.filter(username__iexact=username)
-            if user_qs.exists(): #and user_qs.active is True:
-                user = authenticate(username=username, password=password)
-                login(request, user)
-                return JsonResponse({'message': 'Logged In Successfully!'}, status= 200)
-            return JsonResponse({'message': 'Error With User!'}, status=400)
-        return JsonResponse({'message':'Method Not Allowed!'}, status=400)
+
+class UpdateUserProfileView(generic.UpdateView ):
+    template_name = 'accounts/update_profile.html'
+    model = User
+    form_class = UserChangeForm
+    fields = ["phone", "avatar", "bio"]
+    success_url = reverse_lazy('profile')
+
+
+class UserProfileView(generic.DetailView, generic.UpdateView):
+    template_name = "accounts/profile.html"
+    model = User
+    fields = ["phone", "avatar", "bio"]
+    success_url = reverse_lazy('accounts:profile')
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    # def get_context_data(self, **kwargs):
+    #     context = super(UserProfileView, self).get_context_data(**kwargs)
+    #     print (self.get_object())
+    #     return context
+    #
+    # def get_object(self, queryset=None):
+    #     try:
+    #         user_obj = User.objects.get(pk=self.pk_url_kwarg)
+    #     except user_obj.DoesNotExist:
+    #         return reverse('404_')
+    #     except user_obj.MultipleObjectsReturned:
+    #         user_qs = User.objects.filter(pk=self.pk_url_kwarg)
+    #         user_obj = user_qs.first()
+    #     except:
+    #         return reverse('404_')
+    #     return user_obj
+

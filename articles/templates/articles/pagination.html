@@ -1,0 +1,29 @@
+
+    {% if is_paginated %}
+        <div class="row">
+            <div class="col-md-12">
+
+                {% if page_obj.has_previous %}
+                    <div class="pull-left">
+                        <a class="btn btn-link btn-default btn-move-left btn-sm" href="?page={{ page_obj.previous_page_number }}"> <i class="fa fa-angle-left"></i>Previous Posts</a>
+                    </div>
+                {% else %}
+                    <div class="pull-left">
+                        <span class="btn btn-link btn-default btn-move-left btn-sm"> <i class="fa fa-angle-left"></i>Previous</span>
+                    </div>
+                {% endif %}
+
+
+                {% if page_obj.has_previous %}
+                    <div class="pull-right">
+                        <a class="btn btn-link btn-default btn-move-right btn-sm" href="?page={{ page_obj.next_page_number }}">Newer Posts <i class="fa fa-angle-right"></i></a>
+                    </div>
+                {% else %}
+                    <div class="pull-right">
+                        <span class="btn btn-link btn-default btn-move-right btn-sm" >Newer Posts <i class="fa fa-angle-right"></i></span>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    {% endif %}

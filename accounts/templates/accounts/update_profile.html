@@ -1,0 +1,6 @@
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% include 'includes/form.html' %}
+    <button class="btn btn-rotate btn-round" type="submit"><i class="fa fa-cog"></i>update profile</button>
+</form>
+

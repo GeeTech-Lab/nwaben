@@ -1,24 +1,44 @@
 from django.contrib import admin
-from .models import Profile
+from django.contrib.auth import get_user_model
+from .models import User
+from .forms import UserCreateForm, UserChangeForm
+# from django.contrib.auth.models import Group
+from django.contrib.auth.admin import UserAdmin
 
 
 # Register your models here.
 
+class MyAdmin(UserAdmin):
+    # The forms to add and change user instances
+    form = UserChangeForm
+    model = User
+    add_form = UserCreateForm
 
-@admin.register(Profile)
-class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'phone', 'updated')
-    list_display_links = ('user',)
-    list_filter = ('user', 'phone')
-    readonly_fields = ('slug', 'image_tag')
-    # prepopulated_fields = {'slug': ('phone',)}
-    search_fields = ('user', 'phone')
-
-    ordering = ('-time_stamp',)
+    # The fields to be used in displaying the User model.
+    # These override the definitions on the base UserAdmin
+    # that reference specific fields on auth.User.
+    list_display = ('username', 'email', 'date_joined', 'is_staff', 'is_active')
+    list_filter = ('is_staff',)
     fieldsets = (
-        ('Basic Information', {'description': "Copy User UUID From Firebase Using Corresponding User Phone Number",
-                               'fields': ('image_tag', 'phone', 'image', ('user',))}),
-        ('Complete Full Information', {'classes': ('collapse',), 'fields': ('bio', ('gender'))}),)
+        (None, {'fields': ('email', 'password')}),
+        ('Personal info', {'fields': ('avatar', 'bio',)}),
+        ('Permissions', {'fields': ('is_staff',)}),
+    )
+    # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
+    # overrides get_fieldsets to use this attribute when creating a user.
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('username', 'email', 'password1', 'password2')}
+         ),
+    )
+    search_fields = ('username',)
+    ordering = ('username',)
+    filter_horizontal = ()
 
 
-admin.site.site_header = 'NWABEN ADMIN'
+# Now register the new UserAdmin...
+admin.site.register(User, MyAdmin)
+# ... and, since we're not using Django's built-in permissions,
+# unregister the Group model from admin.
+# admin.site.unregister(Group)

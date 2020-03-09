@@ -20,12 +20,12 @@ class ContactView(SuccessMessageMixin, FormView):
         name = form.cleaned_data['name']
         phone = form.cleaned_data['phone']
         message = form.cleaned_data['message']
-        recipient_list = [email_settings.DEFAULT_FROM_EMAIL]
+        recipient_list = [email_settings.DEFAULT_FROM_EMAIL, 'nwazuruokenwaben@gmail.com']
         sg_message = Mail(
             from_email=form.cleaned_data['email'],
             to_emails=recipient_list,
             subject=email_settings.ACCOUNT_EMAIL_SUBJECT_PREFIX,
-            html_content='name: {} \n message: {} \n mobile: {}'.format(name, message, phone)
+            html_content='<html> <p>name: {}</p> <p>message: {}</p> <small>mobile: {}</small> </html>'.format(name, message, phone)
         )
         sg = SendGridAPIClient(email_settings.SENDGRID_API_KEY)
         sg.send(sg_message)

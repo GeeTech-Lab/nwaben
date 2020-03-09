@@ -1,3 +1,5 @@
+{% load cloudinary %}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +16,13 @@
 
     </head>
 
-    <body>
+{% url 'home' as home %}
+
+{% if request.path == home %}
+  <body class="landing-page full-screen sidebar-collapse">
+{% else %}
+  <body>
+{% endif %}
         {% include "messages.html" %}
         {% include "navbar.html" %}
 
