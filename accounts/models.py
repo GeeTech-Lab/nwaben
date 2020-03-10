@@ -85,8 +85,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         if self.avatar:
             return self.avatar.url
         else:
-            return 'https://res.cloudinary.com/geetechlab-com/image/upload/v1583147406/nwaben.com/user_azjdde_sd2oje.jpg'
-            # return "static/img/icons/musicadence.png"
+            return 'https://res.cloudinary.com/geetechlab-com/image/upload/v1583147406/nwaben.com/user_azjdde_sd2oje' \
+                   '.jpg '
 
     def get_full_name(self):
         # The user is identified by their
