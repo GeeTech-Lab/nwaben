@@ -15,6 +15,8 @@ import django_heroku
 import cloudinary
 from nwaben.cloudinary_settings import *
 
+AUTH_USER_MODEL = "accounts.User"
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -180,6 +182,6 @@ SECURE_FRAME_DENY = False
 # config/settings.py
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
-AUTH_USER_MODEL = "accounts.User"
+
 # ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_AUTHENTICATION_METHOD = "username_email"
