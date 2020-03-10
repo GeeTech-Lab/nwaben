@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4cb6c1b-b7d9-410a-97cb-11f6be75c540" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nwaben/settings/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/nwaben/settings/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nwaben/settings/production.py" beforeDir="false" afterPath="$PROJECT_DIR$/nwaben/settings/production.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,15 +30,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/articles/templates/articles/article_list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1264">
-              <caret line="79" column="47" selection-start-line="79" selection-start-column="47" selection-end-line="79" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/articles/templates/articles/article_form.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -102,11 +93,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nwaben/settings/production.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="176" column="25" lean-forward="true" selection-start-line="176" selection-start-column="25" selection-end-line="176" selection-end-column="25" />
+            <state relative-caret-position="105">
+              <caret line="98" column="21" selection-start-line="98" selection-start-column="21" selection-end-line="98" selection-end-column="21" />
               <folding>
                 <element signature="e#307#316#0" expanded="true" />
               </folding>
@@ -114,7 +105,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/nwaben/settings/base.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="89">
+              <caret line="80" column="38" lean-forward="true" selection-start-line="80" selection-start-column="38" selection-end-line="80" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
@@ -169,7 +169,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/accounts/api/user/urls.py" />
         <option value="$PROJECT_DIR$/accounts/api/utils.py" />
         <option value="$PROJECT_DIR$/nwaben/utils.py" />
         <option value="$PROJECT_DIR$/accounts/api/permissions.py" />
@@ -203,7 +202,6 @@
         <option value="$PROJECT_DIR$/accounts/views.py" />
         <option value="$PROJECT_DIR$/nwaben/urls.py" />
         <option value="$PROJECT_DIR$/nwaben/cloudinary_settings.py" />
-        <option value="$PROJECT_DIR$/nwaben/settings/production.py" />
         <option value="$PROJECT_DIR$/nwaben/settings/local.py" />
         <option value="$PROJECT_DIR$/nwaben/views.py" />
         <option value="$PROJECT_DIR$/accounts/models.py" />
@@ -220,6 +218,8 @@
         <option value="$PROJECT_DIR$/articles/forms.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/nwaben/settings/base.py" />
+        <option value="$PROJECT_DIR$/nwaben/settings/production.py" />
       </list>
     </option>
   </component>
@@ -372,12 +372,12 @@
       <workItem from="1583606456011" duration="686000" />
       <workItem from="1583621605901" duration="1074000" />
       <workItem from="1583670767173" duration="14888000" />
-      <workItem from="1583821092932" duration="1054000" />
+      <workItem from="1583821092932" duration="2338000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="247631000" />
+    <option name="totallyTimeSpent" value="248915000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -452,9 +452,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/accounts/apps.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/accounts/api/urls.py" />
     <entry file="file://$PROJECT_DIR$/accounts/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
@@ -799,20 +796,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nwaben/settings/production.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="176" column="25" lean-forward="true" selection-start-line="176" selection-start-column="25" selection-end-line="176" selection-end-column="25" />
-          <folding>
-            <element signature="e#307#316#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="131" column="24" selection-start-line="131" selection-start-column="24" selection-end-line="131" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nwaben/settings/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="80" column="38" lean-forward="true" selection-start-line="80" selection-start-column="38" selection-end-line="80" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nwaben/settings/production.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="98" column="21" selection-start-line="98" selection-start-column="21" selection-end-line="98" selection-end-column="21" />
+          <folding>
+            <element signature="e#307#316#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

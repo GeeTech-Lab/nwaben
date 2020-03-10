@@ -91,8 +91,12 @@ WSGI_APPLICATION = 'nwaben.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db_.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd15kcqep22g6cj',
+        'USER': 'muaesvsulsqkui',
+        'PASSWORD': '4635f75b094db3e5f092acd8d7f11a71119d54123577e34e0d644012f876928a',
+        'HOST': 'ec2-54-221-195-148.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
@@ -147,7 +151,6 @@ MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_ROOT = MEDIA_URL
 
-
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 CRISPY_CLASS_CONVERTERS = {
     'textinput': "form-control",
@@ -160,12 +163,10 @@ CRISPY_CLASS_CONVERTERS = {
     'select': "form-control",
 }
 
-
 # Heroku cloud upload settings...
 django_heroku.settings(locals())
 
-
-#Https settings...
+# Https settings...
 CORS_REPLACE_HTTPS_REFERER = False
 HOST_SCHEME = "https://"
 SECURE_PROXY_SSL_HEADER = None
@@ -175,7 +176,6 @@ CSRF_COOKIE_SECURE = False
 SECURE_HOSTS_SECONDS = None
 SECURE_HOSTS_INCLUDE_SUBDOMAINS = False
 SECURE_FRAME_DENY = False
-
 
 # config/settings.py
 LOGIN_REDIRECT_URL = 'home'
