@@ -7,9 +7,9 @@ from django.contrib.auth.models import (
 from django.utils import timezone
 from cloudinary.models import CloudinaryField
 
-
-# default_path="https://res.cloudinary.com/hwz12fud7/image/upload/v1537132883/media/Gerard%20Nwazk/musicadence_fpdfvb.jpg"
 from phonenumber_field.modelfields import PhoneNumberField
+
+
 
 GENDER_CHOICE = (("Male", "Male"), ("Female", "Female"))
 

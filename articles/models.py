@@ -1,7 +1,7 @@
 import random
 
 from django.conf import settings
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.db import models
 from cloudinary.models import CloudinaryField
 from django.db.models.signals import pre_save
@@ -10,7 +10,7 @@ from django.utils import timezone
 from django.utils.text import slugify
 
 # from accounts.models import Profile
-from nwaben import settings
+# from nwaben import settings
 
 
 def upload_dir(instance, filename):
