@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d4cb6c1b-b7d9-410a-97cb-11f6be75c540" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/articles/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db_.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db_.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nwaben/settings/production.py" beforeDir="false" afterPath="$PROJECT_DIR$/nwaben/settings/production.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,8 +32,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nwaben/settings/local.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-447">
-              <caret line="43" column="17" lean-forward="true" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+            <state relative-caret-position="162">
+              <caret line="43" column="4" lean-forward="true" selection-start-line="43" selection-start-column="4" selection-end-line="45" selection-end-column="35" />
               <folding>
                 <element signature="e#307#316#0" expanded="true" />
               </folding>
@@ -51,17 +46,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="305">
               <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/articles/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -81,22 +65,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nwaben/settings/production.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="99" column="59" selection-start-line="99" selection-start-column="59" selection-end-line="99" selection-end-column="59" />
+            <state relative-caret-position="247">
+              <caret line="44" selection-start-line="44" selection-end-line="44" />
               <folding>
                 <element signature="e#307#316#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/accounts/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -214,7 +186,6 @@
         <option value="$PROJECT_DIR$/accounts/views.py" />
         <option value="$PROJECT_DIR$/nwaben/urls.py" />
         <option value="$PROJECT_DIR$/nwaben/cloudinary_settings.py" />
-        <option value="$PROJECT_DIR$/nwaben/settings/local.py" />
         <option value="$PROJECT_DIR$/nwaben/views.py" />
         <option value="$PROJECT_DIR$/accounts/forms.py" />
         <option value="$PROJECT_DIR$/accounts/templates/accounts/profile.html" />
@@ -231,6 +202,7 @@
         <option value="$PROJECT_DIR$/articles/models.py" />
         <option value="$PROJECT_DIR$/accounts/models.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/nwaben/settings/local.py" />
         <option value="$PROJECT_DIR$/nwaben/settings/production.py" />
       </list>
     </option>
@@ -255,17 +227,6 @@
             <path>
               <item name="nwaben" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="C:\Users\GEEMIX\PycharmProjects\nwaben" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-            <path>
-              <item name="nwaben" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="C:\Users\GEEMIX\PycharmProjects\nwaben" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="nwaben" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="nwaben" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="C:\Users\GEEMIX\PycharmProjects\nwaben" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="nwaben" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="settings" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -385,12 +346,12 @@
       <workItem from="1583621605901" duration="1074000" />
       <workItem from="1583670767173" duration="14888000" />
       <workItem from="1583821092932" duration="7732000" />
-      <workItem from="1584439030373" duration="2010000" />
+      <workItem from="1584439030373" duration="2429000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="256319000" />
+    <option name="totallyTimeSpent" value="256738000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -405,7 +366,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16414523" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16414523" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -419,7 +380,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3289689" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50075644" side_tool="true" weight="0.3289689" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49924356" visible="true" weight="0.29787233" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49924356" visible="true" weight="0.29787233" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -455,10 +416,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/accounts/api/urls.py" />
-    <entry file="file://$PROJECT_DIR$/accounts/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/404_.html" />
     <entry file="file://$PROJECT_DIR$/static/js/plugins/bootstrap-datetimepicker.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -805,10 +762,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/articles/apps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="3" column="20" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/apps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/nwaben/settings/local.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-447">
-          <caret line="43" column="17" lean-forward="true" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+        <state relative-caret-position="162">
+          <caret line="43" column="4" lean-forward="true" selection-start-line="43" selection-start-column="4" selection-end-line="45" selection-end-column="35" />
           <folding>
             <element signature="e#307#316#0" expanded="true" />
           </folding>
@@ -817,8 +788,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/nwaben/settings/production.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="99" column="59" selection-start-line="99" selection-start-column="59" selection-end-line="99" selection-end-column="59" />
+        <state relative-caret-position="247">
+          <caret line="44" selection-start-line="44" selection-end-line="44" />
           <folding>
             <element signature="e#307#316#0" expanded="true" />
           </folding>
