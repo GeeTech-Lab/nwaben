@@ -12,7 +12,6 @@ from django.utils.text import slugify
 # from accounts.models import Profile
 # from nwaben import settings
 
-
 def upload_dir(instance, filename):
     return "{}/{}".format(instance.author, filename)
 
