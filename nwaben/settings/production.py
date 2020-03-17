@@ -94,10 +94,10 @@ WSGI_APPLICATION = 'nwaben.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd15kcqep22g6cj',
-        'USER': 'muaesvsulsqkui',
-        'PASSWORD': '4635f75b094db3e5f092acd8d7f11a71119d54123577e34e0d644012f876928a',
-        'HOST': 'ec2-54-221-195-148.compute-1.amazonaws.com',
+        'NAME': 'd36gr1q5ja7r0m',
+        'USER': 'jqemoxdxonkqau',
+        'PASSWORD': '2ea8750dadeac43f15aefa0f9ce59e988e67d606d774458360e5a13ed710b8ea',
+        'HOST': 'ec2-34-206-252-187.compute-1.amazonaws.com',
         'PORT': '5432'
     }
 }
