@@ -87,17 +87,16 @@
                   <div class="media">
                     <a class="pull-left" href="#">
                       <div class="avatar big-avatar">
-                        <img class="media-object" alt="{{ article.title }}" src="">
+                        <img class="media-object" alt="{{ article.author }}" src="{{ article.author.image_url }}">
                       </div>
                     </a>
                     <div class="media-body">
                       <p class="media-heading">by: <strong>{{ article.author }}</strong></p>
 
-                      <p>{{ article.author.bio }}</p>
+                      <p class="media-footer" >{{ article.author.bio }}</p>
                     </div>
                   </div>
                 </div>
-
                 <div class="row">
                   <div class="comments media-area">
                     <h3 class="text-center">Comments</h3>
@@ -147,6 +146,7 @@
               </div>
             </div>
           </div>
+        <hr>
 
     {% if user.is_authenticated %}
       <div class="section section-gray">
@@ -157,7 +157,7 @@
               <div class="media media-post">
                 <a class="pull-left author" href="#paper-kit">
                   <div class="avatar">
-                    <img class="media-object" alt="64x64" src="{{ comment.by.image_url }}">
+                    <img class="media-object" alt="64x64" src="{{ user.image_url }}">
                   </div>
                 </a>
                 <div class="form media-body" method="POST"> {% csrf_token %}
