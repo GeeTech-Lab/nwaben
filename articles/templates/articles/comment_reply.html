@@ -1,0 +1,35 @@
+{% load humanize %}
+{% load crispy_forms_tags %}
+
+{% for reply in comment.replies.all %}
+    <div class="media">
+      <a class="pull-left" href="#paper-kit">
+        <div class="avatar">
+          <img class="media-object" alt="64x64" src="{{ reply.replied_by.image_url }}">
+        </div>
+      </a>
+      <div class="media-body">
+        <h5 class="media-heading">{{ reply.replied_by }}</h5>
+        <div class="pull-right">
+          <h6 class="text-muted">{{ reply.replied_on|naturaltime }}</h6>
+        </div>
+        <p>{{ reply.content }}</p>
+      </div>
+    </div>
+{% endfor %}
+<!-- end media -->
+
+<div class="media media-post">
+  <a class="pull-left author" href="/">
+    <div class="avatar">
+      <img class="media-object" alt="{{ user.username }}" src="{{ user.image_url }}">
+    </div>
+  </a>
+  <form class="media-body" method="post">
+      {% csrf_token %}
+      {{ form.content|as_crispy_field }}
+    <div class="media-footer">
+      <button type="submit" class="btn btn-info pull-right">Reply</button>
+    </div>
+  </form>
+</div>

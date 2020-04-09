@@ -3,8 +3,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.views import generic
 from django.views import View
-from .forms import ArticleForm, CommentForm, CategoryForm
-from .models import Category, Article, Comment
+from .forms import ArticleForm, CommentForm, CategoryForm, ReplyForm
+from .models import Category, Article, Comment, Reply
 
 
 class ArticleList(generic.CreateView, generic.ListView):
@@ -28,15 +28,19 @@ class ArticleDisplay(generic.DetailView, generic.UpdateView):
     template_name = 'articles/article_detail.html'
 
     def get_object(self):
-        object = super(ArticleDisplay, self).get_object()
-        object.view_count += 1
-        object.save()
-        return object
+        view_count_obj = super(ArticleDisplay, self).get_object()
+        view_count_obj.view_count += 1
+        view_count_obj.save()
+        return view_count_obj
 
     def get_context_data(self, **kwargs):
         context = super(ArticleDisplay, self).get_context_data(**kwargs)
-        context['comments'] = Comment.objects.filter(article=self.get_object())
+        # comment_obj = Comment.objects.get(article=self.get_object())
+        comments = Comment.objects.filter(article=self.get_object())
+        context['comments'] = comments
+        # context['replies'] = Reply.objects.filter(comment=comment_obj)
         context['form'] = CommentForm
+        # context['reply_form'] = ReplyForm
         return context
 
 
@@ -53,6 +57,48 @@ class ArticleComment(LoginRequiredMixin, generic.FormView):
 
     def get_success_url(self):
         return reverse('articles:article_detail', kwargs={'slug': self.kwargs['slug']})
+
+
+# class CommentReply(LoginRequiredMixin, generic.FormView):
+#     form_class = ReplyForm
+#     template_name = 'articles/comment_reply.html'
+#
+#     def form_valid(self, form):
+#         form.instance.replied_by = self.request.user
+#         comment = Comment.objects.get(pk=self.kwargs['pk'])
+#         form.instance.comment = comment
+#         form.save()
+#         return super(CommentReply, self).form_valid(form)
+#
+#     def get_success_url(self):
+#         return reverse('articles:article_detail', kwargs={'slug': self.kwargs['slug']})
+#
+#
+#
+# class CommentDisplay(generic.DetailView):
+#     model = Comment
+#     template_name = "articles/comment_reply.html"
+#
+#     def get_context_data(self, **kwargs):
+#         context = super(CommentDisplay, self).get_context_data(**kwargs)
+#         replies = Reply.objects.filter(comment=self.get_object())
+#         context['replies'] = replies
+#         context['form'] = ReplyForm
+#         print(replies)
+#         return context
+
+
+
+
+# class CommentDetail(View):
+#     def get(self, request, *args, **kwargs):
+#         view = CommentDisplay.as_view()
+#         return view(request, *args, **kwargs)
+#
+#     def post(self, request, *args, **kwargs):
+#         view = CommentReply.as_view()
+#         return view(request, *args, **kwargs)
+
 
 
 class ArticleDetail(View):

@@ -1,5 +1,8 @@
 {% extends 'layout.html' %}
 {% load humanize %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+
 {% block title %}Articles{% endblock %}
 
 {% block content %}
@@ -82,8 +85,8 @@
               </div>
               -->
               <hr>
+            <div class="row">
               <div class="container">
-                <div class="row">
                   <div class="media">
                     <a class="pull-left" href="#">
                       <div class="avatar big-avatar">
@@ -96,57 +99,68 @@
                       <p class="media-footer" >{{ article.author.bio }}</p>
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="comments media-area">
-                    <h3 class="text-center">Comments</h3>
-                      {% for comment in comments %}
-                        <div class="media">
-                          <a class="pull-left" href="#">
-                            <div class="avatar">
-                              <img class="media-object" alt="Tim Picture" src="{{ comment.by.image_url }}">
-                            </div>
-                          </a>
-                          <div class="media-body">
-                            <h5 class="media-heading">{{ comment.by }}</h5>
-                            <div class="pull-right">
-                              <h6 class="text-muted">{{ comment.created_on }}</h6>
-                              <a href="#" class="btn btn-info btn-link pull-right "> <i class="fa fa-reply"></i> Reply</a>
-                            </div>
-                            <p>{{ comment.content }}</p>
-                              {% for reply in replies %}
-                                <div class="media">
-                                  <a class="pull-left" href="#">
-                                    <div class="avatar">
-                                      <img class="media-object" alt="64x64" src="{{ reply.replied_by.image_url }}">
-                                    </div>
-                                  </a>
-                                  <div class="media-body">
-                                    <h5 class="media-heading">{{ reply.replied_by }}</h5>
-                                    <div class="pull-right">
-                                      <h6 class="text-muted">{{ reply.replied_on }}</h6>
-                                      <a href="#" class="btn btn-info btn-link pull-right "> <i class="fa fa-reply"></i> Reply</a>
-                                    </div>
-                                    <p>{{ reply.content }}</p>
-                                  </div>
-                                </div>
-                              {% endfor %}
-                            <!-- end media -->
-                          </div>
-                        </div>
-                      {% empty %}
-                          <div class="media-body">
-                            <p>No comment yet, be the first to comment this article...</p>
-                          </div>
-                        </div>
-                      {% endfor %}
-                    <!-- end media -->
-                  </div>
-                </div>
               </div>
             </div>
+
+
+        </div>
+      </div>
+    <hr>
+
+
+
+
+    <div class="section section-nude-gray">
+        <div class="container container-tim">
+          <div class="row">
+            <div class="col-md-8 ml-auto mr-auto">
+              <div class="media-area">
+                <h3>Comment{{ comments.count|pluralize }} · {{ comments.count }}</h3>
+                <!--  Comment                    -->
+                {% for comment in comments %}
+                <div class="media">
+                  <a class="pull-left" href="#paper-kit">
+                    <div class="avatar">
+                      <img class="media-object" alt="Tim Picture" src="{{ comment.by.image_url }}">
+                    </div>
+                  </a>
+                  <div class="media-body">
+                    <h5 class="media-heading">{{ comment.by.username }}</h5>
+                    <div class="pull-right">
+                      <h6 class="text-muted">{{ comment.created_on|naturaltime }}</h6>
+                    </div>
+                    <p>{{ comment.content|linebreaks }}</p>
+                    <div class="media-footer">
+                      <a href="#" class="btn btn-danger btn-link">
+                        <i class="fa fa-thumbs-up" aria-hidden="true"></i> 0
+                      </a>
+                      <a href="#" class="btn btn-link">
+                        <i class="fa fa-thumbs-down" aria-hidden="true"></i> 0
+                      </a>
+                      <a href="#" class="btn btn-link">
+                        Follow · 0
+                      </a>
+                    </div>
+                    <!--__Reply include tag goes here__-->
+
+                  </div>
+                </div>
+                {% empty %}
+                    <div class="media-body">
+                        <p>No comment yet, be the first to comment this article...</p>
+                    </div>
+                <!-- end media -->
+                {% endfor %}
+              </div>
+
+              <!-- end media-area -->
+            <hr>
+            </div>
+            <!-- end col-md-8 -->
           </div>
-        <hr>
+          <!-- end row -->
+        </div>
+      </div>
 
     {% if user.is_authenticated %}
       <div class="section section-gray">
@@ -155,66 +169,29 @@
             <div class="col-md-8 ml-auto mr-auto">
               <h3 class="text-center">Post your comment</h3>
               <div class="media media-post">
-                <a class="pull-left author" href="#paper-kit">
+                <a class="pull-left author">
                   <div class="avatar">
                     <img class="media-object" alt="64x64" src="{{ user.image_url }}">
                   </div>
                 </a>
-                <div class="form media-body" method="POST"> {% csrf_token %}
-                  <textarea class="form-control border-input" placeholder="Write some nice stuff or nothing..." rows="4"></textarea>
+                <form class="form media-body" method="POST">
+                    {% csrf_token %}
+                    {% render_field form.content class="form-control" placeholder="write your comments here...", rows="4" %}
                   <div class="media-footer">
-                    <a href="#" class="btn btn-info btn-wd pull-right" type="submit">Post Comment</a>
+                    <button type="submit" class="btn btn-info btn-wd pull-right">Post Comment</button>
                   </div>
-                </div>
-              </div>
-              <!-- end media-post -->
-            {% else %}
-              <h3 class="text-center">Post your comment</h3>
-              <div class="media media-post">
-                <form class="form"> {% csrf_token %}
-                  <a class="pull-left author" href="#">
-                    <div class="avatar">
-                      <img class="media-object" alt="64x64" src="https://res.cloudinary.com/geetechlab-com/image/upload/v1581031758/nwaben.com/default_user_fph9rc.jpg" />
-                    </div>
-                  </a>
-                  <div class="media-body">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <input type="email" class="form-control border-input" placeholder="Your Name" />
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <input type="email" class="form-control border-input" placeholder="Your email" />
-                        </div>
-                      </div>
-                    </div>
-                    <textarea class="form-control border-input" placeholder="Write some nice stuff or nothing..." rows="6"></textarea>
-                    <div class="media-footer">
-                      <h6 class="text-muted">Sign in with</h6>
-                      <a href="#twitter" class="btn btn-just-icon btn-round btn-twitter">
-                        <i class="fa fa-twitter"></i>
-                      </a>
-                      <a href="#facebook" class="btn btn-round btn-just-icon btn-facebook">
-                        <i class="fa fa-facebook"></i>
-                      </a>
-                      <a href="#google" class="btn btn-just-icon btn-round btn-google">
-                        <i class="fa fa-google-plus"></i>
-                      </a>
-                      <a href="#paper-kit" class="btn btn-info pull-right">Post Comment</a>
-                    </div>
-                  </div>
-                  <!-- end media-body -->
                 </form>
               </div>
               <!-- end media-post -->
+            {% else %}
+                <h5 class="text-center">you need to <a href="{% url 'accounts:login' %}">login</a> to be able to comment this article</h5>
             </div>
           </div>
           <!-- end row -->
         </div>
       </div>
     {% endif %}
+
         <!--
           <div class="row">
             <div class="related-articles">
@@ -249,6 +226,29 @@
       </div>
     </div>
   </div>
+
+
+            <!--<br>
+            <div class="pagination-area">
+              <ul class="pagination pagination-primary pagination-no-border justify-content-center">
+                <li class="page-item">
+                  <a href="#paper-kit" class="page-link"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+                </li>
+                <li class="page-item active">
+                  <a href="#paper-kit" class="page-link">1</a>
+                </li>
+                <li class="page-item">
+                  <a href="#paper-kit" class="page-link">2</a>
+                </li>
+
+                <li class="page-item">
+                  <a href="#paper-kit" class="page-link"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          -->
+
 
 </div>
 
