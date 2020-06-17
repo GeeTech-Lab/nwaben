@@ -4,48 +4,65 @@
 {% block title %}Article Dashboard{% endblock %}
 
 {% block content %}
-
+    <br>
+    <br>
+    <br>
+    <br>
     <div class="wrapper">
-        <div class="content-center">
-            <div class="row">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Author</th>
-                            <th class="text-right">Date created</th>
-                            <th class="text-right">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for article in articles %}
-                        <tr>
-                            <td>{{ article.title }}</td>
-                            <td>{{article.description|safe|truncatewords:10}}</td>
-                            <td>{{ article.author }}</td>
-                            <td class="text-right">{{ article.created|naturaltime }}</td>
-                            <td class="td-actions text-right">
-                                <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon">
-                                    <i class="fa fa-user"></i>
-                                </button>
-                                <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
-                                    <a href="{% url 'articles:article_update' article.slug %}">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                </button>
-                                <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
-                                    <a href="{% url 'articles:article_delete' article.slug %}">
-                                        <i class="fa fa-times"></i>
-                                    </a>
-                                </button>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+        <div class="container">
+            <div class="content-center">
+                <div class="row">
+                    <div class="info">
+                        <div class="icon icon-primary">
+                            <img class="img-thumbnail img-responsive" src="{{ request.user.image_url }}">
+                        </div>
+                        <div class="description">
+                            <h4 class="info-title"> Welcome {{ request.user }} </h4>
+                            <p>You were able to view this page due to your admin/super_user privilages...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Author</th>
+                                <th class="text-right">Date created</th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for article in articles %}
+                            <tr>
+                                <td>{{ article.title }}</td>
+                                <td>{{article.description|safe|truncatewords:10}}</td>
+                                <td>{{ article.author }}</td>
+                                <td class="text-right">{{ article.created|naturaltime }}</td>
+                                <td class="td-actions text-right">
+                                    <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon">
+                                        <i class="fa fa-user"></i>
+                                    </button>
+                                    <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
+                                        <a href="{% url 'articles:article_update' article.slug %}">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </button>
+                                    <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
+                                        <a href="{% url 'articles:article_delete' article.slug %}">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            <hr>
+            {% include 'includes/pagination.html' %}
             </div>
         </div>
     </div>
-
 {% endblock %}

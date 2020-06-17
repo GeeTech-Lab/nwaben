@@ -88,8 +88,6 @@ class ArticleComment(LoginRequiredMixin, generic.FormView):
 #         return context
 
 
-
-
 # class CommentDetail(View):
 #     def get(self, request, *args, **kwargs):
 #         view = CommentDisplay.as_view()
@@ -98,7 +96,6 @@ class ArticleComment(LoginRequiredMixin, generic.FormView):
 #     def post(self, request, *args, **kwargs):
 #         view = CommentReply.as_view()
 #         return view(request, *args, **kwargs)
-
 
 
 class ArticleDetail(View):
@@ -133,7 +130,7 @@ class ArticleUpdate(LoginRequiredMixin, generic.UpdateView):
 
 class ArticleDelete(LoginRequiredMixin, generic.DeleteView):
     model = Article
-    success_url = reverse_lazy("article_dashboard")
+    success_url = reverse_lazy("articles:article_dashboard")
 
     # Here we overide the delete function to only work if a user is a superuser
     def get_queryset(self):

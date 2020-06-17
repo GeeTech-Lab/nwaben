@@ -12,6 +12,7 @@
         <br>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
+            {{ form.media }}
             {% include 'includes/form.html' %}
             <button class="btn btn-rotate btn-round" type="submit"><i class="fa fa-paper-plane"></i>publish article</button>
         </form>

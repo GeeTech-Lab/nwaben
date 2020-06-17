@@ -1,5 +1,7 @@
 import random
 
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 # from django.contrib.auth.models import User
 from django.db import models
@@ -49,11 +51,11 @@ class Category(models.Model):
 class Article(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
-    description = models.CharField(max_length=255, null=True)
+    description = RichTextField(blank=True, null=True, config_name='special')
     image = CloudinaryField(upload_dir, blank=True, null=True)
     slug = models.SlugField(max_length=255, unique=True, null=False)
-    body = models.TextField(blank=True, null=True)
-    # body = RichTextField(blank=True, null=True)
+    # body = models.TextField(blank=True, null=True)
+    body = RichTextUploadingField(blank=True, null=True, external_plugin_resources=[('youtube', '/static/youtube/', 'plugin.js')])
     view_count = models.PositiveIntegerField(default=0)
     created = models.DateTimeField(default=timezone.now)
     draft = models.BooleanField(default=True)
@@ -101,7 +103,7 @@ pre_save.connect(article_pre_save_signal, sender=Article)
 class Comment(models.Model):
     article = models.ForeignKey(Article, related_name="comments", on_delete=models.CASCADE)
     by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    content = models.TextField()
+    content = RichTextUploadingField(blank=True, null=True, config_name='comment_content')
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
 

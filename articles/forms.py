@@ -27,7 +27,7 @@ class CategoryForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
-    content = forms.CharField(widget=forms.Textarea)
+    # content = forms.CharField(widget=forms.Textarea)
 
     class Meta:
         model = Comment

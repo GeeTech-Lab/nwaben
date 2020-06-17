@@ -129,7 +129,8 @@
                     <div class="pull-right">
                       <h6 class="text-muted">{{ comment.created_on|naturaltime }}</h6>
                     </div>
-                    <p>{{ comment.content|linebreaks }}</p>
+                    <p>{{ comment.content|safe }}</p>
+                    <!--
                     <div class="media-footer">
                       <a href="#" class="btn btn-danger btn-link">
                         <i class="fa fa-thumbs-up" aria-hidden="true"></i> 0
@@ -141,6 +142,7 @@
                         Follow · 0
                       </a>
                     </div>
+                    -->
                     <!--__Reply include tag goes here__-->
 
                   </div>
@@ -176,6 +178,7 @@
                 </a>
                 <form class="form media-body" method="POST">
                     {% csrf_token %}
+                    {{ form.media }}
                     {% render_field form.content class="form-control" placeholder="write your comments here...", rows="4" %}
                   <div class="media-footer">
                     <button type="submit" class="btn btn-info btn-wd pull-right">Post Comment</button>

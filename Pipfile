@@ -21,6 +21,8 @@ sendgrid = "*"
 django-cloudinary-storage = "*"
 django-widget-tweaks = "*"
 six = "*"
+django-ckeditor = "*"
+django-audiofield = "*"
 
 [requires]
 python_version = "3.7"

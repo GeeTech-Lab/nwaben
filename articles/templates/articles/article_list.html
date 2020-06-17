@@ -22,35 +22,29 @@
           <div class="article">
             <div class="row">
               <div class="col-md-8 ml-auto mr-auto">
-                <div class="card card-blog card-plain text-center">
-                  <div class="card-image">
-                    <a href="{% url 'articles:article_detail' slug=article.slug %}">
-                      <img class="img img-raised" src="{{ article.image_url }}">
-                    </a>
-                  </div>
+                <div class="card" data-background="image" style="background-image: url('{{ article.image_url }}')">
                   <div class="card-body">
-                    <div class="card-category">
-                      <span class="badge badge-primary main-tag">{{ article.category }}</span>
+                    <h6 class="card-category">{{ article.category }}</h6>
+                    <div class="card-icon">
+                      <i class="fa fa-space-shuttle"></i>
                     </div>
-                    <a href="javascrip: void(0);">
-                      <h3 class="card-title">{{ article.title }}</h3>
-                    </a>
-                    <div class="card-description">
-                      <p>{{ article.description|safe|truncatewords:7|linebreaks }}</p>
-                        <p class="author">
-                      by
-                      <a href="#">
-                        <b>{{ article.author }}</b>
-                      </a>, {{ article.created|naturaltime }}, <span class="badge badge-danger main-tag">{{ article.view_count }} views</span>
-                    </p>
+                    <h3 class="card-title">{{ article.title }}</h3>
+                    <p class="card-description">{{ article.description|safe|truncatewords:7 }}</p>
+                      <p class="author">
+                          by: <b>{{ article.author }}</b>, <br> This article was written {{ article.created|naturaltime }} with <span class="badge badge-danger main-tag">{{ article.view_count }} views</span>
+                      </p>
+                    <div class="card-footer">
+                      <a href="{% url 'articles:article_detail' slug=article.slug %}" class="btn btn-danger btn-round card-link">
+                        <i class="fa fa-book" aria-hidden="true"></i> Read Article
+                      </a>
                     </div>
                   </div>
-                  <a class="btn btn-danger btn-round btn-sm" href="{% url 'articles:article_detail' slug=article.slug %}">Read more</a>
                 </div>
               </div>
             </div>
           </div>
-
+          <br>
+          <br>
         {% empty %}
             {% if user.is_superuser %}
                 <hr>
@@ -74,6 +68,8 @@
         {% endfor %}
 
         <hr>
+        {% include 'includes/pagination.html' %}
+
             {% if user.is_superuser %}
                 <div class="info">
                     <div class="icon icon-primary">
@@ -85,7 +81,7 @@
                     </div>
                 </div>
             {% endif %}
-        {% include 'articles/pagination.html' %}
+
         </div>
       </div>
     </div>

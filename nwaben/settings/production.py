@@ -55,7 +55,43 @@ INSTALLED_APPS = [
     'corsheaders',
     'cloudinary_storage',
     'cloudinary',
+    'ckeditor',
+    'ckeditor_uploader',
+    # 'audiofield',
 ]
+
+
+CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'height': 150,
+        'width': 600,
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Link', 'Unlink', 'Image', 'CodeSnippet', 'RemoveFormat', 'Source', 'Youtube'],
+        ],
+        'extraPlugins': ','.join(['codesnippet', 'youtube']),
+    },
+
+    'special': {
+        'toolbar': 'Special',
+        'height': 200,
+        'toolbar_Special': [
+            ['Bold', 'Italic', 'Link', 'Unlink', 'Image', 'CodeSnippet', 'Source', 'Youtube'],
+        ],
+        'extraPlugins': ','.join(['codesnippet', 'youtube']),
+    },
+
+    'comment_content': {
+        'toolbar': 'Special',
+        'height': 150,
+        'width': 600,
+        'toolbar_Special': [
+            ['Bold', 'Italic', 'Link', 'Unlink'],
+        ],
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -65,6 +101,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'audiofield.middleware.threadlocals.ThreadLocals',
 ]
 
 ROOT_URLCONF = 'nwaben.urls'
@@ -137,16 +174,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# cloudinary media setups for images and videos
-
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
@@ -168,14 +201,14 @@ CRISPY_CLASS_CONVERTERS = {
 django_heroku.settings(locals())
 
 # Https settings...
-CORS_REPLACE_HTTPS_REFERER = False
+CORS_REPLACE_HTTPS_REFERER = True
 HOST_SCHEME = "https://"
 SECURE_PROXY_SSL_HEADER = None
-SESSION_SSL_REDIRECT = False
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
+SESSION_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 SECURE_HOSTS_SECONDS = None
-SECURE_HOSTS_INCLUDE_SUBDOMAINS = False
+SECURE_HOSTS_INCLUDE_SUBDOMAINS = True
 SECURE_FRAME_DENY = False
 
 # config/settings.py
@@ -184,3 +217,16 @@ LOGOUT_REDIRECT_URL = 'home'
 
 # ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+
+
+# #======DJANGO-audiofield settings=====
+# # Frontend widget values
+# # 0-Keep original, 1-Mono, 2-Stereo
+# CHANNEL_TYPE_VALUE = 0
+#
+# # 0-Keep original, 8000-8000Hz, 16000-16000Hz, 22050-22050Hz,
+# # 44100-44100Hz, 48000-48000Hz, 96000-96000Hz
+# FREQ_TYPE_VALUE = 8000
+#
+# # 0-Keep original, 1-Convert to MP3, 2-Convert to WAV, 3-Convert to OGG
+# CONVERT_TYPE_VALUE = 0

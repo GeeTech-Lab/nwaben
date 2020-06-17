@@ -17,15 +17,18 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from nwaben.views import ContactView
 
 urlpatterns = [
     path('admin', admin.site.urls),
+    path('ckeditor/', include("ckeditor_uploader.urls")),
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
     path('page-not-found/', TemplateView.as_view(template_name='404.html'), name='404_'),
     path('about/', ContactView.as_view(), name='about'),
     path('articles/', include(('articles.urls', 'articles'), namespace='articles')),
+    path('archive/', include('archive.urls')),
     path('accounts/', include(('accounts.urls', 'accounts'), namespace='accounts')),
     path('accounts/', include("django.contrib.auth.urls")),
 ]
@@ -33,6 +36,5 @@ urlpatterns = [
 urlpatterns += staticfiles_urlpatterns()
 # Remove this conditional check if you want to upload to Heroku
 if settings.DEBUG:
-    from django.conf.urls.static import static
-
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

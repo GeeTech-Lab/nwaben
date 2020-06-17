@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+{% load humanize %}
+
+{% block title %}Article Dashboard{% endblock %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="wrapper">
+        <div class="container">
+            <div class="content-center">
+                <div class="row">
+                    <div class="info">
+                        <div class="icon icon-primary">
+                            <i class="fa fa-recycle"></i>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="description">
+                            <h5>Delete {{ article.title }}</h5>
+                            <p>Dear {{ request.user }} do you wish to delete this article?...</p>
+                            <br>
+                            <br>
+                            <form method='POST'>
+                                {% csrf_token %}
+                                <input type='submit' class="btn btn-danger" value='delete'>
+                                <a href="{% url 'articles:article_dashboard' %}">Cancel</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+{% endblock %}
