@@ -33,67 +33,12 @@
       <change afterPath="$PROJECT_DIR$/../geetechlab/static/youtube/lang/vi.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../geetechlab/static/youtube/lang/zh.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../geetechlab/static/youtube/plugin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archive/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archive/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/articles/templates/articles/article_confirm_delete.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/includes/pagination.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../geetechlab/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../geetechlab/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../geetechlab/articles/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../geetechlab/articles/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../geetechlab/geetechlab/settings/production.py" beforeDir="false" afterPath="$PROJECT_DIR$/../geetechlab/geetechlab/settings/production.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../geetechlab/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/../geetechlab/templates/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/nwaben.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/nwaben.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/archive/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archive/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archive/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/articles/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/articles/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/templates/articles/admin_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/articles/templates/articles/admin_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/templates/articles/article_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/articles/templates/articles/article_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/templates/articles/article_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/articles/templates/articles/article_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/templates/articles/article_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/articles/templates/articles/article_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/articles/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db_.sqlite3" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/nwaben/settings/production.py" beforeDir="false" afterPath="$PROJECT_DIR$/nwaben/settings/production.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nwaben/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/nwaben/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/font-awesome.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/font-awesome.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/owl.carousel.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/paper-kit.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/slicknav.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/WaveSurferInit.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/core/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/core/jquery.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/core/popper.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/jplayerInit.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/jquery-3.2.1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/jquery.jplayer.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/jquery.slicknav.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/mixitup.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/owl.carousel.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/paper-kit.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/plugins/bootstrap-datetimepicker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/plugins/bootstrap-selectpicker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/plugins/bootstrap-switch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/plugins/bootstrap-tagsinput.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/plugins/jasny-bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/plugins/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/plugins/moment.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/plugins/nouislider.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/plugins/photo_swipe/init-gallery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/plugins/photo_swipe/photoswipe-ui-default.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/plugins/photo_swipe/photoswipe.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/wavesurfer.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/about.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -135,7 +80,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/archive/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-378">
+            <state relative-caret-position="16">
               <caret line="1" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="45" />
             </state>
           </provider>
@@ -144,8 +89,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nwaben/settings/local.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="217" selection-start-line="217" selection-start-column="2" selection-end-line="227" selection-end-column="24" />
+            <state relative-caret-position="64">
+              <caret line="43" column="4" lean-forward="true" selection-start-line="43" selection-start-column="4" selection-end-line="45" selection-end-column="33" />
               <folding>
                 <element signature="e#306#315#0" expanded="true" />
               </folding>
@@ -156,7 +101,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/archive/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
+            <state relative-caret-position="192">
               <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
@@ -168,8 +113,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nwaben/settings/production.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="221" selection-start-line="221" selection-start-column="2" selection-end-line="231" selection-end-column="24" />
+            <state relative-caret-position="326">
+              <caret line="32" column="19" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
               <folding>
                 <element signature="e#307#316#0" expanded="true" />
               </folding>
@@ -180,7 +125,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/archive/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
+            <state relative-caret-position="912">
               <caret line="62" column="49" selection-start-line="62" selection-start-column="49" selection-end-line="62" selection-end-column="49" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
@@ -192,7 +137,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/accounts/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
+            <state relative-caret-position="912">
               <caret line="67" column="42" selection-start-line="67" selection-start-column="42" selection-end-line="67" selection-end-column="42" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
@@ -204,7 +149,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/archive/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
+            <state relative-caret-position="48">
               <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
@@ -322,17 +267,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="nwaben" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="C:\Users\GEEMIX\PycharmProjects\nwaben" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -345,11 +279,16 @@
               <item name="nwaben" type="462c0819:PsiDirectoryNode" />
               <item name="nwaben" type="462c0819:PsiDirectoryNode" />
             </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
             <path>
-              <item name="nwaben" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nwaben" type="462c0819:PsiDirectoryNode" />
-              <item name="nwaben" type="462c0819:PsiDirectoryNode" />
-              <item name="settings" type="462c0819:PsiDirectoryNode" />
+              <item name="nwaben" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="C:\Users\GEEMIX\PycharmProjects\nwaben" type="442cc68d:ScopeViewTreeModel$RootNode" />
             </path>
           </expand>
           <select />
@@ -502,12 +441,14 @@
       <workItem from="1591794134927" duration="10581000" />
       <workItem from="1591949374058" duration="32567000" />
       <workItem from="1592250425681" duration="1392000" />
-      <workItem from="1592285302033" duration="1407000" />
+      <workItem from="1592285302033" duration="1980000" />
+      <workItem from="1592470622729" duration="501000" />
+      <workItem from="1592519594964" duration="402000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="374352000" />
+    <option name="totallyTimeSpent" value="375945000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -522,7 +463,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19591528" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20196672" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -536,7 +477,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3289689" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50075644" side_tool="true" weight="0.3289689" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49924356" visible="true" weight="0.2782324" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49924356" visible="true" weight="0.2782324" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -903,54 +844,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/archive/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-378">
+        <state relative-caret-position="16">
           <caret line="1" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nwaben/settings/local.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="217" selection-start-line="217" selection-start-column="2" selection-end-line="227" selection-end-column="24" />
-          <folding>
-            <element signature="e#306#315#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/archive/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="67" column="42" selection-start-line="67" selection-start-column="42" selection-end-line="67" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/archive/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="62" column="49" selection-start-line="62" selection-start-column="49" selection-end-line="62" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/archive/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
+        <state relative-caret-position="192">
           <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
@@ -958,10 +859,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/archive/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="912">
+          <caret line="62" column="49" selection-start-line="62" selection-start-column="49" selection-end-line="62" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="912">
+          <caret line="67" column="42" selection-start-line="67" selection-start-column="42" selection-end-line="67" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/archive/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nwaben/settings/local.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="43" column="4" lean-forward="true" selection-start-line="43" selection-start-column="4" selection-end-line="45" selection-end-column="33" />
+          <folding>
+            <element signature="e#306#315#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/nwaben/settings/production.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="221" selection-start-line="221" selection-start-column="2" selection-end-line="231" selection-end-column="24" />
+        <state relative-caret-position="326">
+          <caret line="32" column="19" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
           <folding>
             <element signature="e#307#316#0" expanded="true" />
           </folding>

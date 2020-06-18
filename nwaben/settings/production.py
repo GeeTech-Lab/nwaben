@@ -28,9 +28,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = 'k@g(@6x!5+6-4dfw9*p(1c@bc^6g22t9w&uh6c4hw-9jj-x($('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # custom apps
     'accounts.apps.AccountsConfig',
     'articles.apps.ArticlesConfig',
+    'archive.apps.ArchiveConfig',
 
     # third party apps
     'widget_tweaks',
