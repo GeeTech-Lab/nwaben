@@ -8,20 +8,20 @@ from archive.models import Album, Song
 
 class AlbumList(ListView):
     model = Album
-    template_name = 'archive/music_list'
+    template_name = 'archives/music_list'
     context_object_name = 'all_albums'
 
-    def get_queryset(self):
-        query = self.request.GET.get('q')
-        album_qs = Album.objects.filter(uploaded_by=self.request.user).filter(
-            Q(album_name__icontains=query) | Q(artist__icontains=query)
-        )
-        return album_qs
+    # def get_queryset(self):
+    #     query = self.request.GET.get('q')
+    #     album_qs = Album.objects.filter(uploaded_by=self.request.user).filter(
+    #         Q(album_name__icontains=query) | Q(artist__icontains=query)
+    #     )
+    #     return album_qs
 
 
 class AlbumDetail(DetailView):
     model = Album
-    template_name = 'archive/album_detail.html'
+    template_name = 'archives/album_detail.html'
 
 
 class AlbumCreate(CreateView):
@@ -41,15 +41,15 @@ class AlbumDelete(DeleteView):
 
 class SongList(ListView):
     model = Song
-    template_name = 'song_list.html'
+    template_name = 'archives/song_list.html'
     context_object_name = 'songs in this album'
 
-    def get_queryset(self):
-        query = self.request.GET.get('q')
-        song_qs = Song.objects.all().filter(
-            Q(song_title__icontains=query) | Q(album__album_name__icontains=query)
-        ).distinct()
-        return song_qs
+    # def get_queryset(self):
+    #     query = self.request.GET.get('q')
+    #     song_qs = Song.objects.all().filter(
+    #         Q(song_title__icontains=query) | Q(album__album_name__icontains=query)
+    #     ).distinct()
+    #     return song_qs
 
 
 class SongCreate(CreateView):

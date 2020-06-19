@@ -39,6 +39,10 @@ class Album(models.Model):
             return self.album_logo.url
         return 'https://res.cloudinary.com/geetechlab-com/image/upload/v1580824596/nwaben.com/blog_image1_eklmqy.jpg'
 
+    def album_songs(self):
+        album = Album.objects.get(slug=self.slug)
+        return album.song_set.count()
+
 
 def album_pre_save_signal(sender, instance, *args, **kwargs):
     if not instance.slug:
