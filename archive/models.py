@@ -6,6 +6,7 @@ from django.db.models.signals import pre_save
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
+from .validators import validate_file_extension
 
 
 def upload_dir(instance, filename):
@@ -31,7 +32,7 @@ class Album(models.Model):
         return self.album_name
 
     def get_absolute_url(self):
-        return reverse('music:detail', kwargs={'slug': self.slug})
+        return reverse('archives:album_detail', kwargs={'slug': self.slug})
 
     @property
     def image_url(self):
@@ -67,7 +68,7 @@ class Song(models.Model):
     slug = models.SlugField(max_length=255, unique=True, null=False)
     # audio_file = AudioField(upload_dir, blank=True, ext_whitelist=(".mp3", ".wav", ".ogg"),
     #                         help_text="Allowed type - .mp3, .wav, .ogg")
-    audio_file = CloudinaryField(upload_dir, blank=True)
+    audio_file = CloudinaryField(upload_dir, blank=True, validators=[validate_file_extension])
     track_number = models.IntegerField()
 
     def __str__(self):

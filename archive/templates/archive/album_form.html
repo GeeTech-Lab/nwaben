@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block title %}Create an Album{% endblock %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="col-md-6 ml-auto mr-auto text-center">
+        <h4 class="info-title text-center"> Add an Album </h4>
+        <p class="text-center">Add a new album now </p>
+        <br>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% include 'includes/form.html' %}
+            <button class="btn btn-rotate btn-round" type="submit"><i class="fa fa-upload"></i>add album</button>
+        </form>
+    </div>
+    <br>
+{% endblock %}

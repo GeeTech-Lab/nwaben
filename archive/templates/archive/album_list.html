@@ -1,0 +1,93 @@
+{% extends 'layout.html' %}
+{% block title %}Albums{% endblock %}
+
+{% block content %}
+    <body class="product-page sidebar-collapse">
+
+        <div class="page-header page-header-xs" style="background-image: url('#');">
+            <div class="filter"></div>
+        </div>
+        <div class="main">
+            <div class="section">
+              <div class="container align-content-center">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h4>All available music albums</h4><br>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="table-responsive">
+                      <table class="table table-shopping">
+                          <thead>
+                              <tr>
+                                  <th class="text-center"></th>
+                                  <th class="text-center">Album name</th>
+                                  <th class="text-center">No of tracks</th>
+                                  <th class="text-center">Genre</th>
+                                  <th class="text-center">Artist</th>
+                                  <th class="text-center">Price</th>
+                                  <th class="text-center">Download</th>
+                                  <th></th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                          {% for album in albums %}
+                              <tr>
+                                  <td class="text-center">
+                                      <div class="img-container">
+                                          <img src="{{ album.image_url }}" alt="{{ album.album_name }}">
+                                      </div>
+                                  </td>
+                                  <td class="td-name text-center">
+                                      <a href="{% url 'archives:album_detail' album.slug %}">{{ album.album_name }}</a>
+                                      <br><small>added by {{ album.uploaded_by }}</small>
+                                  </td>
+                                  <td class="text-center">
+                                      {{ album.album_songs }}
+                                  </td>
+                                  <td class="text-center">
+                                      {{ album.genre }}
+                                  </td>
+                                  <td class="text-center">
+                                      {{ album.artist }}
+                                  </td>
+                                  <td class="text-center">
+                                      <small>N</small>{{ album.price }}
+                                  </td>
+                                  <td class="text-center">
+                                      <button class="btn btn-primary btn-round btn-sm"> <i class="fa fa-download"></i> download </button>
+                                  </td>
+                                  {% if user.is_superuser  %}
+                                      <td class="td-actions">
+                                          <a class="btn btn-info btn-sm" type="submit" href="{% url 'archives:delete_album' album.slug %}">
+                                            <i class="fa fa-trash"></i> delete
+                                          </a>
+                                      </td>
+                                  {% endif %}
+                              </tr>
+                          {% empty %}
+                            <div class="info">
+                                <div class="icon icon-primary">
+                                    <i class="fa fa-music"></i>
+                                </div>
+                                <div class="description">
+                                    <h4 class="info-title"> No Available Album Yet </h4>
+                                    {% if user.is_superuser %}
+                                        <p>Dear {{ request.user }} you currently have not uploaded any album yet <br>
+                                        <a class="btn btn-primary btn-link" href="{% url 'archives:add_album' %}">click here</a> to add albums</p>
+                                    {% else %}
+                                        <p>We currently have no available album yet please check back later</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                          {% endfor %}
+                          </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+    </body>
+{% endblock %}

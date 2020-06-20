@@ -1,13 +1,14 @@
 {% url 'home' as home %}
 {% url 'about' as about %}
 {% url 'articles:article_list' as article_list %}
+{% url 'archives:album_list' as album_list %}
 {% url 'accounts:login' as login %}
 {% url 'accounts:signup' as register %}
 {% url 'accounts:profile' as profile %}
 
 
 <!-- Navbar -->
-{% if request.path == home or request.path == login or request.path == register or request.path == about or request.path == profile %}
+{% if request.path == home or request.path == login or request.path == register or request.path == about or request.path == profile  or request.path == album_list %}
     <nav class="navbar navbar-expand-lg nav-down navbar-absolute navbar-transparent" color-on-scroll="500">
 {% else %}
     <nav class="navbar navbar-expand-lg navbar-absolute nav-down">
@@ -50,28 +51,37 @@
           <li class="nav-item">
               {% if request.path == article_list %}
                 <a href="{% url 'articles:article_list' %}" class="nav-link">
-                    blog <span class="sr-only">(current)</span> </a>
+                    blog <span>(current)</span> </a>
               {% else %}
                   <a href="{% url 'articles:article_list' %}" class="nav-link">blog</a>
               {% endif %}
           </li>
 
+          <li class="nav-item">
+              {% if request.path == album_list %}
+                <a href="{% url 'archives:album_list' %}" class="nav-link">
+                    music-archive <span> <i class="fa fa-arrow-circle-down"></i></span> </a>
+              {% else %}
+                  <a href="{% url 'archives:album_list' %}" class="nav-link">music-archive</a>
+              {% endif %}
+          </li>
+
         {% if user.is_authenticated %}
             <li class="dropdown nav-item">
-            <a href="#paper-kit" class="nav-link" data-toggle="dropdown" width="30" height="30">
-              <div class="profile-photo-small">
-                <img src="{{ user.image_url }}" alt="{{ user.username }}" class="img-circle img-responsive img-no-padding">
-              </div>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-danger" aria-labelledby="navbarDropdownMenuLink1">
-              <a class="dropdown-item" href="{% url 'accounts:profile' %}">
-                <i class="fa fa-user-circle"></i> profile
-              </a>
-              <a class="dropdown-item" href="{% url 'accounts:logout' %}">
-                <i class="fa fa-sign-out"></i> logout
-              </a>
-            </div>
-          </li>
+                <a href="#paper-kit" class="nav-link" data-toggle="dropdown" width="30" height="30">
+                  <div class="profile-photo-small">
+                    <img src="{{ user.image_url }}" alt="{{ user.username }}" class="img-circle img-responsive img-no-padding">
+                  </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-danger" aria-labelledby="navbarDropdownMenuLink1">
+                  <a class="dropdown-item" href="{% url 'accounts:profile' %}">
+                    <i class="fa fa-user-circle"></i> profile
+                  </a>
+                  <a class="dropdown-item" href="{% url 'accounts:logout' %}">
+                    <i class="fa fa-sign-out"></i> logout
+                  </a>
+                </div>
+            </li>
         {% else %}
             <li class="dropdown nav-item">
                 <a href="#" class="nav-link" data-toggle="dropdown">account</a>

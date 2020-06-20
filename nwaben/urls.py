@@ -28,7 +28,7 @@ urlpatterns = [
     path('page-not-found/', TemplateView.as_view(template_name='404.html'), name='404_'),
     path('about/', ContactView.as_view(), name='about'),
     path('articles/', include(('articles.urls', 'articles'), namespace='articles')),
-    path('archive/', include('archive.urls', namespace='archives')),
+    path('archives/', include('archive.urls', namespace='archives')),
     path('search/', include('search.urls', namespace='search')),
     path('accounts/', include(('accounts.urls', 'accounts'), namespace='accounts')),
     path('accounts/', include("django.contrib.auth.urls")),
