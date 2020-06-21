@@ -33,21 +33,12 @@
       <change afterPath="$PROJECT_DIR$/../geetechlab/static/youtube/lang/vi.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../geetechlab/static/youtube/lang/zh.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../geetechlab/static/youtube/plugin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/archive/validators.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../geetechlab/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../geetechlab/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../geetechlab/articles/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../geetechlab/articles/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../geetechlab/geetechlab/settings/production.py" beforeDir="false" afterPath="$PROJECT_DIR$/../geetechlab/geetechlab/settings/production.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../geetechlab/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/../geetechlab/templates/layout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archive/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archive/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archive/templates/archives/album_detail.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/archive/templates/archives/music_list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/archive/templates/archives/song_list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/archive/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/archive/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db_.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db_.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nwaben/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/nwaben/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nwaben/settings/production.py" beforeDir="false" afterPath="$PROJECT_DIR$/nwaben/settings/production.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -98,11 +89,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/archive/templates/archive/album_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
+            <state relative-caret-position="256">
               <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/nwaben/settings/production.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="212" column="24" lean-forward="true" selection-start-line="212" selection-start-column="24" selection-end-line="212" selection-end-column="24" />
+              <folding>
+                <element signature="e#307#316#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -244,7 +247,6 @@
         <option value="$PROJECT_DIR$/static/css/style.css" />
         <option value="$PROJECT_DIR$/archive/admin.py" />
         <option value="$PROJECT_DIR$/nwaben/settings/local.py" />
-        <option value="$PROJECT_DIR$/nwaben/settings/production.py" />
         <option value="$PROJECT_DIR$/archive/templates/archives/album_detail.html" />
         <option value="$PROJECT_DIR$/archive/templates/archives/song_list.html" />
         <option value="$PROJECT_DIR$/templates/includes/search_result.html" />
@@ -263,6 +265,7 @@
         <option value="$PROJECT_DIR$/archive/forms.py" />
         <option value="$PROJECT_DIR$/archive/views.py" />
         <option value="$PROJECT_DIR$/archive/templates/archive/album_list.html" />
+        <option value="$PROJECT_DIR$/nwaben/settings/production.py" />
       </list>
     </option>
   </component>
@@ -300,31 +303,13 @@
             <path>
               <item name="nwaben" type="b2602c69:ProjectViewProjectNode" />
               <item name="nwaben" type="462c0819:PsiDirectoryNode" />
-              <item name="archive" type="462c0819:PsiDirectoryNode" />
+              <item name="nwaben" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="nwaben" type="b2602c69:ProjectViewProjectNode" />
               <item name="nwaben" type="462c0819:PsiDirectoryNode" />
-              <item name="archive" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nwaben" type="b2602c69:ProjectViewProjectNode" />
               <item name="nwaben" type="462c0819:PsiDirectoryNode" />
-              <item name="archive" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="archive" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nwaben" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nwaben" type="462c0819:PsiDirectoryNode" />
-              <item name="articles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nwaben" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nwaben" type="462c0819:PsiDirectoryNode" />
-              <item name="articles" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="settings" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="nwaben" type="b2602c69:ProjectViewProjectNode" />
@@ -485,12 +470,12 @@
       <workItem from="1592285302033" duration="1980000" />
       <workItem from="1592470622729" duration="501000" />
       <workItem from="1592519594964" duration="6400000" />
-      <workItem from="1592565409249" duration="20619000" />
+      <workItem from="1592565409249" duration="21626000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="402562000" />
+    <option name="totallyTimeSpent" value="403569000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -510,7 +495,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32405892" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32405892" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -519,7 +504,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3289689" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50075644" side_tool="true" weight="0.3289689" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49924356" weight="0.2782324" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49924356" visible="true" weight="0.2782324" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -719,16 +704,6 @@
           <caret line="43" column="4" lean-forward="true" selection-start-line="43" selection-start-column="4" selection-end-line="45" selection-end-column="33" />
           <folding>
             <element signature="e#306#315#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nwaben/settings/production.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="48" column="33" lean-forward="true" selection-start-line="48" selection-start-column="33" selection-end-line="48" selection-end-column="33" />
-          <folding>
-            <element signature="e#307#316#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -951,8 +926,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/archive/templates/archive/album_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
+        <state relative-caret-position="256">
           <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nwaben/settings/production.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="212" column="24" lean-forward="true" selection-start-line="212" selection-start-column="24" selection-end-line="212" selection-end-column="24" />
+          <folding>
+            <element signature="e#307#316#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
