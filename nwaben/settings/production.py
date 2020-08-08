@@ -130,8 +130,12 @@ WSGI_APPLICATION = 'nwaben.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db_.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd36gr1q5ja7r0m',
+        'USER': 'jqemoxdxonkqau',
+        'PASSWORD': '2ea8750dadeac43f15aefa0f9ce59e988e67d606d774458360e5a13ed710b8ea',
+        'HOST': 'ec2-34-206-252-187.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
@@ -170,16 +174,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media_cdn', 'staticfiles')
-
-LOGIN_REDIRECT_URL = '/account/<username>/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+MEDIA_ROOT = MEDIA_URL
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 CRISPY_CLASS_CONVERTERS = {
