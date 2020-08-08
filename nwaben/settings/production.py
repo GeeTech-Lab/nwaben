@@ -9,13 +9,12 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
 import os
 import django_heroku
 import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 from nwaben.cloudinary_settings import *
-
-AUTH_USER_MODEL = "accounts.User"
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -30,7 +29,7 @@ SECRET_KEY = 'k@g(@6x!5+6-4dfw9*p(1c@bc^6g22t9w&uh6c4hw-9jj-x($('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -46,7 +45,8 @@ INSTALLED_APPS = [
     # custom apps
     'accounts.apps.AccountsConfig',
     'articles.apps.ArticlesConfig',
-    'archive.apps.ArchiveConfig',
+    # 'archive.apps.ArchiveConfig',
+    'mp3.apps.Mp3Config',
 
     # third party apps
     'widget_tweaks',
@@ -61,14 +61,14 @@ INSTALLED_APPS = [
     # 'audiofield',
 ]
 
-
+#=========CKEDITOR file setups===========
 CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'
 
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
         'height': 150,
-        'width': 600,
+        # 'width': 600,
         'toolbar_Custom': [
             ['Bold', 'Italic', 'Link', 'Unlink', 'Image', 'CodeSnippet', 'RemoveFormat', 'Source', 'Youtube'],
         ],
@@ -79,9 +79,8 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'Special',
         'height': 200,
         'toolbar_Special': [
-            ['Bold', 'Italic', 'Link', 'Unlink', 'Image', 'CodeSnippet', 'Source', 'Youtube'],
+            ['Bold', 'Italic', 'Link', 'Unlink'],
         ],
-        'extraPlugins': ','.join(['codesnippet', 'youtube']),
     },
 
     'comment_content': {
@@ -131,12 +130,8 @@ WSGI_APPLICATION = 'nwaben.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd36gr1q5ja7r0m',
-        'USER': 'jqemoxdxonkqau',
-        'PASSWORD': '2ea8750dadeac43f15aefa0f9ce59e988e67d606d774458360e5a13ed710b8ea',
-        'HOST': 'ec2-34-206-252-187.compute-1.amazonaws.com',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db_.sqlite3'),
     }
 }
 
@@ -175,16 +170,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-MEDIA_ROOT = MEDIA_URL
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media_cdn', 'staticfiles')
+
+LOGIN_REDIRECT_URL = '/account/<username>/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 CRISPY_CLASS_CONVERTERS = {
