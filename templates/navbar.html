@@ -1,7 +1,7 @@
 {% url 'home' as home %}
 {% url 'about' as about %}
 {% url 'articles:article_list' as article_list %}
-{% url 'archives:album_list' as album_list %}
+{% url 'mp3:album_list' as album_list %}
 {% url 'accounts:login' as login %}
 {% url 'accounts:signup' as register %}
 {% url 'accounts:profile' as profile %}
@@ -50,8 +50,8 @@
 
           <li class="nav-item">
               {% if request.path == article_list %}
-                <a href="{% url 'articles:article_list' %}" class="nav-link">
-                    blog <span>(current)</span> </a>
+                <a href="{% url 'articles:article_list' %}" class="nav-link active">
+                    blog <span class="sr-only">(current)</span> </a>
               {% else %}
                   <a href="{% url 'articles:article_list' %}" class="nav-link">blog</a>
               {% endif %}
@@ -59,10 +59,10 @@
 
           <li class="nav-item">
               {% if request.path == album_list %}
-                <a href="{% url 'archives:album_list' %}" class="nav-link">
-                    music-archive <span> <i class="fa fa-arrow-circle-down"></i></span> </a>
+                <a href="{% url 'mp3:album_list' %}" class="nav-link active">
+                    music-archive <span class="sr-only">(current)</span> </a>
               {% else %}
-                  <a href="{% url 'archives:album_list' %}" class="nav-link">music-archive</a>
+                  <a href="{% url 'mp3:album_list' %}" class="nav-link">music-archive</a>
               {% endif %}
           </li>
 

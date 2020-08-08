@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.shortcuts import render
 from django.views import View
 
-from archive.models import Song, Album
+from mp3.models import Song, Album
 
 
 class SearchView(View):

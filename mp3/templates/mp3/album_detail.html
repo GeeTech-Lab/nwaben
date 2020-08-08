@@ -1,0 +1,152 @@
+{% extends 'layout.html' %}
+{% block title %}Albums{% endblock %}
+
+{% block content %}
+<body class="blog-posts sidebar-collapse">
+
+  <div class="wrapper">
+    <div class="main">
+      <div class="section section-dark text-white">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center title">
+
+              <div class="info">
+                <div class="icon icon-primary">
+                    <i class="fa fa-archive"></i>
+                </div>
+                <div class="description">
+                    <h4 class="info-title">Here are available songs for {{ album.album_name }}</h4>
+                    <p>This album was writtn and composed by {{ album.artist }} which currently has {{ album.album_songs }} track{{ album.album_songs|pluralize }}.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <table class="table text-white">
+            <thead>
+                <tr>
+                    <th class="text-center">Song title</th>
+                    <th class="text-center">Price</th>
+                    <th class="text-center">Play</th>
+{#                    <th class="text-center">Actions</th>#}
+                </tr>
+            </thead>
+            <tbody>
+            {% for song in songs %}
+                <tr>
+                    <td class="text-center">{{ song.song_title }}</td>
+
+                    <td class="text-center" id="{{ song.price }}">
+                      <small>N</small>{{ song.price }}
+                    </td>
+
+                    <td class="text-center">
+                        {% if song.paid or request.user.is_superuser %}
+                            <audio controls>
+                                <source src="{{ song.song_url }}" type="audio/mp3" id="song_file">
+                            </audio>
+                        {% elif request.user.is_authenticated %}
+                            <form>
+                              <script src="https://js.paystack.co/v1/inline.js"></script>
+                              <button class="btn btn-primary btn-round btn-sm" type="button" onclick="payWithPaystack()"> Pay </button>
+                            </form>
+
+                            <!-- place below the html form -->
+                            <script>
+                              function payWithPaystack(){
+                                var handler = PaystackPop.setup({
+                                  key: 'pk_live_31ccac29d4b49a6b22e99744199ecd4c43ab3b62',
+                                  email: '{{ request.user.email|safe }}',
+                                  amount: {{ song.price|safe }} * 100,
+                                  ref: 'nwbn'+Math.floor((Math.random() * 100000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+                                  metadata: {
+                                     custom_fields: [
+                                        {
+                                            display_name: "{{ request.user.username|safe }}",
+                                            variable_name: "{{ request.user.email|safe }}",
+                                            value: "{{ request.user.phone|safe }}"
+                                        }
+                                     ]
+                                  },
+                                  callback: function(response){
+                                      alert('success. transaction ref is ' + response.reference);
+                                  },
+                                  onClose: function(){
+                                      alert('window closed');
+                                  }
+                                });
+                                handler.openIframe();
+                              }
+                            </script>
+                            <!--// place below the html form -->
+                        {% else %}
+                            <a class="btn btn-primary btn-link" href="{% url 'accounts:login' %}">please login to access this feature</a>
+                        {% endif %}
+
+
+                    </td>
+                    {% if request.user.is_superuser %}
+                        <td class="td-actions text-center">
+                            <button class="btn btn-info btn-sm btn-icon" href="{{ song.song_url }}" type="submit" data-target="_blank">
+                                <i class="fa fa-download"></i>
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% empty %}
+                <div class="info">
+                    <div class="description">
+                        <h4 class="info-title">No Song list yet for this album</h4>
+                        <p>No Song list yet for this album please check back often as we make the songs available stay tuned.</p>
+{#                        {% if request.user.is_superuser %}#}
+{#                            Dear {{ request.user }} <a href="{% url 'mp3:add_song' %}">click here</a> to add songs for this album#}
+{##}
+{#<!----------------------------------------------Songform------------------------------------------------------------------------------>#}
+{#                            <div class="col-md-10 ml-auto mr-auto text-center" id="direct_upload">#}
+{#                                <h4 class="info-title text-center"> Add a song </h4>#}
+{#                                <p class="text-center">Add a new Song Track for </p>#}
+{#                                <br>#}
+{#                                <form method="post" enctype="multipart/form-data">#}
+{#                                    {% csrf_token %}#}
+{#                                    <div class="form-group">#}
+{#                                        <label for="id_song_title">Song title:</label>#}
+{#                                        <input type="text" name="song_title" maxlength="250" class="form-control" id="song_title">#}
+{#                                    </div>#}
+{##}
+{#                                    <div class="form-group">#}
+{#                                        <label for="id_audio_file">Nwaben/album/songs:</label>#}
+{#                                        <input type="file" name="audio_file" class="form-control" id="audio_file">#}
+{#                                    </div>#}
+{##}
+{#                                    <button class="btn btn-rotate btn-round" type="submit"><i class="fa fa-upload"></i>add song</button>#}
+{#                                </form>#}
+{#                            </div>#}
+{#<!----------------------------------------------Songform------------------------------------------------------------------------------>#}
+{#                        {% endif %}#}
+
+                    </div>
+                </div>
+            {% endfor %}
+            </tbody>
+          </table>
+            <hr>
+            <br>
+            <br>
+            {% if user.is_superuser %}
+                <a class="btn btn-primary btn-round btn-sm" href="{% url 'mp3:add_song' object.slug %}">Add songs here</a>
+            {% endif %}
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+{% endblock %}

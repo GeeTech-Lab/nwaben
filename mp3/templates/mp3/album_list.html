@@ -13,6 +13,11 @@
                 <div class="row">
                   <div class="col-md-12">
                     <h4>All available music albums</h4><br>
+                    <nav aria-label="breadcrumb" role="navigation">
+                      <ol class="breadcrumb">
+                        <li class="breadcrumb-item active" aria-current="page">Albums</li>
+                      </ol>
+                    </nav>
                   </div>
                   <div class="col-md-12">
                     <div class="table-responsive">
@@ -24,8 +29,6 @@
                                   <th class="text-center">No of tracks</th>
                                   <th class="text-center">Genre</th>
                                   <th class="text-center">Artist</th>
-                                  <th class="text-center">Price</th>
-                                  <th class="text-center">Download</th>
                                   <th></th>
                               </tr>
                           </thead>
@@ -38,7 +41,7 @@
                                       </div>
                                   </td>
                                   <td class="td-name text-center">
-                                      <a href="{% url 'archives:album_detail' album.slug %}">{{ album.album_name }}</a>
+                                      <a href="{% url 'mp3:album_detail' slug=album.slug %}">{{ album.album_name }}</a>
                                       <br><small>added by {{ album.uploaded_by }}</small>
                                   </td>
                                   <td class="text-center">
@@ -50,15 +53,10 @@
                                   <td class="text-center">
                                       {{ album.artist }}
                                   </td>
-                                  <td class="text-center">
-                                      <small>N</small>{{ album.price }}
-                                  </td>
-                                  <td class="text-center">
-                                      <button class="btn btn-primary btn-round btn-sm"> <i class="fa fa-download"></i> download </button>
-                                  </td>
+
                                   {% if user.is_superuser  %}
                                       <td class="td-actions">
-                                          <a class="btn btn-info btn-sm" type="submit" href="{% url 'archives:delete_album' album.slug %}">
+                                          <a class="btn btn-info btn-sm" type="submit" href="{% url 'mp3:delete_album' album.slug %}">
                                             <i class="fa fa-trash"></i> delete
                                           </a>
                                       </td>
@@ -71,23 +69,57 @@
                                 </div>
                                 <div class="description">
                                     <h4 class="info-title"> No Available Album Yet </h4>
-                                    {% if user.is_superuser %}
-                                        <p>Dear {{ request.user }} you currently have not uploaded any album yet <br>
-                                        <a class="btn btn-primary btn-link" href="{% url 'archives:add_album' %}">click here</a> to add albums</p>
-                                    {% else %}
-                                        <p>We currently have no available album yet please check back later</p>
-                                    {% endif %}
                                 </div>
                             </div>
                           {% endfor %}
                           </tbody>
                       </table>
                     </div>
+                  {% if request.user.is_superuser %}
+                    <div class="info">
+                        <div class="description">
+                            <p>
+                            <a class="btn btn-primary btn-link" href="{% url 'mp3:add_album' %}">click here</a> to add albums</p>
+                            </p>
+                        </div>
+                    </div>
+                  {% endif %}
                   </div>
                 </div>
               </div>
             </div>
         </div>
+
+
+
+
+    <script>
+        let price = document.getElementById("{{ album.price }}");
+
+      function makePayment() {
+        FlutterwaveCheckout({
+          public_key: "FLWPUBK_TEST-e12585f4c2da40025222b13315c5483c-X",
+          tx_ref: "hooli-tx-1920bbtyt",
+          amount: price,
+          currency: "NGN",
+          payment_options: "card,mobilemoney,ussd",
+          customer: {
+            email: "{{ request.user.email|safe }}",
+            phonenumber: "{{ request.user.phone|safe }}",
+            name: "{{ request.user.username|safe }}",
+          },
+          callback: function (data) { // specified callback function
+            console.log(data);
+          },
+          customizations: {
+            title: "Nwaben Store",
+            description: "Payment for the Music album",
+            logo: "https://assets.piedpiper.com/logo.png",
+          },
+        });
+      }
+    </script>
+
 
     </body>
 {% endblock %}

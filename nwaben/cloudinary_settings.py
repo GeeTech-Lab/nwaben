@@ -8,6 +8,9 @@ cloudinary.config(
     api_secret = "ZqOEAuVc4BLHp1bMkhxKJ51ye2s"
 )
 
+cloudinary_url = "https://api.cloudinary.com/v1_1/geetechlab-com"
+cloudinary_upload_preset = "r3fz2u9m"
+
 # cloudinary media setups for images and videos
 # CLOUDINARY_STORAGE = {
 #     'CLOUD_NAME': 'geetechlab-com',

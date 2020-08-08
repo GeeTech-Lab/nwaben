@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 
 
-app_name = 'archive'
+app_name = 'mp3'
 
 urlpatterns = [
     path('', views.AlbumList.as_view(), name='album_list'),
@@ -12,6 +12,6 @@ urlpatterns = [
     path('album/<slug:slug>/delete', views.AlbumDelete.as_view(), name='delete_album'),
 
     path('songs/', views.SongList.as_view(), name='song_list'),
-    path('song/add/', views.SongCreate.as_view(), name='add_song'),
+    path('song/<slug:slug>/add/', views.SongCreate.as_view(), name='add_song'),
     path('song/<slug:slug>/delete', views.SongDelete.as_view(), name='delete_song'),
 ]
