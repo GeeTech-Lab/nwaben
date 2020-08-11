@@ -1,3 +1,4 @@
+from django_summernote.admin import SummernoteModelAdmin
 from django.db import models
 from django.contrib import admin
 from .models import Article, Comment, Category, Reply
@@ -8,6 +9,11 @@ from .models import Article, Comment, Category, Reply
 admin.site.register(Category)
 
 
+# Apply summernote to all TextField in model.
+# class SummerNoteModelAdmin(SummernoteModelAdmin):  # instead of ModelAdmin
+#     summernote_fields = '__all__'
+
+
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ('author', 'title', 'created', 'category')
     list_filter = ('author', 'created', 'created', 'category')
@@ -15,13 +21,11 @@ class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
 
-# formfield_overrides = {
-#     models.TextField: {'widget': AdminPagedownWidget },
-# }
 admin.site.register(Article, ArticleAdmin)
 
 
-class CommentAdmin(admin.ModelAdmin):
+class CommentAdmin(SummernoteModelAdmin):
+    summernote_fields = ('content',)
     list_display = ('by', 'content', 'approved')
 
 

@@ -40,51 +40,18 @@
             <div class="col-md-10 ml-auto mr-auto">
               <div class="text-center">
                 <span class="badge badge-warning main-tag">{{ article.category }}</span>
-                <a href="javascrip: void(0);">
                   <h3 class="title">{{ article.description|safe|linebreaks}}</h3>
-                </a>
                 <h6 class="title-uppercase">{{ article.created|naturaltime }}</h6>
               </div>
             </div>
             <div class="col-md-8 ml-auto mr-auto">
-              <a href="javascrip: void(0);">
                 <div class="card" data-radius="none" style="background-image: url('{{ article.image_url }}');"></div>
-              </a>
               <div class="article-content">
                 <p>
                     {{ article.body|safe|linebreaks }}
                 </p>
               </div>
-              <br/>
-                <!--
-              <div class="article-footer">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <h5>Tags:</h5>
-                      <span class="label label-default">Motivational</span>
-                      <span class="label label-default">Newsletter</span>
-                      <span class="badge badge-warning">Trending</span>
-                    </div>
-                    <div class="col-md-4 ml-auto">
-                      <div class="sharing">
-                        <h5>Spread the word</h5>
-                        <button class="btn btn-just-icon btn-twitter">
-                          <i class="fa fa-twitter"></i>
-                        </button>
-                        <button class="btn btn-just-icon btn-facebook">
-                          <i class="fa fa-facebook"> </i>
-                        </button>
-                        <button class="btn btn-just-icon btn-google">
-                          <i class="fa fa-google"> </i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              -->
-              <hr>
+          <hr>
             <div class="row">
               <div class="container">
                   <div class="media">
@@ -104,13 +71,11 @@
 
 
         </div>
+          </div>
+        </div>
       </div>
-    <hr>
 
-
-
-
-    <div class="section section-nude-gray">
+      <div class="section section-nude-gray">
         <div class="container container-tim">
           <div class="row">
             <div class="col-md-8 ml-auto mr-auto">
@@ -193,6 +158,7 @@
           <!-- end row -->
         </div>
       </div>
+        <hr>
     {% endif %}
 
         <!--
@@ -225,13 +191,9 @@
             </div>
           </div>
           -->
-        </div>
-      </div>
     </div>
   </div>
-
-
-            <!--<br>
+        <!--<br>
             <div class="pagination-area">
               <ul class="pagination pagination-primary pagination-no-border justify-content-center">
                 <li class="page-item">
@@ -252,8 +214,6 @@
           </div>
           -->
 
-
 </div>
-
 
 {% endblock %}

@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     # custom apps
     'accounts.apps.AccountsConfig',
     'articles.apps.ArticlesConfig',
-    # 'archive.apps.ArchiveConfig',
     'mp3.apps.Mp3Config',
 
     # third party apps
@@ -58,7 +57,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'ckeditor',
     'ckeditor_uploader',
-    # 'audiofield',
+    'django_summernote',
 ]
 
 #=========CKEDITOR file setups===========
@@ -67,8 +66,8 @@ CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
-        'height': 150,
-        # 'width': 600,
+        'height': '150',
+        # 'width': '600',
         'toolbar_Custom': [
             ['Bold', 'Italic', 'Link', 'Unlink', 'Image', 'CodeSnippet', 'RemoveFormat', 'Source', 'Youtube'],
         ],
@@ -77,7 +76,7 @@ CKEDITOR_CONFIGS = {
 
     'special': {
         'toolbar': 'Special',
-        'height': 200,
+        'height': '200',
         'toolbar_Special': [
             ['Bold', 'Italic', 'Link', 'Unlink'],
         ],
@@ -86,7 +85,7 @@ CKEDITOR_CONFIGS = {
     'comment_content': {
         'toolbar': 'Special',
         'height': 150,
-        'width': 600,
+        # 'width': 600,
         'toolbar_Special': [
             ['Bold', 'Italic', 'Link', 'Unlink'],
         ],
@@ -139,6 +138,13 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db_.sqlite3'),
+#     }
+# }
+
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -174,16 +180,32 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'geetechlab-com',
+    'API_KEY': '622236724885358',
+    'API_SECRET': 'ZqOEAuVc4BLHp1bMkhxKJ51ye2s'
+}
+
 
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media_cdn', 'staticfiles')
+# coudinary  for images
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-MEDIA_ROOT = MEDIA_URL
+# coudinary  for raw files
+#cloudinary_storage.storage.RawMediaCloudinaryStorage
+# coudinary  for videos
+#cloudinary_storage.storage.VideoMediaCloudinaryStorage
+
+
+LOGIN_REDIRECT_URL = '/account/<username>/'
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 CRISPY_CLASS_CONVERTERS = {
@@ -196,6 +218,33 @@ CRISPY_CLASS_CONVERTERS = {
     'passwordinput': "form-control",
     'select': "form-control",
 }
+
+
+# Heroku cloud upload settings...
+django_heroku.settings(locals())
+
+#summernote settings
+SUMMERNOTE_THEME = 'bs4'
+SUMMERNOTE_CONFIG = {
+    # You can put custom Summernote settings
+    'summernote': {
+        # Change editor size
+        'width': '100%',
+        'height': '200',
+        # Toolbar customization
+        # https://summernote.org/deep-dive/#custom-toolbar-popover
+        'toolbar': [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            # ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'help']],
+        ],
+    },
+}
+
 
 # Heroku cloud upload settings...
 django_heroku.settings(locals())

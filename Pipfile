@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-django = "*"
+django = "==2.2"
 gunicorn = "*"
 django-heroku = "*"
 django-crispy-forms = "*"
@@ -18,11 +18,12 @@ phonenumbers = "*"
 cloudinary = "*"
 django-cors-headers = "*"
 sendgrid = "*"
-django-cloudinary-storage = "*"
 django-widget-tweaks = "*"
 six = "*"
 django-ckeditor = "*"
 django-audiofield = "*"
+django-summernote = "*"
+django-cloudinary-storage = {extras = ["video"],version = "*"}
 
 [requires]
 python_version = "3.7"

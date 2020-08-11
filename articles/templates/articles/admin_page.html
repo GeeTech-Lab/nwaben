@@ -19,6 +19,10 @@
                         <div class="description">
                             <h4 class="info-title"> Welcome {{ request.user }} </h4>
                             <p>You were able to view this page due to your admin/super_user privilages...</p>
+                            <hr>
+                            <p>Click <a class="btn btn-primary btn-round" href="{% url 'articles:article_create' %}">
+                                <i class="fa fa-plus"></i> here </a> to add more articles
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -38,12 +42,9 @@
                             <tr>
                                 <td>{{ article.title }}</td>
                                 <td>{{article.description|safe|truncatewords:10}}</td>
-                                <td>{{ article.author }}</td>
+                                <td>{{ article.author.username }}</td>
                                 <td class="text-right">{{ article.created|naturaltime }}</td>
                                 <td class="td-actions text-right">
-                                    <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon">
-                                        <i class="fa fa-user"></i>
-                                    </button>
                                     <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
                                         <a href="{% url 'articles:article_update' article.slug %}">
                                             <i class="fa fa-edit"></i>
@@ -56,6 +57,23 @@
                                     </button>
                                 </td>
                             </tr>
+                            {% empty %}
+
+                                <div class="info">
+                                    <div class="icon icon-primary">
+                                        <i class="fa fa-archive"></i>
+                                    </div>
+                                    <div class="description">
+                                        <h4 class="info-title"> Add article </h4>
+                                        <p>Click
+                                            <a class="btn btn-primary btn-round" href="{% url 'articles:article_create' %}">
+                                                <i class="fa fa-plus"></i> here
+                                            </a>
+                                             to add articles
+                                        </p>
+                                    </div>
+                                </div>
+
                             {% endfor %}
                         </tbody>
                     </table>

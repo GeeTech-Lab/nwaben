@@ -1,4 +1,7 @@
 from django import forms
+from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
+from django_summernote.fields import SummernoteTextFormField, SummernoteTextField
+
 from articles.models import Article, Comment, Category, Reply
 
 
@@ -13,9 +16,10 @@ class ArticleForm(forms.ModelForm):
                   "image",
                   "body",
                   "draft",)
-        widgets = {
-            'image': forms.FileInput(attrs={'class': 'btn btn-raised btn-round btn-default btn-file'}),
-        }
+        # widgets = {
+        #     'description': SummernoteWidget(),
+        #     'body': SummernoteWidget(),
+        # }
 
 
 class CategoryForm(forms.ModelForm):
@@ -27,11 +31,13 @@ class CategoryForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
-    # content = forms.CharField(widget=forms.Textarea)
 
     class Meta:
         model = Comment
         fields = ('content',)
+        widgets = {
+            'content': SummernoteWidget(),
+        }
 
 
 class ReplyForm(forms.ModelForm):

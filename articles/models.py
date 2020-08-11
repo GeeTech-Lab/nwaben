@@ -1,9 +1,10 @@
 import random
 
+# from ckeditor.fields import RichTextField
+# from ckeditor_uploader.fields import RichTextUploadingField
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
-# from django.contrib.auth.models import User
 from django.db import models
 from cloudinary.models import CloudinaryField
 from django.db.models.signals import pre_save
@@ -11,8 +12,6 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
 
-# from accounts.models import Profile
-# from nwaben import settings
 
 def upload_dir(instance, filename):
     return "{}/{}".format(instance.author, filename)
@@ -34,10 +33,6 @@ class ArticleManager(models.Manager):
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
-    # cat_icon = models.ImageField(upload_to=upload_dir, height_field='photo_height', width_field='photo_width',
-    # blank=True, null=True) photo_height = models.PositiveIntegerField(blank = True, default = 400) photo_width =
-    # models.PositiveIntegerField(blank = True, default = 800) creator = models.ForeignKey(settings.AUTH_USER_MODEL)
-
     class Meta:
         verbose_name_plural = "Categories"
 
@@ -51,15 +46,14 @@ class Category(models.Model):
 class Article(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
-    description = RichTextField(blank=True, null=True, config_name='special')
     image = CloudinaryField(upload_dir, blank=True, null=True)
     slug = models.SlugField(max_length=255, unique=True, null=False)
-    # body = models.TextField(blank=True, null=True)
-    body = RichTextUploadingField(blank=True, null=True, external_plugin_resources=[('youtube', '/static/youtube/', 'plugin.js')])
     view_count = models.PositiveIntegerField(default=0)
     created = models.DateTimeField(default=timezone.now)
     draft = models.BooleanField(default=True)
-    # published = models.DateTimeField(blank=True, null=True)
+    description = RichTextField(blank=True, null=True, config_name='special')
+    body = RichTextUploadingField(blank=True, null=True,
+                                  external_plugin_resources=[('youtube', '/static/youtube/', 'plugin.js')])
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     objects = ArticleManager()
 
@@ -82,11 +76,9 @@ class Article(models.Model):
 
 
 def article_pre_save_signal(sender, instance, *args, **kwargs):
-    # instance = "Second Article" -- Article title
     if not instance.slug:
         instance.slug = slugify(instance.title)
         new_slug = "{}-{}".format(instance.title, instance.id)
-        # random_numbers = random.randint(1111, 9999)
         try:
             instance.slug = slugify(new_slug)
         except Article.DoesNotExist:
@@ -103,7 +95,8 @@ pre_save.connect(article_pre_save_signal, sender=Article)
 class Comment(models.Model):
     article = models.ForeignKey(Article, related_name="comments", on_delete=models.CASCADE)
     by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    content = RichTextUploadingField(blank=True, null=True, config_name='comment_content')
+    # content = RichTextUploadingField(blank=True, null=True, config_name='comment_content')
+    content = models.TextField(blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
 
@@ -113,11 +106,6 @@ class Comment(models.Model):
 
     def __str__(self):
         return '{} - {}'.format(self.content, self.by)
-    #
-    # def __str__(self):
-    #     if self.by == None:
-    #         return "ERROR-USER NAME IS NULL"
-    #     return self.by
 
     class Meta:
         ordering = ['created_on']

@@ -33,6 +33,7 @@ urlpatterns = [
     path('search/', include('search.urls', namespace='search')),
     path('accounts/', include(('accounts.urls', 'accounts'), namespace='accounts')),
     path('accounts/', include("django.contrib.auth.urls")),
+    path('summernote/', include('django_summernote.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

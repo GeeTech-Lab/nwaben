@@ -1,4 +1,6 @@
 {% extends "layout.html" %}
+{% load widget_tweaks %}
+
 {% block title %}Create an Article{% endblock %}
 
 {% block content %}
@@ -13,7 +15,31 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.media }}
-            {% include 'includes/form.html' %}
+            <div class="form-group">
+                <label for="category" >category</label>
+                {% render_field form.category id="category" class="form-control" placeholder="select category"  %}
+            </div>
+            <br>
+            <label>title</label>
+            {% render_field form.title class="form-control" placeholder="title" %}
+            <br>
+            <label>category</label>
+            {% render_field form.description class="form-control" placeholder="write a short description here", rows="4" %}
+            <br>
+            <label>choose a cover image</label>
+            {% render_field form.image class="form-control" placeholder="upload image" %}
+            <br>
+            <label>body of the article</label>
+            {% render_field form.body class="form-control" placeholder="Write the body of the article here", rows="4" %}
+            <br>
+            <label class="form-check-label">
+            {% render_field form.draft class="form-control" %}
+                Uncheck here to publish or leave it as draft by default.
+                <span class="form-check-sign"></span>
+            </label>
+            <br>
+            <br>
+
             <button class="btn btn-rotate btn-round" type="submit"><i class="fa fa-paper-plane"></i>publish article</button>
         </form>
     </div>
