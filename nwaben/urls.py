@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
@@ -22,10 +22,8 @@ from django.views.generic import TemplateView
 from nwaben.views import ContactView
 
 urlpatterns = [
-    path('admin', admin.site.urls),
     path('ckeditor/', include("ckeditor_uploader.urls")),
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
-    path('page-not-found/', TemplateView.as_view(template_name='404.html'), name='404_'),
     path('about/', ContactView.as_view(), name='about'),
     path('articles/', include(('articles.urls', 'articles'), namespace='articles')),
     # path('archives/', include('archive.urls', namespace='archives')),
@@ -36,8 +34,17 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
 ]
 
-urlpatterns += staticfiles_urlpatterns()
-# Remove this conditional check if you want to upload to Heroku
+# urlpatterns += staticfiles_urlpatterns()
+# # Remove this conditional check if you want to upload to Heroku
 if settings.DEBUG:
+    from django.conf.urls.static import static
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# administrator backend service url
+urlpatterns += [
+    path('admin-family-nwaben/', admin.site.urls),
+]
+
+#Url to catch any unmatch pattern and render 404
+urlpatterns += [re_path(r'^.*.', TemplateView.as_view(template_name='404.html'), name='404_')]

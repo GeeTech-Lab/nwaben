@@ -82,6 +82,26 @@
                   </a>
                 </div>
             </li>
+        {% elif user.is_superuser %}
+            <li class="dropdown nav-item">
+                <a href="#paper-kit" class="nav-link" data-toggle="dropdown" width="30" height="30">
+                  <div class="profile-photo-small">
+                    <img src="{{ user.image_url }}" alt="{{ user.username }}" class="img-circle img-responsive img-no-padding">
+                  </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-danger" aria-labelledby="navbarDropdownMenuLink1">
+                  <a class="dropdown-item" href="{% url 'accounts:profile' %}">
+                    <i class="fa fa-user-circle"></i> profile
+                  </a>
+                  <a class="dropdown-item" href="/admin-family-nwaben/">
+                    <i class="fa fa-dashboard"></i> admin-dashboard
+                  </a>
+                  <a class="dropdown-item" href="{% url 'accounts:logout' %}">
+                    <i class="fa fa-sign-out"></i> logout
+                  </a>
+                </div>
+            </li>
+
         {% else %}
             <li class="dropdown nav-item">
                 <a href="#" class="nav-link" data-toggle="dropdown">account</a>

@@ -88,8 +88,6 @@ class Song(models.Model):
     price = models.PositiveIntegerField(blank=True, null=True)
     paid = models.BooleanField(default=False)
     song_url = models.URLField(blank=True, null=True, max_length = 200)
-    # song_url = models.CharField(max_length=255, blank=True, null=True)
-    # audio_file = models.CloudinaryField()
 
     class Meta:
         verbose_name = 'Song'
