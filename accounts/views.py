@@ -59,21 +59,3 @@ class UserProfileView(generic.DetailView, generic.UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
-
-    # def get_context_data(self, **kwargs):
-    #     context = super(UserProfileView, self).get_context_data(**kwargs)
-    #     print (self.get_object())
-    #     return context
-    #
-    # def get_object(self, queryset=None):
-    #     try:
-    #         user_obj = User.objects.get(pk=self.pk_url_kwarg)
-    #     except user_obj.DoesNotExist:
-    #         return reverse('404_')
-    #     except user_obj.MultipleObjectsReturned:
-    #         user_qs = User.objects.filter(pk=self.pk_url_kwarg)
-    #         user_obj = user_qs.first()
-    #     except:
-    #         return reverse('404_')
-    #     return user_obj
-
