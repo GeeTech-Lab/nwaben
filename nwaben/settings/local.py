@@ -11,10 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 import os
 import django_heroku
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
-from nwaben.cloudinary_settings import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'k@g(@6x!5+6-4dfw9*p(1c@bc^6g22t9w&uh6c4hw-9jj-x($('
+SECRET_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -126,8 +122,6 @@ WSGI_APPLICATION = 'nwaben.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -168,8 +162,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-AWS_ACCESS_KEY_ID = 'AKIARWPUAY2F7VV3WVVY'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'nwaben-storage'
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 
@@ -196,7 +190,6 @@ PRIVATE_FILE_STORAGE = 'nwaben.storage_backends.PrivateMediaStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_cdn')
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -236,6 +229,17 @@ SUMMERNOTE_CONFIG = {
     },
 }
 
+
+LOGOUT_REDIRECT_URL = 'home'
+AUTH_USER_MODEL = "accounts.User"
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+
+
+RAVE_PUBLIC_KEY = os.environ.get('RAVE_PUBLIC_KEY')
+RAVE_SECRET_KEY = os.environ.get('RAVE_SECRET_KEY')
+
+
 # Https settings...
 CORS_REPLACE_HTTPS_REFERER = False
 HOST_SCHEME = "https://"
@@ -247,24 +251,6 @@ SECURE_HOSTS_SECONDS = None
 SECURE_HOSTS_INCLUDE_SUBDOMAINS = False
 SECURE_FRAME_DENY = False
 
-# config/settings.py
-LOGOUT_REDIRECT_URL = 'home'
-AUTH_USER_MODEL = "accounts.User"
-# ACCOUNT_EMAIL_REQUIRED = True
-# ACCOUNT_AUTHENTICATION_METHOD = "username_email"
-
-
-RAVE_PUBLIC_KEY = 'pk_test_da107f553df2d689cafe2cae2f0d664dbc34a656'
-RAVE_SECRET_KEY = 'sk_test_5df1cc0a02c000c17837ae265fd0fb9481cccf62'
-
-
-
-# -------------- cloudinary settings ---------------------
-# CLOUDINARY_STORAGE = {
-#     'CLOUD_NAME': 'geetechlab-com',
-#     'API_KEY': '622236724885358',
-#     'API_SECRET': 'ZqOEAuVc4BLHp1bMkhxKJ51ye2s'
-# }
 
 # coudinary  for images.........
 # DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

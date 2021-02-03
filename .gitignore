@@ -129,4 +129,6 @@ dmypy.json
 .pyre/
 
 # Django Settings
-#nwaben/settings/local.py
+nwaben/settings/local.py
+nwaben/settings/nwaben_credential
+nwaben/cloudinary_settings.py

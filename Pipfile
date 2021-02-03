@@ -25,6 +25,7 @@ django-summernote = "*"
 django-cloudinary-storage = {extras = ["video"],version = "*"}
 boto3 = "*"
 django-storages = "*"
+dj-database-url = "*"
 
 [requires]
 python_version = "3.7"
