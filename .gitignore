@@ -129,9 +129,9 @@ dmypy.json
 .pyre/
 
 # Django Settings
-nwaben/settings/local.py
 nwaben/settings/nwaben_credential
 nwaben/cloudinary_settings.py
-git rm cache nwaben/settings/local.py
-git rm cache nwaben/settings/nwaben_credential
-git rm cache nwaben/cloudinary_settings.py
+nwaben/settings/local.py
+#git rm --cached nwaben/settings/local.py
+#git rm --cached nwaben/settings/nwaben_credential
+#git rm --cached nwaben/cloudinary_settings.py

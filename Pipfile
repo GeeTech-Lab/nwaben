@@ -26,6 +26,7 @@ django-cloudinary-storage = {extras = ["video"],version = "*"}
 boto3 = "*"
 django-storages = "*"
 dj-database-url = "*"
+python-decouple = "*"
 
 [requires]
 python_version = "3.7"
