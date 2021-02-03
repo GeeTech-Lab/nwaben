@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.humanize',
+    # 'cloudinary_storage',
     'django.contrib.staticfiles',
 
     # custom apps
@@ -48,19 +49,19 @@ INSTALLED_APPS = [
     'mp3.apps.Mp3Config',
 
     # third party apps
+    'storages',
     'widget_tweaks',
     'rest_framework',
     'phonenumber_field',
     'crispy_forms',
     'corsheaders',
-    'cloudinary_storage',
-    'cloudinary',
+    # 'cloudinary',
     'ckeditor',
     'ckeditor_uploader',
     'django_summernote',
 ]
 
-#=========CKEDITOR file setups===========
+# =========CKEDITOR file setups===========
 CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'
 
 CKEDITOR_CONFIGS = {
@@ -100,7 +101,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'audiofield.middleware.threadlocals.ThreadLocals',
 ]
 
 ROOT_URLCONF = 'nwaben.urls'
@@ -127,23 +127,13 @@ WSGI_APPLICATION = 'nwaben.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd7vb52v8e4f6hl',
-        'USER': 'jhadommklorcbk',
-        'PASSWORD': 'c77b940336a1859cce2ddb8264f6bf3fecc0f41af74c325742499b69283b06c6',
-        'HOST': 'ec2-184-72-235-159.compute-1.amazonaws.com',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db_.sqlite3'),
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db_.sqlite3'),
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -178,33 +168,35 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+AWS_ACCESS_KEY_ID = 'AKIARWPUAY2F7VV3WVVY'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'nwaben-storage'
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'geetechlab-com',
-    'API_KEY': '622236724885358',
-    'API_SECRET': 'ZqOEAuVc4BLHp1bMkhxKJ51ye2s'
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
 }
 
+AWS_STATIC_LOCATION = 'static'
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_STATIC_LOCATION}/'
+STATICFILES_STORAGE = 'nwaben.storage_backends.StaticStorage'
+
+AWS_PUBLIC_MEDIA_LOCATION = 'media/public'
+DEFAULT_FILE_STORAGE = 'nwaben.storage_backends.PublicMediaStorage'
+
+AWS_PRIVATE_MEDIA_LOCATION = 'media/private'
+PRIVATE_FILE_STORAGE = 'nwaben.storage_backends.PrivateMediaStorage'
+
+# STATIC_URL = '/static/'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'staticfiles')
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media_cdn', 'staticfiles')
-# coudinary  for images
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-# coudinary  for raw files
-#cloudinary_storage.storage.RawMediaCloudinaryStorage
-# coudinary  for videos
-#cloudinary_storage.storage.VideoMediaCloudinaryStorage
-
-
-LOGIN_REDIRECT_URL = '/account/<username>/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media_cdn')
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -219,11 +211,10 @@ CRISPY_CLASS_CONVERTERS = {
     'select': "form-control",
 }
 
-
 # Heroku cloud upload settings...
 django_heroku.settings(locals())
 
-#summernote settings
+# summernote settings
 SUMMERNOTE_THEME = 'bs4'
 SUMMERNOTE_CONFIG = {
     # You can put custom Summernote settings
@@ -245,7 +236,6 @@ SUMMERNOTE_CONFIG = {
     },
 }
 
-
 # Https settings...
 CORS_REPLACE_HTTPS_REFERER = False
 HOST_SCHEME = "https://"
@@ -258,22 +248,28 @@ SECURE_HOSTS_INCLUDE_SUBDOMAINS = False
 SECURE_FRAME_DENY = False
 
 # config/settings.py
-LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 AUTH_USER_MODEL = "accounts.User"
 # ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 
 
+RAVE_PUBLIC_KEY = 'pk_test_da107f553df2d689cafe2cae2f0d664dbc34a656'
+RAVE_SECRET_KEY = 'sk_test_5df1cc0a02c000c17837ae265fd0fb9481cccf62'
 
-# #======DJANGO-audiofield settings=====
-# # Frontend widget values
-# # 0-Keep original, 1-Mono, 2-Stereo
-# CHANNEL_TYPE_VALUE = 0
-#
-# # 0-Keep original, 8000-8000Hz, 16000-16000Hz, 22050-22050Hz,
-# # 44100-44100Hz, 48000-48000Hz, 96000-96000Hz
-# FREQ_TYPE_VALUE = 8000
-#
-# # 0-Keep original, 1-Convert to MP3, 2-Convert to WAV, 3-Convert to OGG
-# CONVERT_TYPE_VALUE = 0
+
+
+# -------------- cloudinary settings ---------------------
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': 'geetechlab-com',
+#     'API_KEY': '622236724885358',
+#     'API_SECRET': 'ZqOEAuVc4BLHp1bMkhxKJ51ye2s'
+# }
+
+# coudinary  for images.........
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# coudinary  for raw files.......
+# cloudinary_storage.storage.RawMediaCloudinaryStorage
+# coudinary  for videos........
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.VideoMediaCloudinaryStorage'
+# --------------/ cloudinary settings /---------------------

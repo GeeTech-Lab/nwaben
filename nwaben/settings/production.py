@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.humanize',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
 
     # custom apps
@@ -53,7 +54,6 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'crispy_forms',
     'corsheaders',
-    'cloudinary_storage',
     'cloudinary',
     'ckeditor',
     'ckeditor_uploader',
@@ -178,14 +178,22 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
-STATIC_URL = '/static/'
+AWS_ACCESS_KEY_ID = 'AKIARWPUAY2F6WAI5WLM'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'nwaben-app'
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+AWS_DEFAULT_ACL = 'public-read'
+AWS_S3_FILE_OVERWRITE = True
+AWS_STATIC_LOCATION = 'static'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_STATIC_LOCATION}/'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'geetechlab-com',

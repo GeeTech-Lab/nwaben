@@ -17,7 +17,56 @@
                 </div>
                 <div class="description">
                     <h4 class="info-title">Here are available songs for {{ album.album_name }}</h4>
-                    <p>This album was writtn and composed by {{ album.artist }} which currently has {{ album.album_songs }} track{{ album.album_songs|pluralize }}.</p>
+                    <p>This album was written and composed by {{ album.artist }} which currently has {{ album.album_songs }} track{{ album.album_songs|pluralize }}.</p>
+                </div>
+
+                <div class="description">
+                    {% if request.user.is_authenticated %}
+                        <form>
+                          <script src="https://js.paystack.co/v1/inline.js"></script>
+                          <button class="btn btn-info btn-sm btn-icon" type="button" onclick="payWithPaystack()">click here and Buy the full album</button>
+                        </form>
+                    {% elif request.user.is_authenticated and album.payment_success %}
+                        <p>Dear {{ request.user.username }} you can play and download all the songs for this album.</p>
+                        <p>We thank you for your patronization and support.</p>
+                    {% else %}
+                        <p>Welcome, please you have to login to be able to buy this album <a class="btn btn-primary btn-link" href="{% url 'accounts:login' %}">click here</a> to login</p>
+                    {% endif %}
+                    <!-- place below the html form -->
+                    <script>
+                      function payWithPaystack(){
+                        var handler = PaystackPop.setup({
+                          key: '{{ key }}',
+                          email: '{{ request.user.email|safe }}',
+                          amount: {{ album.price|safe }} * 100,
+                          ref: 'nwbn'+Math.floor((Math.random() * 100000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+                          metadata: {
+                             custom_fields: [
+                                {
+                                    display_name: "{{ request.user.username|safe }}",
+                                    variable_name: "{{ request.user.email|safe }}",
+                                    value: "{{ request.user.phone|safe }}"
+                                }
+                             ]
+                          },
+                          callback: function(response){
+                              console.log(response.status);
+                              if (response.status === "success") {
+                                  swal("Payment complete!", "Reference: " + response.reference, response.status);
+                                  {{ album.payment_success }}
+                              }
+                              else  {
+                                  swal("Transaction was not completed", "window closed.", response.status);
+                              }
+                          },
+                          onClose: function(){
+                              swal("window closed.");
+                          }
+                        });
+                        handler.openIframe();
+                      }
+                    </script>
+                    <!--// place below the html form -->
                 </div>
               </div>
             </div>
@@ -27,8 +76,8 @@
             <thead>
                 <tr>
                     <th class="text-center">Song title</th>
-                    <th class="text-center">Price</th>
                     <th class="text-center">Play</th>
+                    <th class="text-center">Download</th>
 {#                    <th class="text-center">Actions</th>#}
                 </tr>
             </thead>
@@ -37,63 +86,58 @@
                 <tr>
                     <td class="text-center">{{ song.song_title }}</td>
 
-                    <td class="text-center" id="{{ song.price }}">
-                      <small>N</small>{{ song.price }}
-                    </td>
-
-                    <td class="text-center">
-                        {% if song.paid or request.user.is_superuser %}
-                            <audio controls>
-                                <source src="{{ song.song_url }}" type="audio/mp3" id="song_file">
-                            </audio>
-                        {% elif request.user.is_authenticated %}
-                            <form>
-                              <script src="https://js.paystack.co/v1/inline.js"></script>
-                              <button class="btn btn-primary btn-round btn-sm" type="button" onclick="payWithPaystack()"> Pay </button>
-                            </form>
-
-                            <!-- place below the html form -->
-                            <script>
-                              function payWithPaystack(){
-                                var handler = PaystackPop.setup({
-                                  key: 'pk_live_31ccac29d4b49a6b22e99744199ecd4c43ab3b62',
-                                  email: '{{ request.user.email|safe }}',
-                                  amount: {{ song.price|safe }} * 100,
-                                  ref: 'nwbn'+Math.floor((Math.random() * 100000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
-                                  metadata: {
-                                     custom_fields: [
-                                        {
-                                            display_name: "{{ request.user.username|safe }}",
-                                            variable_name: "{{ request.user.email|safe }}",
-                                            value: "{{ request.user.phone|safe }}"
-                                        }
-                                     ]
-                                  },
-                                  callback: function(response){
-                                      alert('success. transaction ref is ' + response.reference);
-                                  },
-                                  onClose: function(){
-                                      alert('window closed');
-                                  }
-                                });
-                                handler.openIframe();
-                              }
-                            </script>
-                            <!--// place below the html form -->
-                        {% else %}
-                            <a class="btn btn-primary btn-link" href="{% url 'accounts:login' %}">please login to access this feature</a>
-                        {% endif %}
-
-
-                    </td>
                     {% if request.user.is_superuser %}
+                        <td class="text-center">
+                            <audio controls="controls" controls="download"> <br>
+                              <source src="{{ song.audio_file.url }}" type="audio/mp3" />
+                            </audio>
+                        </td>
                         <td class="td-actions text-center">
-                            <button class="btn btn-info btn-sm btn-icon" href="{{ song.song_url }}" type="submit" data-target="_blank">
+                            <a class="btn btn-info btn-sm btn-icon" href="{{ song.audio_file.url }}" type="submit" target="_blank">
                                 <i class="fa fa-download"></i>
-                            </button>
+                            </a>
                             <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
                                 <i class="fa fa-times"></i>
                             </button>
+                        </td>
+                    {% elif request.user.is_authenticated and song.album.payment_success %}
+                        <td class="text-center">
+                            <audio controls="controls" controls="download"> <br>
+                              <source src="{{ song.audio_file.url }}" type="audio/mp3"/>
+                            </audio>
+                        </td>
+                        <td class="td-actions text-center">
+                            <a class="btn btn-info btn-sm btn-icon" href="{{ song.audio_file.url }}" type="submit" target="_blank">
+                                <i class="fa fa-download"></i>
+                            </a>
+                        </td>
+                    {% elif request.user.is_authenticated %}
+                        <td class="text-center">
+                            <button
+                                class="btn btn-primary btn-sm"
+                                ngbPopover="Thank you for patronizing with us click on the link above to buy the full album"
+                                popoverTitle="Buy the album to play"
+                                title="Buy the album to play"
+                                type="button">play</button>
+                        </td>
+                        <td class="td-actions text-center">
+                            <a class="btn btn-info btn-sm btn-icon disabled" href="#">
+                                <i class="fa fa-download"></i>
+                            </a>
+                        </td>
+                    {% else %}
+                        <td class="text-center">
+                            <a type="button"
+                                class="btn btn-primary btn-sm"
+                                href="{% url 'accounts:login' %}"
+                                ngbTooltip="login to buy this album and play"
+                                placement="top"
+                                type="button">play</a>
+                        </td>
+                        <td class="td-actions text-center">
+                            <a class="btn btn-info btn-sm btn-icon disabled" href="#">
+                                <i class="fa fa-download"></i>
+                            </a>
                         </td>
                     {% endif %}
                 </tr>
@@ -102,32 +146,6 @@
                     <div class="description">
                         <h4 class="info-title">No Song list yet for this album</h4>
                         <p>No Song list yet for this album please check back often as we make the songs available stay tuned.</p>
-{#                        {% if request.user.is_superuser %}#}
-{#                            Dear {{ request.user }} <a href="{% url 'mp3:add_song' %}">click here</a> to add songs for this album#}
-{##}
-{#<!----------------------------------------------Songform------------------------------------------------------------------------------>#}
-{#                            <div class="col-md-10 ml-auto mr-auto text-center" id="direct_upload">#}
-{#                                <h4 class="info-title text-center"> Add a song </h4>#}
-{#                                <p class="text-center">Add a new Song Track for </p>#}
-{#                                <br>#}
-{#                                <form method="post" enctype="multipart/form-data">#}
-{#                                    {% csrf_token %}#}
-{#                                    <div class="form-group">#}
-{#                                        <label for="id_song_title">Song title:</label>#}
-{#                                        <input type="text" name="song_title" maxlength="250" class="form-control" id="song_title">#}
-{#                                    </div>#}
-{##}
-{#                                    <div class="form-group">#}
-{#                                        <label for="id_audio_file">Nwaben/album/songs:</label>#}
-{#                                        <input type="file" name="audio_file" class="form-control" id="audio_file">#}
-{#                                    </div>#}
-{##}
-{#                                    <button class="btn btn-rotate btn-round" type="submit"><i class="fa fa-upload"></i>add song</button>#}
-{#                                </form>#}
-{#                            </div>#}
-{#<!----------------------------------------------Songform------------------------------------------------------------------------------>#}
-{#                        {% endif %}#}
-
                     </div>
                 </div>
             {% endfor %}

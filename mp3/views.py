@@ -10,6 +10,7 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
+from nwaben import settings
 from .forms import SongForm
 from .models import Album, Song
 from nwaben.cloudinary_settings import cloudinary_url, cloudinary_upload_preset
@@ -36,8 +37,7 @@ class AlbumDetail(DetailView):
         print(self.get_object())
         context = super(AlbumDetail, self).get_context_data(**kwargs)
         context['songs'] = self.get_object().song_set.all().order_by('-song_title')
-        context['cloudinary_url'] = cloudinary_url
-        context['cloudinary_upload_preset'] = cloudinary_upload_preset
+        context['key'] = settings.RAVE_PUBLIC_KEY
         # a_file = Song.objects.get_or_create(album_token=self.get_object().album_token)
         # context['audio_file_url'] = Song.objects.get()
         return context
@@ -82,15 +82,17 @@ class SongList(ListView):
     template_name = 'mp3/song_list.html'
     paginate_by = 20
 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.album = get_object_or_404(Album, slug=self.kwargs.get('slug'))
+
     def get_context_data(self, **kwargs):
         context = super(SongList, self).get_context_data(**kwargs)
         context['album'] = self.album
         return context
 
     def get_queryset(self):
-        self.album = get_object_or_404(Album, slug=self.kwargs.get('slug'))
-        queryset = self.album.song_set.order_by('-song_title')
-        return queryset
+        return self.album.song_set.order_by('-song_title')
 
 
 class SongCreate(CreateView):
@@ -99,28 +101,18 @@ class SongCreate(CreateView):
     def get(self, request, *args, **kwargs):
         form = SongForm
         print(self.kwargs)
-        return render(request, 'mp3/song_form.html', {'form' : form})
+        return render(request, 'mp3/song_form.html', {'form': form})
 
     def post(self, request, *args, **kwargs):
-        #-------get album instance------
+        # -------get album instance------
         album_obj = Album.objects.get(slug=self.kwargs.get('slug'))
-        form = SongForm(request.POST)
-
+        if request.method != 'POST':
+            form = SongForm()
+            return render(request, 'mp3/song_form.html', {'form': form})
+        form = SongForm(request.POST, request.FILES)
         if form.is_valid():
-            audioFile = self.request.FILES['audio_file']
-            songTitle = form.cleaned_data.get('song_title')
-            songPrice = form.cleaned_data.get('price')
-            file_inst = cloudinary.uploader.upload_large(audioFile, resource_type="raw", public_id=f"nwaben-audio/album/{songTitle}")
-            song_url_obj = file_inst['url']
-            song_inst = form.save(commit=False)
-            song_inst.album = album_obj
-            song_inst.song_title=songTitle
-            song_inst.price = songPrice
-            song_inst.song_url=song_url_obj
-            song_inst.song_token=album_obj.album_token
-            song_inst.save()
+            form.save()
             return redirect('mp3:album_detail', slug=album_obj.slug)
-        return render(request, 'mp3/song_form.html', {'form': form})
 
 
 class SongDelete(DeleteView):

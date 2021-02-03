@@ -9,8 +9,6 @@ from cloudinary.models import CloudinaryField
 
 from phonenumber_field.modelfields import PhoneNumberField
 
-
-
 GENDER_CHOICE = (("Male", "Male"), ("Female", "Female"))
 
 

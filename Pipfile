@@ -21,9 +21,10 @@ sendgrid = "*"
 django-widget-tweaks = "*"
 six = "*"
 django-ckeditor = "*"
-django-audiofield = "*"
 django-summernote = "*"
 django-cloudinary-storage = {extras = ["video"],version = "*"}
+boto3 = "*"
+django-storages = "*"
 
 [requires]
 python_version = "3.7"
