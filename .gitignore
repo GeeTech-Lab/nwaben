@@ -132,3 +132,6 @@ dmypy.json
 nwaben/settings/local.py
 nwaben/settings/nwaben_credential
 nwaben/cloudinary_settings.py
+git rm cache nwaben/settings/local.py
+git rm cache nwaben/settings/nwaben_credential
+git rm cache nwaben/cloudinary_settings.py
