@@ -1,19 +1,15 @@
 import json
 
-import cloudinary
-from django.db.models import Q
-from cloudinary.forms import cl_init_js_callbacks
-from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
+from mp3.utils import CSRFExemptMixin
 from nwaben import settings
 from .forms import SongForm
 from .models import Album, Song
-from nwaben.cloudinary_settings import cloudinary_url, cloudinary_upload_preset
 
 
 class AlbumList(ListView):
@@ -21,44 +17,34 @@ class AlbumList(ListView):
     template_name = 'mp3/album_list.html'
     context_object_name = 'albums'
 
-    # def get_queryset(self):
-    #     query = self.request.GET.get('q')
-    #     album_qs = Album.objects.filter(uploaded_by=self.request.user).filter(
-    #         Q(album_name__icontains=query) | Q(artist__icontains=query)
-    #     )
-    #     return album_qs
 
-
-class AlbumDetail(DetailView):
+class AlbumDetail(CSRFExemptMixin, DetailView):
     model = Album
     template_name = 'mp3/album_detail.html'
 
     def get_context_data(self, **kwargs):
-        print(self.get_object())
         context = super(AlbumDetail, self).get_context_data(**kwargs)
         context['songs'] = self.get_object().song_set.all().order_by('-song_title')
         context['key'] = settings.RAVE_PUBLIC_KEY
-        # a_file = Song.objects.get_or_create(album_token=self.get_object().album_token)
-        # context['audio_file_url'] = Song.objects.get()
+        context['current_user'] = self.request.user
+        # context['songs_count'] = context['songs'].count()
+        instance = Album.objects.get(album_name=self.get_object())
+        print(instance.owned_by.all())
+        if self.request.user in instance.owned_by.all():
+            print(True)
         return context
 
-    # @csrf_exempt
-    # def post(self, *args, **kwargs):
-    #     # data = self.request.POST
-    #     audio_url = self.request.POST.get(str("audioUrl"))
-    #     print(type(audio_url), audio_url)
-    #     song_title = self.request.POST.get(str("songTitle"))
-    #     print(type(song_title), song_title)
-    #     file_inst = Song.objects.create(song_token=self.get_object().album_token,
-    #                                     song_title=song_title,
-    #                                     audio_file=audio_url)
-    #     file_inst.save()
-    #     return JsonResponse({'message': 'Audio upload processing...'})
+    def post(self, *args, **kwargs):
+        paid_user = self.request.POST.get('paid_user')
+        album_name = self.request.POST.get('album_name')
+        paid_album = Album.objects.get(album_name=album_name)
+        paid_album.owned_by.add(paid_user)
+        paid_album.save()
 
 
 class AlbumCreate(CreateView):
     model = Album
-    fields = ['artist', 'album_name', 'genre', 'album_logo']
+    fields = ['artist', 'album_name', 'genre', 'price', 'album_logo']
 
     def form_valid(self, form):
         form.instance.uploaded_by = self.request.user
@@ -68,7 +54,7 @@ class AlbumCreate(CreateView):
 
 class AlbumUpdate(UpdateView):
     model = Album
-    fields = ['artist', 'album_name', 'genre', 'album_logo']
+    fields = ['artist', 'album_name', 'genre', 'price', 'album_logo']
 
 
 class AlbumDelete(DeleteView):

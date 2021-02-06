@@ -9,7 +9,7 @@
       <div class="section section-dark text-white">
         <div class="container">
           <div class="row">
-            <div class="col-md-8 ml-auto mr-auto text-center title">
+            <div class="col-md-10 ml-auto mr-auto text-center title">
 
               <div class="info">
                 <div class="icon icon-primary">
@@ -19,16 +19,17 @@
                     <h4 class="info-title">Here are available songs for {{ album.album_name }}</h4>
                     <p>This album was written and composed by {{ album.artist }} which currently has {{ album.album_songs }} track{{ album.album_songs|pluralize }}.</p>
                 </div>
-
+                <br>
+                <br>
                 <div class="description">
-                    {% if request.user.is_authenticated %}
+                    {% if request.user.is_authenticated and request.user in album.owned_by.all  %}
+                        <p>Dear {{ request.user.username }} you can play and download all the songs for this album.</p>
+                        <p>We thank you for your patronization and support.</p>
+                    {% elif request.user.is_authenticated %}
                         <form>
                           <script src="https://js.paystack.co/v1/inline.js"></script>
                           <button class="btn btn-info btn-sm btn-icon" type="button" onclick="payWithPaystack()">click here and Buy the full album</button>
                         </form>
-                    {% elif request.user.is_authenticated and album.payment_success %}
-                        <p>Dear {{ request.user.username }} you can play and download all the songs for this album.</p>
-                        <p>We thank you for your patronization and support.</p>
                     {% else %}
                         <p>Welcome, please you have to login to be able to buy this album <a class="btn btn-primary btn-link" href="{% url 'accounts:login' %}">click here</a> to login</p>
                     {% endif %}
@@ -53,7 +54,15 @@
                               console.log(response.status);
                               if (response.status === "success") {
                                   swal("Payment complete!", "Reference: " + response.reference, response.status);
-                                  {{ album.payment_success }}
+                                  $.ajax({
+                                      url: "{% url 'mp3:album_detail' slug=album.slug %}",
+                                      method: 'post',
+                                      data: {'referenceId': response.reference, 'paid_user': '{{ request.user }}', 'album_name': '{{ album.album_name }}'},
+                                      contentType: "application/x-www-form-urlencoded",
+                                      success: function (response) {
+
+                                      }
+                                  });
                               }
                               else  {
                                   swal("Transaction was not completed", "window closed.", response.status);
@@ -93,21 +102,21 @@
                             </audio>
                         </td>
                         <td class="td-actions text-center">
-                            <a class="btn btn-info btn-sm btn-icon" href="{{ song.audio_file.url }}" type="submit" target="_blank">
+                            <a class="btn btn-info btn-sm btn-icon" href="{{ song.audio_file.url }}" type="submit" target="_blank" download>
                                 <i class="fa fa-download"></i>
                             </a>
                             <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
                                 <i class="fa fa-times"></i>
                             </button>
                         </td>
-                    {% elif request.user.is_authenticated and song.album.payment_success %}
+                    {% elif request.user.is_authenticated and request.user in album.owned_by.all %}
                         <td class="text-center">
                             <audio controls="controls" controls="download"> <br>
                               <source src="{{ song.audio_file.url }}" type="audio/mp3"/>
                             </audio>
                         </td>
                         <td class="td-actions text-center">
-                            <a class="btn btn-info btn-sm btn-icon" href="{{ song.audio_file.url }}" type="submit" target="_blank">
+                            <a class="btn btn-info btn-sm btn-icon" href="{{ song.audio_file.url }}" type="submit" target="_blank" download>
                                 <i class="fa fa-download"></i>
                             </a>
                         </td>

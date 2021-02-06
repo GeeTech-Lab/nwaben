@@ -47,14 +47,14 @@ class UpdateUserProfileView(generic.UpdateView ):
     template_name = 'accounts/update_profile.html'
     model = User
     form_class = UserChangeForm
-    fields = ["phone", "avatar", "bio"]
+    fields = ["avatar", "bio"]
     success_url = reverse_lazy('profile')
 
 
 class UserProfileView(generic.DetailView, generic.UpdateView):
     template_name = "accounts/profile.html"
     model = User
-    fields = ["phone", "avatar", "bio"]
+    fields = ["avatar", "bio"]
     success_url = reverse_lazy('accounts:profile')
 
     def get_object(self, queryset=None):

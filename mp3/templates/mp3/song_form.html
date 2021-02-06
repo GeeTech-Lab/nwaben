@@ -11,24 +11,16 @@
     <br>
     <br>
     <br>
-    <br>
-    <div class="col-md-6 ml-auto mr-auto text-center" id="direct_upload">
+    <div class="col-md-5 ml-auto mr-auto text-center" id="direct_upload">
         <h4 class="info-title text-center"> Add a song </h4>
         <p class="text-center">Add a new Song Track for {{ song.album.album_title }} </p>
         <br>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {% include "includes/form.html" %}
-            <div class="form-group">
-                <label for="id_audio_file">Nwaben/album/songs:</label>
-                <input type="file" name="audio_file" class="form-control" id="audio_file">
-            </div>
             <button class="btn btn-rotate btn-round" type="submit"><i class="fa fa-upload"></i>add song</button>
         </form>
     </div>
-    <br>
-    <br>
-    <br>
     <br>
     <br>
     <br>

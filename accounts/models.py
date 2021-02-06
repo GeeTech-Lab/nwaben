@@ -4,8 +4,6 @@ from django.contrib.auth.models import (
     AbstractBaseUser,
     PermissionsMixin
 )
-from django.utils import timezone
-from cloudinary.models import CloudinaryField
 
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -76,7 +74,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['username', 'phone', 'gender']
 
     def __str__(self):
-        return "@{}".format(self.username)
+        return "{}".format(self.username)
 
     @property
     def image_url(self):
