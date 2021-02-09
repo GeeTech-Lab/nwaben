@@ -11,8 +11,8 @@ def random_key_generator(value):
 def reference_id():
     return f"nwbn-{str(random.randint(0000, 9999))}"
 
-
-class CSRFExemptMixin(object):
-    @method_decorator(csrf_exempt)
-    def dispatch(self, request, *args, **kwargs):
-        return super(CSRFExemptMixin, self).dispatch(request, *args, **kwargs)
+#
+# class CSRFExemptMixin(object):
+#     @method_decorator(csrf_exempt)
+#     def dispatch(self, request, *args, **kwargs):
+#         return super(CSRFExemptMixin, self).dispatch(request, *args, **kwargs)

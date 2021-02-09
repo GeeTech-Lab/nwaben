@@ -131,6 +131,7 @@ DATABASES = {
 
 # add this
 import dj_database_url
+
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 DATABASES['default']['CONN_MAX_AGE'] = 500
@@ -234,16 +235,14 @@ SUMMERNOTE_CONFIG = {
     },
 }
 
-
 LOGOUT_REDIRECT_URL = 'home'
 AUTH_USER_MODEL = "accounts.User"
 # ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 
 
-RAVE_PUBLIC_KEY = os.environ.get('RAVE_PUBLIC_KEY')
-RAVE_SECRET_KEY = os.environ.get('RAVE_SECRET_KEY')
-
+RAVE_PUBLIC_KEY = os.environ.get('FLUTTER_PUBLIC_KEY')
+RAVE_SECRET_KEY = os.environ.get('FLUTTER_SECRET_KEY')
 
 # Https settings...
 CORS_REPLACE_HTTPS_REFERER = True

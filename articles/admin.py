@@ -32,8 +32,7 @@ class CommentAdmin(SummernoteModelAdmin):
 admin.site.register(Comment, CommentAdmin)
 
 
-class ReplyAdmin(admin.ModelAdmin):
-    list_display = ('replied_by', 'content')
-
-
-admin.site.register(Reply, ReplyAdmin)
+# class ReplyAdmin(admin.ModelAdmin):
+#     list_display = ('replied_by', 'content')
+#
+# admin.site.register(Reply, ReplyAdmin)

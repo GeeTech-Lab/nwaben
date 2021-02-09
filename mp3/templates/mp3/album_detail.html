@@ -22,21 +22,29 @@
                 <br>
                 <br>
                 <div class="description">
-                    {% if request.user.is_authenticated and request.user in album.owned_by.all  %}
-                        <p>Dear {{ request.user.username }} you can play and download all the songs for this album.</p>
-                        <p>We thank you for your patronization and support.</p>
-                    {% elif request.user.is_authenticated %}
-                        <form>
-                          <script src="https://js.paystack.co/v1/inline.js"></script>
-                          <button class="btn btn-info btn-sm btn-icon" type="button" onclick="payWithPaystack()">click here and Buy the full album</button>
-                        </form>
+                    {% if request.user.is_authenticated and request.user not in album.owned_by.all  %}
+                        {% if album.album_songs %}
+                            <form>
+                              <script src="https://js.paystack.co/v1/inline.js"></script>
+                                {% if request.user.is_authenticated %}
+                                    <button class="btn btn-info btn-sm btn-icon" type="button" onclick="payWithPaystack()">click here and Buy the full album ₦{{ album.price }}</button>
+                                {% else %}
+                                    <button class="btn btn-primary btn-sm btn-icon" type="button" onclick="{% url 'account:login' %}">Please login to access and buy this album.</button>
+                                {% endif %}
+                            </form>
+                        {% else %}
+                            <p>This album currently has no songs.</p>
+                            <p>Do check later for more updates on this album.</p>
+                        {% endif %}
                     {% else %}
-                        <p>Welcome, please you have to login to be able to buy this album <a class="btn btn-primary btn-link" href="{% url 'accounts:login' %}">click here</a> to login</p>
+                        <p>Dear <strong>{{ request.user.username }}</strong> you can play and download all the songs for this album.</p>
+                        <p>We thank you for your patronization and support.</p>
                     {% endif %}
                     <!-- place below the html form -->
                     <script>
                       function payWithPaystack(){
-                        var handler = PaystackPop.setup({
+                          {% include 'includes/ajax_csrf_token.js' %}
+                          var handler = PaystackPop.setup({
                           key: '{{ key }}',
                           email: '{{ request.user.email|safe }}',
                           amount: {{ album.price|safe }} * 100,
@@ -51,22 +59,26 @@
                              ]
                           },
                           callback: function(response){
-                              console.log(response.status);
-                              if (response.status === "success") {
-                                  swal("Payment complete!", "Reference: " + response.reference, response.status);
-                                  $.ajax({
-                                      url: "{% url 'mp3:album_detail' slug=album.slug %}",
-                                      method: 'post',
-                                      data: {'referenceId': response.reference, 'paid_user': '{{ request.user }}', 'album_name': '{{ album.album_name }}'},
-                                      contentType: "application/x-www-form-urlencoded",
-                                      success: function (response) {
+                            console.log(response);
+                            swal("Payment complete!", "Reference: " + response.reference, response.status);
+                            if (response.status === "success") {
+                                $.ajax({
+                                    url: "{% url 'mp3:album_detail' slug=album.slug %}",
+                                    method: 'post',
+                                    data: {'referenceId': response.reference, 'paid_user': '{{ request.user }}', 'album_name': '{{ album.album_name }}'},
+                                    contentType: "application/x-www-form-urlencoded",
+                                    success: function (data) {
+                                        console.log(data);
+                                        setTimeout(function () {
+                                            window.location.replace("{% url 'mp3:album_detail' slug=album.slug %}");
+                                        });
+                                    }
+                                });
 
-                                      }
-                                  });
-                              }
-                              else  {
-                                  swal("Transaction was not completed", "window closed.", response.status);
-                              }
+                            }
+                            else  {
+                                swal("Transaction was not completed", "window closed.", response.status);
+                            }
                           },
                           onClose: function(){
                               swal("window closed.");

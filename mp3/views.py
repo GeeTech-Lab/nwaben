@@ -1,12 +1,13 @@
 import json
 
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
-from mp3.utils import CSRFExemptMixin
+from accounts.models import User
 from nwaben import settings
 from .forms import SongForm
 from .models import Album, Song
@@ -18,7 +19,7 @@ class AlbumList(ListView):
     context_object_name = 'albums'
 
 
-class AlbumDetail(CSRFExemptMixin, DetailView):
+class AlbumDetail(DetailView):
     model = Album
     template_name = 'mp3/album_detail.html'
 
@@ -29,17 +30,21 @@ class AlbumDetail(CSRFExemptMixin, DetailView):
         context['current_user'] = self.request.user
         # context['songs_count'] = context['songs'].count()
         instance = Album.objects.get(album_name=self.get_object())
-        print(instance.owned_by.all())
         if self.request.user in instance.owned_by.all():
             print(True)
         return context
 
     def post(self, *args, **kwargs):
-        paid_user = self.request.POST.get('paid_user')
+        paid_user_str = self.request.POST.get('paid_user')
+        paid_user = User.objects.get(username=paid_user_str)
         album_name = self.request.POST.get('album_name')
         paid_album = Album.objects.get(album_name=album_name)
         paid_album.owned_by.add(paid_user)
         paid_album.save()
+        return JsonResponse({'message': 'Payment successful'}, status=201)
+
+    def get_success_url(self):
+        return reverse('mp3:album_detail', kwargs={'slug': self.get_object().slug})
 
 
 class AlbumCreate(CreateView):
