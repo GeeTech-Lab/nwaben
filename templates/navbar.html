@@ -29,7 +29,7 @@
           <li class="nav-item">
             {% if request.path == home %}
                 <a href="{% url 'home' %}" class="nav-link  active">
-                home <span class="sr-only">(current)</span> </a>
+                (-home-) <span class="sr-only">(current)</span> </a>
             {% else %}
                 <a href="{% url 'home' %}" class="nav-link">home
                 </a>
@@ -40,7 +40,7 @@
           <li class="nav-item">
             {% if request.path == about %}
                 <a href="{% url 'about' %}" class="nav-link  active">
-                about <span class="sr-only">(current)</span> </a>
+                (-about-) <span class="sr-only">(current)</span> </a>
             {% else %}
                 <a href="{% url 'about' %}" class="nav-link">about
                 </a>
@@ -51,7 +51,7 @@
           <li class="nav-item">
               {% if request.path == article_list %}
                 <a href="{% url 'articles:article_list' %}" class="nav-link active">
-                    blog <span class="sr-only">(current)</span> </a>
+                    (-blog-) <span class="sr-only">(current)</span> </a>
               {% else %}
                   <a href="{% url 'articles:article_list' %}" class="nav-link">blog</a>
               {% endif %}
@@ -60,7 +60,7 @@
           <li class="nav-item">
               {% if request.path == album_list %}
                 <a href="{% url 'mp3:album_list' %}" class="nav-link active">
-                    music-archive <span class="sr-only">(current)</span> </a>
+                    (-music-) <span class="sr-only">(current)</span> </a>
               {% else %}
                   <a href="{% url 'mp3:album_list' %}" class="nav-link">music</a>
               {% endif %}
