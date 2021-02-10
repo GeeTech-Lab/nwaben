@@ -60,7 +60,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=40, unique=True)
     bio = models.CharField(max_length=240, blank=True, default="")
-    avatar = models.ImageField(upload_dir, null=True, blank=True)
+    avatar = models.ImageField(upload_dir, null=True, blank=True, help_text="You profile image")
     phone = PhoneNumberField()
     gender = models.CharField(max_length=6, choices=GENDER_CHOICE, blank=True, null=True)
     follow_count = models.PositiveIntegerField(default=0)

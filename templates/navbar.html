@@ -24,7 +24,7 @@
           <span class="navbar-toggler-bar bar3"></span>
         </button>
       </div>
-      <div class="collapse navbar-collapse" data-nav-image="../assets/img/blurred-image-1.jpg" data-color="orange">
+      <div class="collapse navbar-collapse" data-nav-image="https://res.cloudinary.com/geetechlab-com/image/upload/v1612913403/nwaben.com/music-3888684_1280_gtqxnv.png" data-color="orange">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             {% if request.path == home %}
@@ -62,15 +62,15 @@
                 <a href="{% url 'mp3:album_list' %}" class="nav-link active">
                     music-archive <span class="sr-only">(current)</span> </a>
               {% else %}
-                  <a href="{% url 'mp3:album_list' %}" class="nav-link">music-archive</a>
+                  <a href="{% url 'mp3:album_list' %}" class="nav-link">music</a>
               {% endif %}
           </li>
 
         {% if request.user.is_authenticated %}
             <li class="dropdown nav-item">
-                <a href="#paper-kit" class="nav-link" data-toggle="dropdown" width="30" height="30">
+                <a href="#paperp-kit" class="nav-link" data-toggle="dropdown">
                   <div class="profile-photo-small">
-                    <img src="{{ user.image_url }}" alt="{{ user.username }}" class="img-circle img-responsive img-no-padding">
+                    <img class="img-circle img-responsive img-no-padding" src="{{ user.image_url }}" alt="{{ user.username }}">
                   </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-danger" aria-labelledby="navbarDropdownMenuLink1">
