@@ -6,11 +6,12 @@ from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 from django.db import models
-from cloudinary.models import CloudinaryField
 from django.db.models.signals import pre_save
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
+
+from nwaben.storage_backends import PublicMediaStorage
 
 
 def upload_dir(instance, filename):
@@ -46,7 +47,7 @@ class Category(models.Model):
 class Article(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
-    image = models.ImageField(upload_dir, blank=True, null=True)
+    image = models.ImageField(storage=PublicMediaStorage(), upload_to=upload_dir, blank=True, null=True)
     slug = models.SlugField(max_length=255, unique=True, null=False)
     view_count = models.PositiveIntegerField(default=0)
     created = models.DateTimeField(default=timezone.now)
