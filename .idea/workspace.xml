@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4cb6c1b-b7d9-410a-97cb-11f6be75c540" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/accounts/templates/accounts/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/accounts/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/accounts/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/accounts/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/articles/templates/articles/article_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/articles/templates/articles/article_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db_.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db_.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mp3/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mp3/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mp3/templates/mp3/album_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/mp3/templates/mp3/album_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mp3/templates/mp3/album_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/mp3/templates/mp3/album_list.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -211,7 +206,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-9" />
     <option name="width" value="710" />
     <option name="height" value="735" />
@@ -605,7 +600,7 @@
       <workItem from="1612619362914" duration="13190000" />
       <workItem from="1612721800257" duration="775000" />
       <workItem from="1612777516138" duration="29063000" />
-      <workItem from="1612911460444" duration="7105000" />
+      <workItem from="1612911460444" duration="7853000" />
     </task>
     <servers />
   </component>
@@ -615,7 +610,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="745061000" />
+    <option name="totallyTimeSpent" value="745809000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -627,15 +622,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="0" width="710" height="735" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.32" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24962178" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32881355" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.35628226" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.35084745" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39934534" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -644,7 +638,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3289689" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50075644" side_tool="true" weight="0.3289689" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49924356" weight="0.3118644" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49924356" visible="true" weight="0.3118644" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32881355" />
       <window_info anchor="bottom" id="Sourcery" order="13" weight="0.3220339" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
