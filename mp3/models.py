@@ -12,6 +12,7 @@ class Album(models.Model):
     uploaded_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     artist = models.CharField(max_length=250)
     album_name = models.CharField(max_length=255)
+    album_detail = models.CharField(max_length=255, blank=True, null=True)
     slug = models.SlugField()
     owned_by = models.ManyToManyField(settings.AUTH_USER_MODEL,
                                       blank=True, related_name='owned_by')

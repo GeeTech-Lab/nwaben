@@ -17,28 +17,27 @@
                 </div>
                 <div class="description">
                     <h4 class="info-title">Here are available songs for {{ album.album_name }}</h4>
-                    <p>This album was written and composed by {{ album.artist }} which currently has {{ album.album_songs }} track{{ album.album_songs|pluralize }}.</p>
+                    <p>This album was written and composed by {{ album.artist }}<br>
+                        We hope you'll find the {{ album.album_songs }} track{{ album.album_songs|pluralize }} already published really enjoyable.</p>
                 </div>
                 <br>
                 <br>
                 <div class="description">
-                    {% if request.user.is_authenticated and request.user not in album.owned_by.all  %}
-                        {% if album.album_songs %}
+                    {% if request.user.is_authenticated  %}
+                        {% if album.album_songs and request.user not in album.owned_by.all %}
                             <form>
                               <script src="https://js.paystack.co/v1/inline.js"></script>
-                                {% if request.user.is_authenticated %}
-                                    <button class="btn btn-info btn-sm btn-icon" type="button" onclick="payWithPaystack()">click here and Buy the full album ₦{{ album.price }}</button>
-                                {% else %}
-                                    <button class="btn btn-primary btn-sm btn-icon" type="button" onclick="{% url 'account:login' %}">Please login to access and buy this album.</button>
-                                {% endif %}
+                                <button class="btn btn-info btn-sm btn-icon" type="button" onclick="payWithPaystack()">click here and Buy the full album ₦{{ album.price }}</button>
                             </form>
-                        {% else %}
+                        {% elif not album.album_songs %}
                             <p>This album currently has no songs.</p>
                             <p>Do check later for more updates on this album.</p>
+                        {% else %}
+                            <p>Dear <strong>{{ request.user.username }}</strong> you can play and download all the songs for this album.</p>
+                            <p>We thank you for your patronization and support.</p>
                         {% endif %}
                     {% else %}
-                        <p>Dear <strong>{{ request.user.username }}</strong> you can play and download all the songs for this album.</p>
-                        <p>We thank you for your patronization and support.</p>
+                        <a class="btn btn-primary btn-sm btn-icon" type="button" href="{% url 'accounts:login' %}">Please login to access and buy this album.</a>
                     {% endif %}
                     <!-- place below the html form -->
                     <script>
@@ -92,6 +91,15 @@
               </div>
             </div>
           </div>
+
+        {% if album.album_songs %}
+            <nav aria-label="breadcrumb" role="navigation">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item" aria-current="page"><strong><a href="{% url 'mp3:album_list' %}">Albums</a></strong></li>
+                <li class="breadcrumb-item active" aria-current="page">Songs</li>
+              </ol>
+            </nav>
+        {% endif %}
 
           <table class="table text-white">
             <thead>
