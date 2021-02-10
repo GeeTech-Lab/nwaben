@@ -18,9 +18,23 @@
         <h3 class="text-center">{{ article.details|safe|truncatewords:10 }}</h3>
           <p>Scroll below to read the rest of the contents...</p>
         <br/>
-        <a href="#" class="btn btn-warning btn-round btn-lg">
+        <button id="share_article" class="btn btn-warning btn-round btn-lg">
           <i class="fa fa-share-alt" aria-hidden="true"></i> Share Article
-        </a>
+        </button>
+          <script>
+            let text_to_copy = document.URL;
+            let copy_button = document.getElementById("share_article");
+
+            copy_button.addEventListener("click", function(){
+                let temp = document.createElement("INPUT");
+                temp.value = text_to_copy;
+                document.body.appendChild(temp);
+                temp.select();
+                document.execCommand("copy");
+                temp.remove();
+                swal("Link Copied!", "You can go ahead and share this article...");
+            });
+          </script>
       </div>
     </div>
   </div>
@@ -44,8 +58,10 @@
                 <h6 class="title-uppercase">{{ article.created|naturaltime }}</h6>
               </div>
             </div>
-            <div class="col-md-8 ml-auto mr-auto">
+            <div class="col-md-10 ml-auto mr-auto">
                 <div class="card" data-radius="none" style="background-image: url('{{ article.image_url }}');"></div>
+                <br>
+                <br>
               <div class="article-content">
                 <p>
                     {{ article.body|safe|linebreaks }}
