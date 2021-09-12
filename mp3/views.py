@@ -1,12 +1,7 @@
-import json
-
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
-from django.views import View
-from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
-
 from accounts.models import User
 from nwaben import settings
 from .forms import SongForm
