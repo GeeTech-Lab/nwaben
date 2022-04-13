@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from accounts.models import User
+from mp3 import paystack
 from nwaben import settings
 from .forms import SongForm
 from .models import Album, Song
@@ -21,7 +22,7 @@ class AlbumDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super(AlbumDetail, self).get_context_data(**kwargs)
         context['songs'] = self.get_object().song_set.all().order_by('-song_title')
-        context['key'] = settings.RAVE_PUBLIC_KEY
+        context['key'] = paystack.PAYSTACK_PUBLIC_KEY
         context['current_user'] = self.request.user
         # context['songs_count'] = context['songs'].count()
         instance = Album.objects.get(album_name=self.get_object())
