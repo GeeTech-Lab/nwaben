@@ -91,81 +91,37 @@
     </div>
     <div class="section section-dark text-center landing-section">
       <div class="container">
-        <h2 class="title">Let's talk about us</h2>
+        <h2 class="title">Our Team</h2>
         <div class="row">
-          <div class="col-md-4">
-            <div class="card card-profile card-plain">
-{#              <div class="card-avatar">#}
-{#                <a href="#">#}
-{#                  <img src="https://cdn.nwaben.com/static/img/faces/clem-onojeghuo-3.jpg" alt="...">#}
-{#                </a>#}
-{#              </div>#}
-              <div class="card-body">
-                <a href="#">
-                  <div class="author">
-                    <h4 class="card-title">Mr E Nwazuruoke-Nwaben</h4>
-                    <h6 class="card-category text-muted">Site Owner/Admin</h6>
+            {% for user in staff_users %}
+              <div class="col-md-4">
+                <div class="card card-profile card-plain">
+                  <div class="card-avatar">
+                    <a href="#">
+                      <img src="{{ user.image_url }}" alt="{{ user.username }}">
+                    </a>
                   </div>
-                </a>
-                <p class="card-description text-center">
-                  Some details about him here..
-                </p>
-              </div>
-              <div class="card-footer text-center">
-                <a href="#" class="btn btn-link btn-just-icon btn-twitter"><i class="fa fa-twitter"></i></a>
-                <a href="#" class="btn btn-link btn-just-icon btn-facebook"><i class="fa fa-facebook"></i></a>
-                <a href="#" class="btn btn-link btn-just-icon btn-gmail"><i class="fa fa-google-plus"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card card-profile card-plain">
-{#              <div class="card-avatar">#}
-{#                  <img src="https://res.cloudinary.com/geetechlab-com/image/upload/v1576152194/geetech/faces/Gerard_uhbdyz.jpg" alt="...">#}
-{#              </div>#}
-              <div class="card-body">
-                <a href="#">
-                  <div class="author">
-                    <h4 class="card-title">Gerard Nwazuruoke</h4>
-                    <h6 class="card-category text-muted">FullStack Developer/Site Admin</h6>
+                  <div class="card-body">
+                    <a href="#">
+                      <div class="author">
+                        <h4 class="card-title">{{ user.username }}</h4>
+                        <h6 class="card-category text-muted">Staff Member</h6>
+                      </div>
+                    </a>
+                      {% if user.bio %}
+                        <p class="card-description text-center">
+                          {{ user.bio|linebreaks }}
+                        </p>
+                      {% endif %}
                   </div>
-                </a>
-                <p class="card-description text-center">
-                  Some details about him here..
-                </p>
-              </div>
-              <div class="card-footer text-center">
-                <a href="#" class="btn btn-link btn-just-icon btn-twitter"><i class="fa fa-twitter"></i></a>
-                <a href="#" class="btn btn-link btn-just-icon btn-facebook"><i class="fa fa-facebook"></i></a>
-                <a href="#" class="btn btn-link btn-just-icon btn-gmail"><i class="fa fa-google-plus"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card card-profile card-plain">
-{#              <div class="card-avatar">#}
-{#                <a href="#">#}
-{#                  <img src="https://cdn.nwaben.com/static/img/faces/clem-onojeghuo-3.jpg" alt="...">#}
-{#                </a>#}
-{#              </div>#}
-              <div class="card-body">
-                <a href="#">
-                  <div class="author">
-                    <h4 class="card-title">Nwazuruoke Family</h4>
-                    <h6 class="card-category text-muted">Privileged Users</h6>
+                  <div class="card-footer text-center">
+                    <a href="#" class="btn btn-link btn-just-icon btn-twitter"><i class="fa fa-twitter"></i></a>
+                    <a href="#" class="btn btn-link btn-just-icon btn-facebook"><i class="fa fa-facebook"></i></a>
+                    <a href="#" class="btn btn-link btn-just-icon btn-gmail"><i class="fa fa-google-plus"></i></a>
                   </div>
-                </a>
-                <p class="card-description text-center">
-                  Some details about us goes here..
-                </p>
+                </div>
               </div>
-              <div class="card-footer text-center">
-                <a href="#" class="btn btn-link btn-just-icon btn-twitter"><i class="fa fa-twitter"></i></a>
-                <a href="#" class="btn btn-link btn-just-icon btn-facebook"><i class="fa fa-facebook"></i></a>
-                <a href="#" class="btn btn-link btn-just-icon btn-gmail"><i class="fa fa-google-plus"></i></a>
-              </div>
-            </div>
-          </div>
+            {% endfor %}
         </div>
       </div>
     </div>

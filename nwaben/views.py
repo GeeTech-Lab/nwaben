@@ -4,6 +4,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import FormView
 # from django.contrib import messages
+from accounts.models import User
 from nwaben import email_settings
 from nwaben.forms import ContactForm
 from sendgrid import SendGridAPIClient
@@ -34,6 +35,11 @@ class ContactView(SuccessMessageMixin, FormView):
     def get_success_message(self, cleaned_data):
         print(cleaned_data)
         return "Message sent successfully!"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context["staff_users"] = User.objects.filter(is_superuser=True)
+        return context
 
 
 
