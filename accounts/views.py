@@ -1,9 +1,7 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
-from django.shortcuts import render
 from .models import User
 from .forms import UserChangeForm
-
 # Create your views here.
 from django.urls import reverse_lazy, reverse
 from django.views import generic, View

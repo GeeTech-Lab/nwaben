@@ -178,9 +178,9 @@ AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
 
-AWS_STATIC_LOCATION = 'static'
-STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_STATIC_LOCATION}/'
-STATICFILES_STORAGE = 'nwaben.storage_backends.StaticStorage'
+# AWS_STATIC_LOCATION = 'static'
+# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_STATIC_LOCATION}/'
+# STATICFILES_STORAGE = 'nwaben.storage_backends.StaticStorage'
 
 AWS_PUBLIC_MEDIA_LOCATION = 'media/public'
 DEFAULT_FILE_STORAGE = 'nwaben.storage_backends.PublicMediaStorage'
@@ -188,15 +188,21 @@ DEFAULT_FILE_STORAGE = 'nwaben.storage_backends.PublicMediaStorage'
 AWS_PRIVATE_MEDIA_LOCATION = 'media/private'
 PRIVATE_FILE_STORAGE = 'nwaben.storage_backends.PrivateMediaStorage'
 
-# STATIC_URL = '/static/'
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'staticfiles')
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),
-# ]
+
+STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_cdn')
+
+# AWS_STATIC_LOCATION = 'static'
+# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_STATIC_LOCATION}/'
+# STATICFILES_STORAGE = 'nwaben.storage_backends.StaticStorage'
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 CRISPY_CLASS_CONVERTERS = {

@@ -38,6 +38,7 @@ urlpatterns = [
 # # Remove this conditional check if you want to upload to Heroku
 if settings.DEBUG:
     from django.conf.urls.static import static
+
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
@@ -46,5 +47,5 @@ urlpatterns += [
     path('admin-family-nwaben/', admin.site.urls),
 ]
 
-#Url to catch any unmatch pattern and render 404
+# Url to catch any un-matched pattern and render 404
 urlpatterns += [re_path(r'^.*.', TemplateView.as_view(template_name='404.html'), name='404_')]
