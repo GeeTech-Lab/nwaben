@@ -1,0 +1,715 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}Memory{% endblock %}
+
+{% block ext_css %}
+    <style>
+        .radio_item {
+            display: none !important;
+        }
+
+        .label_item {
+            opacity: 0.5;
+        }
+
+        .radio_item:checked + label {
+            opacity: 1;
+            border: 2px solid #DD7B3B;
+            border-radius: 5px;
+        }
+
+         .form-control:focus {
+            box-shadow: 10px 0px 0px 0px #ffffff !important;
+            border-color: #DD7B3B;
+        }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <div class="blog-post sidebar-collapse">
+        <div class="page-header" style="background-image: url('https://res.cloudinary.com/geetechlab-com/image/upload/v1660091365/nwaben.com/daddy_candle_3_xuvas7.jpg');">
+            <div class="filter"></div>
+            <div class="content-center">
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img class="rounded img-thumbnail" style="height: 400px; width: 350px;" src={{ burial_memory.image_url }} />
+                        </div>
+                        <div class="col-md-6  ml-auto">
+                            <h3 class="title">{{ burial_memory.get_name }} {% if burial_memory.other_names %}({{ burial_memory.other_names }}){% endif %} <br> {{ burial_memory.date_of_birth|date:'Y' }} - {{ burial_memory.date_of_death|date:'Y' }}</h3>
+{#                            <h5 class="description">{{ burial_memory.date_of_birth|date:'Y' }} - {{ burial_memory.date_of_death|date:'Y' }}</h5>#}
+                            <blockquote class="blockquote">
+{#                                <h6 >Let the memory of Nze EmmanuelMary be with us forever.</h6>#}
+{#                                <hr style="width: 50%;">#}
+                                <h5 class="description">Born on {{ burial_memory.date_of_birth }} in {{ burial_memory.place_of_birth }}</h5>
+                                <h5 class="description">Passed away on {{ burial_memory.date_of_death }} in {{ burial_memory.place_of_death }}</h5>
+                                <footer class="blockquote-footer" style="color: white">This website is administered by: <cite title="Source Title">{{ burial_memory.by.get_full_name }}</cite></footer>
+{#                                <h5 class="description">Details here...</h5>#}
+                            </blockquote>
+                            <br />
+                            <button id="share_memorial" class="btn btn-warning btn-round btn-lg">
+                                <i class="fa fa-share-alt" aria-hidden="true"></i> Share Memory
+                            </button>
+                            <script>
+                                let text_to_copy = document.URL;
+                                let copy_button = document.getElementById("share_memorial");
+
+                                copy_button.addEventListener("click", function(){
+                                    let temp = document.createElement("INPUT");
+                                    temp.value = text_to_copy;
+                                    document.body.appendChild(temp);
+                                    temp.select();
+                                    document.execCommand("copy");
+                                    temp.remove();
+                                    swal("Link Copied!", "You can go ahead and share this memory");
+                                });
+                              </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="main">
+                <div class="section section-white">
+                    <div class="container">
+                        <div class="nav-tabs-navigation">
+                            <div class="nav-tabs-wrapper">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" href="#tributes" role="tab">
+                                            <img src="https://img.icons8.com/color/48/000000/funeral.png"/>
+                                            Tribute
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#following" role="tab">
+                                            <img src="https://img.icons8.com/color/48/000000/gallery.png"/>
+                                            Gallery
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#story" role="tab">
+                                            <img src="https://img.icons8.com/color/48/000000/old-fashioned-family-photo.png"/>
+                                            Life
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#donation" role="tab">
+                                            <img src="https://img.icons8.com/color/48/000000/charity-donation.png"/>
+                                            Donation
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="tab-content">
+                            <!-- Tributes -->
+                            <div class="tab-pane active" id="tributes" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-md-8 ml-auto mr-auto">
+                                        <div class="article-content">
+                                            <h3>" Let the memory of {{ burial_memory.get_name }} be with us forever. "</h3>
+                                            <br/>
+                                            <p>
+                                                This memorial website was created in memory of our loved one,
+                                                {{ burial_memory.get_name }} {% if burial_memory.other_names %}({{ burial_memory.other_names }}){% endif %},<br/>
+                                                {{ burial_memory.calculated_age }} years old, born on {{ burial_memory.date_of_birth }},
+                                                and passed away on {{ burial_memory.date_of_death }}.
+                                                We will remember {% if burial_memory.gender == "Male" %} him {% elif burial_memory.gender == "Female" %} her {% else %} it {% endif %} forever.
+                                            </p>
+                                        </div>
+                                        <br />
+                                        <hr>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="comments media-area" id="tribute_list">
+
+                                                    <h3 class="text-center">{{ tributes.count }} - Tribute{{ tributes.count|pluralize }}</h3>
+
+                                                    {% if tributes %}
+                                                        {% for t in tributes %}
+                                                            <div class="media">
+                                                                <a class="pull-left">
+                                                                    <div class="avatar">
+                                                                        {% if t.category == "candle" %}
+                                                                            <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/48/000000/external-candles-pharmaceutical-flaticons-lineal-color-flat-icons-2.png"/>
+                                                                        {% elif t.category == "flower" %}
+                                                                            <img src="https://img.icons8.com/color/48/000000/bunch-flowers.png"/>
+                                                                        {% elif t.category == "note" %}
+                                                                            <img src="https://img.icons8.com/color/48/000000/scroll.png"/>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                </a>
+                                                                <div class="media-body">
+                                                                    <h4 class="media-heading">{{ t.by.get_full_name }}</h4>
+                                                                    <p>{{ t.tribute_text }}</p>
+                                                                    <h6 class="text-muted text-lowercase">{{ t.on|timesince }} ago</h6>
+                                                                </div>
+                                                            </div>
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        <div class="info">
+                                                            <div class="icon icon-primary">
+                                                                <img class="pull-left"
+                                                                     src="https://img.icons8.com/color/48/000000/funeral.png"/>
+                                                            </div>
+                                                            <div class="description">
+                                                                <p>Write a tribute for the deceased.</p>
+                                                            </div>
+                                                        </div>
+                                                    {% endif %}
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <br/>
+                                        <!-- Tribute form -->
+                                        <div class="container align-content-center">
+                                            <div class="row align-content-center">
+                                                <div class="col-md-12">
+                                                    <h3 class="text-center"><i class="fa fa-pencil"></i> Leave a Tribute</h3>
+                                                    <div class="media media-post">
+                                                        <form
+                                                            class="form"
+                                                            hx-post="{% url 'burial_memories:add_tribute' burial_memory.slug %}"
+                                                            hx-target="#tribute_list"
+                                                            _="on htmx:afterRequest reset() me">
+                                                            {% csrf_token %}
+                                                            <div class=" row text-center">
+                                                                <!--RADIO Candle-->
+                                                                <div class="col-md-4 mr-auto ml-auto">
+                                                                    <input type="radio" class="radio_item" value="candle" name="category" id="candle">
+                                                                    <label class="label_item" for="candle">
+                                                                        <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-candles-pharmaceutical-flaticons-lineal-color-flat-icons-2.png"/>
+                                                                        <h5>Light a candle</h5>
+                                                                    </label>
+                                                                </div>
+
+                                                                <!--RADIO Flower-->
+                                                                <div class="col-md-4 mr-auto ml-auto">
+                                                                    <input type="radio" class="radio_item" value="flower" name="category" id="flower">
+                                                                    <label class="label_item" for="flower">
+                                                                        <img src="https://img.icons8.com/color/64/000000/bunch-flowers.png"/>
+                                                                        <h5>Lay a flower</h5>
+                                                                    </label>
+                                                                </div>
+
+                                                                <!--RADIO Note-->
+                                                                <div class="col-md-4 mr-auto ml-auto">
+                                                                    <input type="radio" class="radio_item" value="note" name="category" id="note">
+                                                                    <label class="label_item" for="note">
+                                                                        <img src="https://img.icons8.com/color/64/000000/scroll.png"/>
+                                                                        <h5>Leave a note</h5>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <br/>
+                                                                <div class="row content-center">
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <textarea name="tribute" class="form-control" id="tribute" placeholder="Write your tribute" rows="3" required></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="media-footer">
+                                                                    {% if request.user.is_authenticated %}
+                                                                        <button type="submit" class="btn btn-primary pull-right">Post Your Tribute</button>
+                                                                    {% else %}
+                                                                        <a href="{% url 'accounts:login' %}" type="submit" class="btn btn-primary pull-right">Post Your Tribute</a>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Gallery Images -->
+                            <div class="tab-pane text-center" id="following" role="tabpanel">
+                                <div class="row justify-content-center">
+                                    <div class="info">
+                                        <!-- Nav tabs -->
+                                        <ul class="nav nav-pills nav-pills-primary" role="tablist">
+                                            <li class="nav-item" data-toggle="tooltip" data-placement="top"
+                                                title="Photo gallery">
+                                                <a class="nav-link active" data-toggle="tab" href="#photo"
+                                                   role="tablist">
+                                                    <img src="https://img.icons8.com/color/48/000000/photo-album.png"/>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item" data-toggle="tooltip" data-placement="top"
+                                                title="Video gallery">
+                                                <a class="nav-link" data-toggle="tab" href="#video" role="tablist">
+                                                    <img src="https://img.icons8.com/color/48/000000/video.png"/>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item" data-toggle="tooltip" data-placement="top"
+                                                title="Audio gallery">
+                                                <a class="nav-link" data-toggle="tab" href="#audio" role="tablist">
+                                                    <img src="https://img.icons8.com/color/48/000000/high-volume--v1.png"/>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+{#                                    <div class="col-md-4">#}
+{#                                        <select class="selectpicker "#}
+{#                                                data-style="select-with-transition btn-primary btn-round"#}
+{#                                                title="Select Gallery to upload" data-size="7">#}
+{#                                            <option disabled>Choose city</option>#}
+{#                                            <option value="2">Foobar</option>#}
+{#                                            <option value="3">Is great</option>#}
+{#                                        </select>#}
+{#                                    </div>#}
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 ml-auto mr-auto">
+                                        {% include 'burial_memories/gallery_list.html' %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Story -->
+                            <div class="tab-pane text-center" id="story" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-md-10 ml-auto mr-auto">
+                                        <div class="description">
+                                            <h4 class="info-title">
+                                                <i class="fa fa-history text-warning mr-2"></i>
+                                                Brief Biography
+                                            </h4>
+                                            <br/>
+                                            <p class="text-justify">{{ burial_memory.brief_biography }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-md-10 ml-auto mr-auto">
+                                        <div class="description">
+                                            <h4 class="info-title">
+                                                <i class="fa fa-book text-warning mr-2"></i>
+                                                Education
+                                            </h4>
+                                            <br/>
+                                            <p class="text-justify">{{ burial_memory.education }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-md-10 ml-auto mr-auto">
+                                        <div class="description">
+                                            <h4 class="info-title">
+                                                <i class="fa fa-briefcase text-warning mr-2"></i>
+                                                Work Life
+                                            </h4>
+                                            <br/>
+                                            <p class="text-justify">{{ burial_memory.work_life }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-md-10 ml-auto mr-auto">
+                                        <div class="description">
+                                            <h4 class="info-title">
+                                                <i class="fa fa-users text-warning mr-2"></i>
+                                                Family Biography
+                                            </h4>
+                                            <br/>
+                                            <p class="text-justify">{{ burial_memory.family_biography }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Donations -->
+                            <div class="tab-pane text-center" id="donation" role="tabpanel">
+                                <div class="row justify-content-around">
+
+                                    <!--// Flutterwave Inline payment gateway //-->
+                                    <div class="col-md-6 ml-auto mr-auto">
+                                        <div class="info">
+                                            <div class="icon icon-primary">
+                                                <i class="fa fa-money"></i>
+                                            </div>
+                                            <div class="description">
+                                                <h4 class="info-title"> Burial Levy/Donation </h4>
+                                                <p>
+                                                    You can donate generously to express your condolence support towards the family of
+                                                    <strong>{{ burial_memory.get_name }} {% if burial_memory.other_names %}({{ burial_memory.other_names }}){% endif %}</strong>.
+                                                    Your donation can make a big difference for the family.
+                                                </p>
+                                            </div>
+                                            <hr/>
+
+                                            <div id="accordion" role="tablist" aria-multiselectable="true">
+                                                <div class="no-transition">
+                                                    <div class="card-header card-collapse" role="tab" id="headingOne">
+                                                        <h5 class="mb-0 panel-title">
+                                                            <a class="collapsed" data-toggle="collapse"
+                                                               data-parent="#accordion" href="#collapseOne"
+                                                               aria-expanded="false" aria-controls="collapseOne">
+                                                                Donate by bank transfer
+                                                                <i class="fa fa-angle-down"></i>
+                                                            </a>
+                                                        </h5>
+                                                    </div>
+                                                    <div id="collapseOne" class="collapse" role="tabpanel"
+                                                         aria-labelledby="headingOne">
+                                                        <div class="card-body">
+                                                            <br/>
+                                                            <p class="title">
+                                                                Bank Name: {{ burial_memory.donation_bank }}<br/>
+                                                                Account
+                                                                Number: {{ burial_memory.donation_bank_account_num }}<br/>
+                                                                Account
+                                                                Name: {{ burial_memory.donation_bank_account_name }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-header card-collapse" role="tab" id="headingTwo">
+                                                        <h5 class="mb-0 panel-title">
+                                                            <a class="collapsed" data-toggle="collapse"
+                                                               data-parent="#accordion" href="#collapseTwo"
+                                                               aria-expanded="false" aria-controls="collapseTwo">
+                                                                Donate with card
+                                                                <i class="fa fa-angle-down"></i>
+                                                            </a>
+                                                        </h5>
+                                                    </div>
+                                                    <div id="collapseTwo" class="collapse" role="tabpanel"
+                                                         aria-labelledby="headingTwo">
+                                                        <div class="card-body">
+                                                            <form
+                                                                    hx-post="{% url 'burial_memories:list_donations' burial_memory.slug %}"
+                                                                    hx-target="#donation_list"
+                                                                    _="on htmx:afterRequest reset() me">
+                                                                {% csrf_token %}
+                                                                <div class="input-group">
+                                                                    {% if request.user.is_authenticated %}
+                                                                        <input type="email" value="{{ user.email }}"
+                                                                               class="form-control"
+                                                                               id="donation_email" disabled>
+                                                                    {% else %}
+                                                                        <input type="email" placeholder="email"
+                                                                               class="form-control"
+                                                                               id="donation_email" required>
+                                                                    {% endif %}
+                                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <i class="fa fa-envelope"></i>
+                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <small class="form-text text-muted">Please provide your
+                                                                    email to receive
+                                                                    donation transaction status
+                                                                </small>
+                                                                <br/>
+
+                                                                <div class="form-row">
+                                                                    <div class="col-md-7 ml-auto mr-auto">
+                                                                        <div class="input-group">
+                                                                            {% if request.user.is_authenticated %}
+                                                                                <input
+                                                                                        type="text"
+                                                                                        value="{{ user.get_full_name }}"
+                                                                                        class="form-control"
+                                                                                        id="donation_fullname"
+                                                                                        disabled>
+                                                                            {% else %}
+                                                                                <input
+                                                                                        type="text"
+                                                                                        placeholder="fullname"
+                                                                                        class="form-control"
+                                                                                        id="donation_fullname">
+                                                                            {% endif %}
+                                                                            <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <i class="fa fa-user"></i>
+                                                        </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <small class="form-text text-muted">You can
+                                                                            ignore
+                                                                            this if you
+                                                                            want to be anonymous
+                                                                        </small>
+                                                                    </div>
+                                                                    <div class="col-md-5 ml-auto mr-auto">
+                                                                        <select class="selectpicker "
+                                                                                id="donation_currency"
+                                                                                data-style="select-with-transition btn-default btn-round"
+                                                                                title="Currency" data-size="7">
+                                                                            <option selected value="NGN">NGN</option>
+                                                                            <option value="USD">USD</option>
+                                                                            <option value="EUR">EUR</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <br/>
+                                                                <div class="input-group">
+                                                                    <input type="number" placeholder="0.00"
+                                                                           class="form-control"
+                                                                           id="donation_amount" required>
+                                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <i class="fa fa-money"></i>
+                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <small class="form-text text-muted">Your donation amount
+                                                                </small>
+
+                                                                <br/>
+                                                                <button
+                                                                        type="submit"
+                                                                        class="btn btn-block btn-round"
+                                                                        onclick="makePayment()">
+                                                                    <i class="fa fa-shield" aria-hidden="true"></i>
+                                                                    Donate Generously
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <br/>
+                                            <div class="description mt-3">
+                                                <p class="text-warning">
+                                                    NB: This is a secured payment channel and your donations goes to
+                                                    the account bank attached by the family members of
+                                                    {{ burial_memory.get_name }}.
+                                                </p>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <div class="col-md-4 ml-auto mr-auto" id="donation_list">
+                                        {% include 'burial_memories/donation_list.html' %}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Tab content end -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- using flutter wave  -->
+    <script src="https://checkout.flutterwave.com/v3.js"></script>
+    <script>
+        function makePayment() {
+            let amount = document.getElementById("donation_amount").value;
+            let currency = document.getElementById("donation_currency").value;
+            let email = document.getElementById("donation_email").value;
+            let name = document.getElementById("donation_fullname").value;
+            FlutterwaveCheckout({
+                public_key: "{{ pub_key|safe }}",
+                tx_ref: '{{ burial_memory.get_name|safe }}_donation_ref-' + Math.floor((Math.random() * 100000) + 1),
+                amount: amount,
+                currency: currency,
+                country: "NG",
+                payment_options: "card, banktransfer, ussd",
+
+                // use customer details if user is not logged in, else add user_id to the request
+
+                {% if request.user.is_authenticated %}
+                    customer: {
+                        email: "{{ request.user.email|safe }}",
+                        name: "{{ request.user.get_full_name|safe }}",
+                    },
+                {% else %}
+                    customer: {
+                        email: email,
+                        name: name,
+                    },
+                {% endif %}
+                callback: function (response) {
+                    console.log(response);
+                    {#swal(response.status + "! your transaction ref is " + response.flw_ref);#}
+                    toastr.success(response.status + "! your transaction ref is \n" + response.flw_ref);
+                    $.ajax({
+                        url: "{% url 'burial_memories:add_donation' burial_memory.slug %}",
+                        method: "post",
+                        data: {
+                            'status': response.status,
+                            'currency': response.currency,
+                            'amount': response.amount,
+                            'tx_ref': response.tx_ref,
+                            'name': response.customer.name,
+                            'email': response.customer.email,
+                        },
+                        contentType: "application/x-www-form-urlencoded",
+                        success: function (data) {
+                            console.log(data);
+                            setTimeout(function () {
+                                window.location.replace("{% url 'burial_memories:detail' burial_memory.slug %}");
+                            });
+                            toastr.success(`Your donation of ${currency}${amount} was received.`);
+                        },
+                    });
+                },
+                onclose: function () {
+                    // close modal
+                    {#swal("Window closed.");#}
+                    toastr.info('Window closed.');
+                },
+                customizations: {
+                    title: "Condolence Donation",
+                    description: "Condolence donation for {{ burial_memory.get_name }}",
+                    logo: "{{ burial_memory.image_url }}",
+                },
+            });
+        }
+    </script>
+
+
+    <!-- Upload image modal -->
+    <div class="modal fade" id="imageFormModal" tabindex="-1" role="dialog" aria-hidden="false">
+        <div class="modal-dialog modal-register">
+            <div class="modal-content">
+                <div class="modal-header no-border-header text-center">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h6 class="text-muted">add an image</h6>
+                </div>
+                <div class="modal-body">
+                    <form hx-encoding="multipart/form-data"
+                          hx-post="{% url 'burial_memories:list_gallery' burial_memory.slug %}"
+                          hx-target="#image_list"
+                          _="on htmx:afterRequest reset() me">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label>image file</label>
+                            <input id="max_id" type="hidden" name="MAX_FILE_SIZE" value="30000000"/>
+                            <input onchange="upload_check()" id="file_id" type="file" name="memory_image"
+                                   accept="image/*" class="input-group"/>
+                        </div>
+                        <div class="form-group">
+                        <textarea placeholder="Write details/summary of this Image(s)"
+                                  class="form-control"
+                                  rows="3">
+                        </textarea>
+                        </div>
+                        <button type="submit" class="btn btn-block btn-round">
+                            <i class="fa fa-upload"></i> upload
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Upload video modal -->
+    <div class="modal fade" id="videoFormModal" tabindex="-1" role="dialog" aria-hidden="false">
+        <div class="modal-dialog modal-register">
+            <div class="modal-content">
+                <div class="modal-header no-border-header text-center">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h6 class="text-muted">add an Video</h6>
+                </div>
+                <div class="modal-body">
+                    <form hx-encoding="multipart/form-data"
+                          hx-post="{% url 'burial_memories:list_gallery' burial_memory.slug %}"
+                          hx-target="#video_list"
+                          _="on htmx:afterRequest reset() me">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label>Video File</label>
+                            <input id="max_id" type="hidden" name="MAX_FILE_SIZE" value="30000000"/>
+                            <input onchange="upload_check()" id="file_id" type="file" name="memory_video"
+                                   accept="video/mp4" class="input-group"/>
+                        </div>
+                        <div class="form-group">
+                        <textarea placeholder="Write details/summary of this video" class="form-control"
+                                  rows="3">
+                        </textarea>
+                        </div>
+                        <button type="submit" class="btn btn-block btn-round">
+                            <i class="fa fa-upload"></i> upload
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload audio modal -->
+    <div class="modal fade" id="audioFormModal" tabindex="-1" role="dialog" aria-hidden="false">
+        <div class="modal-dialog modal-register">
+            <div class="modal-content">
+                <div class="modal-header no-border-header text-center">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h6 class="text-muted">add an audio</h6>
+                </div>
+                <div class="modal-body">
+                    <form hx-encoding="multipart/form-data"
+                          hx-post="{% url 'burial_memories:list_gallery' burial_memory.slug %}"
+                          hx-target="#audio_list"
+                          _="on htmx:afterRequest reset() me"
+                    >
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label>Audio File</label>
+                            <input id="max_id" type="hidden" name="MAX_FILE_SIZE" value="30000000"/>
+                            <input onchange="upload_check()" id="file_id" type="file" name="memory_audio"
+                                accept="audio/*" class="input-group"/>
+                        </div>
+                        <div class="form-group">
+                        <textarea placeholder="Write details/summary of this audio" class="form-control" rows="3">
+                        </textarea>
+                        </div>
+                        <button type="submit" class="btn btn-block btn-round">
+                            <i class="fa fa-upload"></i> upload
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function upload_check() {
+            let upl = document.getElementById("file_id");
+            let max = document.getElementById("max_id").value;
+
+            if (upl.files[0].size > max) {
+                swal("File too big! exceeds 30mb convert file size");
+                upl.value = "";
+            }
+        }
+    </script>
+
+
+{% endblock %}

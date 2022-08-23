@@ -2,13 +2,14 @@
 {% url 'about' as about %}
 {% url 'articles:article_list' as article_list %}
 {% url 'mp3:album_list' as album_list %}
+{% url 'burial_memories:list' as memorial_list %}
 {% url 'accounts:login' as login %}
 {% url 'accounts:signup' as register %}
 {% url 'accounts:profile' as profile %}
 
 
 <!-- Navbar -->
-{% if request.path == home or request.path == login or request.path == register or request.path == about or request.path == profile  or request.path == album_list %}
+{% if request.path == home or request.path == login or request.path == register or request.path == about or request.path == profile  or request.path == album_list or request.path == memorial_list %}
     <nav class="navbar navbar-expand-lg nav-down navbar-absolute navbar-transparent" color-on-scroll="500">
 {% else %}
     <nav class="navbar navbar-expand-lg navbar-absolute nav-down">

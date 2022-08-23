@@ -24,6 +24,7 @@ from nwaben.views import ContactView
 urlpatterns = [
     path('ckeditor/', include("ckeditor_uploader.urls")),
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
+    path('burial_memories/', include('burial_memories.urls', namespace='burial_memories')),
     path('about/', ContactView.as_view(), name='about'),
     path('articles/', include(('articles.urls', 'articles'), namespace='articles')),
     # path('archives/', include('archive.urls', namespace='archives')),

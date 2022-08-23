@@ -23,7 +23,7 @@ class Album(models.Model):
 
     class Meta:
         verbose_name_plural = "Albums"
-        ordering = ('date_uploaded',)
+        ordering = ('-date_uploaded',)
         unique_together = ["album_name"]
 
     def __str__(self):

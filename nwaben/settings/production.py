@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 import os
+import cloudinary
 import django_heroku
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,12 +22,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -43,6 +45,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'articles.apps.ArticlesConfig',
     'mp3.apps.Mp3Config',
+    'burial_memories',
 
     # third party apps
     'storages',
@@ -55,6 +58,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'django_summernote',
+    # "django_htmx",
 ]
 
 # =========CKEDITOR file setups===========
@@ -94,6 +98,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    # "django_htmx.middleware.HtmxMiddleware",
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -169,8 +174,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_ACCESS_KEY_ID = "AKIARWPUAY2F7XYPKPG4"
+AWS_SECRET_ACCESS_KEY = "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"
 AWS_STORAGE_BUCKET_NAME = 'nwaben-storage'
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 
@@ -198,10 +203,6 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_cdn')
-
-# AWS_STATIC_LOCATION = 'static'
-# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_STATIC_LOCATION}/'
-# STATICFILES_STORAGE = 'nwaben.storage_backends.StaticStorage'
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -241,22 +242,41 @@ SUMMERNOTE_CONFIG = {
     },
 }
 
-LOGOUT_REDIRECT_URL = '/home/'
+
+LOGOUT_REDIRECT_URL = 'home'
 AUTH_USER_MODEL = "accounts.User"
 # ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 
 
-RAVE_PUBLIC_KEY = os.environ.get('FLUTTER_PUBLIC_KEY')
-RAVE_SECRET_KEY = os.environ.get('FLUTTER_SECRET_KEY')
+RAVE_PUBLIC_KEY = config('RAVE_PUBLIC_KEY')
+RAVE_SECRET_KEY = config('RAVE_SECRET_KEY')
+
 
 # Https settings...
-CORS_REPLACE_HTTPS_REFERER = True
+CORS_REPLACE_HTTPS_REFERER = False
 HOST_SCHEME = "https://"
 SECURE_PROXY_SSL_HEADER = None
-SESSION_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_HSTS_SECONDS = None
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_FRAME_DENY = True
+SESSION_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+SECURE_HOSTS_SECONDS = None
+SECURE_HOSTS_INCLUDE_SUBDOMAINS = False
+SECURE_FRAME_DENY = False
+
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'geetechlab-com',
+    'API_KEY': '622236724885358',
+    'API_SECRET': 'ZqOEAuVc4BLHp1bMkhxKJ51ye2s',
+}
+
+
+cloudinary.config(
+    cloud_name="geetechlab-com",
+    api_key="622236724885358",
+    api_secret="ZqOEAuVc4BLHp1bMkhxKJ51ye2s"
+)

@@ -9,16 +9,63 @@
       <div class="page-header" data-parallax="true" style="background-image: url('https://res.cloudinary.com/geetechlab-com/image/upload/v1612913404/nwaben.com/audience-868074_1280_ilrsh1.jpg')">
         <div class="filter"></div>
         <div class="content-center">
+            <!-- main website -->
           <div class="container">
             <div class="motto">
-              <h3 class="title">THE NWAZURUOKE NWABEN FAMILY WEBSITE</h3>
-              <h5 class="description">The Nwazuruoke NwaBen family <br>hails from Achina in Anambra state of Nigeria, West Africa.</h5>
+              <h3 class="title">THE NWAZURUOKE NWABEN FAMILY</h3>
+{#              <h5 class="description">The Nwazuruoke NwaBen family <br>hails from Achina in Anambra state of Nigeria, West Africa.</h5>#}
+                <h5 class="description">Let the memory of Nze EmmanuelMary<br> be with us forever</h5>
               <br/>
                 <br/>
-              <a href="{% url 'about' %}" type="button" class="btn btn-outline-neutral btn-round">Click for more...</a>
+              <a href="{% url 'about' %}" type="button" class="btn btn-outline-neutral btn-round">Click to Write a Tribute</a>
             </div>
 
           </div>
+            <!-- main website ends -->
+
+{#            <div class="container mt-5">#}
+{#                <div class="row">#}
+{#                    <div class="col-md-5">#}
+{#                        <img class="rounded img-thumbnail" style="height: 400px; width: 350px;"#}
+{#                             src={{ burial_memory.image_url }}/>#}
+{#                    </div>#}
+{#                    <div class="col-md-6  ml-auto">#}
+{#                        <h3 class="title">{{ burial_memory.get_name }} {% if burial_memory.other_names %}(#}
+{#                            {{ burial_memory.other_names }}){% endif %} <br> {{ burial_memory.date_of_birth|date:'Y' }}#}
+{#                            - {{ burial_memory.date_of_death|date:'Y' }}</h3>#}
+                        {#                            <h5 class="description">{{ burial_memory.date_of_birth|date:'Y' }} - {{ burial_memory.date_of_death|date:'Y' }}</h5>#}
+{#                        <blockquote class="blockquote">#}
+                            {#                                <h6 >Let the memory of Nze EmmanuelMary be with us forever.</h6>#}
+                            {#                                <hr style="width: 50%;">#}
+{#                            <h5 class="description">Born on {{ burial_memory.date_of_birth }}#}
+{#                                in {{ burial_memory.place_of_birth }}</h5>#}
+{#                            <h5 class="description">Passed away on {{ burial_memory.date_of_death }}#}
+{#                                in {{ burial_memory.place_of_death }}</h5>#}
+{#                            <footer class="blockquote-footer" style="color: white">This website is administered by:#}
+{#                                <cite title="Source Title">{{ burial_memory.by.get_full_name }}</cite></footer>#}
+                            {#                                <h5 class="description">Details here...</h5>#}
+{#                        </blockquote>#}
+{#                        <br/>#}
+{#                        <button id="share_memorial" class="btn btn-warning btn-round btn-lg">#}
+{#                            <i class="fa fa-share-alt" aria-hidden="true"></i> Share Memory#}
+{#                        </button>#}
+{#                        <script>#}
+{#                            let text_to_copy = document.URL;#}
+{#                            let copy_button = document.getElementById("share_memorial");#}
+{##}
+{#                            copy_button.addEventListener("click", function () {#}
+{#                                let temp = document.createElement("INPUT");#}
+{#                                temp.value = text_to_copy;#}
+{#                                document.body.appendChild(temp);#}
+{#                                temp.select();#}
+{#                                document.execCommand("copy");#}
+{#                                temp.remove();#}
+{#                                swal("Link Copied!", "You can go ahead and share this memory");#}
+{#                            });#}
+{#                        </script>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
         </div>
       </div>
 
