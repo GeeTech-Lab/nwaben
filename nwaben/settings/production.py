@@ -249,10 +249,6 @@ AUTH_USER_MODEL = "accounts.User"
 # ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 
 
-RAVE_PUBLIC_KEY = config('RAVE_PUBLIC_KEY')
-RAVE_SECRET_KEY = config('RAVE_SECRET_KEY')
-
-
 # Https settings...
 CORS_REPLACE_HTTPS_REFERER = False
 HOST_SCHEME = "https://"
