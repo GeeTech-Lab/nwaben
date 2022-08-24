@@ -60,7 +60,7 @@ class BurialMemory(models.Model):
         
     @property
     def name(self):
-        return f"{self.title}-{self.first_name}{self.last_name}-{self.created.now()}"
+        return f"{self.title}-{self.first_name}{self.last_name}-{self.pk}"
 
     @property
     def calculated_age(self):
