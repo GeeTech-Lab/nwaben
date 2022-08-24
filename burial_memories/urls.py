@@ -7,8 +7,8 @@ app_name = 'burial_memories'
 
 urlpatterns = [
     path("", views.BurialMemoryList.as_view(), name='list'),
-    path("<slug:slug>/", views.BurialMemoryDetail.as_view(), name='detail'),
     path('create/', views.BurialMemoryCreate.as_view(), name='create'),
+    path("<slug:slug>/", views.BurialMemoryDetail.as_view(), name='detail'),
     path('update/<slug:slug>', views.BurialMemoryUpdate.as_view(), name='update'),
     path('delete/<slug:slug>', views.BurialMemoryDelete.as_view(), name='delete'),
 ]

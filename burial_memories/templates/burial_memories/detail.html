@@ -224,7 +224,7 @@
                                                                     {% if request.user.is_authenticated %}
                                                                         <button type="submit" class="btn btn-primary pull-right">Post Your Tribute</button>
                                                                     {% else %}
-                                                                        <a href="{% url 'accounts:login' %}" type="submit" class="btn btn-primary pull-right">Post Your Tribute</a>
+                                                                        <a href="{% url 'accounts:login' %}?next={{ request.path|urlencode }}" type="submit" class="btn btn-primary pull-right">Post Your Tribute</a>
                                                                     {% endif %}
                                                                 </div>
                                                             </div>
@@ -499,8 +499,6 @@
                                                 </p>
                                             </div>
                                         </div>
-
-
 
                                     </div>
 

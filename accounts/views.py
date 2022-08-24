@@ -1,5 +1,7 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.shortcuts import redirect
+
 from .models import User
 from .forms import UserChangeForm
 # Create your views here.
