@@ -28,19 +28,16 @@
 
 
 {% block content %}
-    <br>
-    <br>
-    <br>
     <div class="blog-post sidebar-collapse">
         <div class="page-header" style="background-image: url('https://res.cloudinary.com/geetechlab-com/image/upload/v1660091365/nwaben.com/daddy_candle_3_xuvas7.jpg');">
-            <div class="filter"></div>
+        <div class="filter"></div>
             <div class="content-center">
-                <div class="container mt-5">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <img class="rounded img-thumbnail" style="height: 400px; width: 350px;" src={{ burial_memory.image_url }} />
+                <div class="container">
+                    <div class="row mt-5">
+                        <div class="col-md-5 mt-auto">
+                            <img class="rounded img-thumbnail" style="height: 300px; width: 280px;" src={{ burial_memory.image_url }} />
                         </div>
-                        <div class="col-md-6  ml-auto">
+                        <div class="col-md-6 mt-auto">
                             <h3 class="title">{{ burial_memory.get_name }} {% if burial_memory.other_names %}({{ burial_memory.other_names }}){% endif %} <br> {{ burial_memory.date_of_birth|date:'Y' }} - {{ burial_memory.date_of_death|date:'Y' }}</h3>
 {#                            <h5 class="description">{{ burial_memory.date_of_birth|date:'Y' }} - {{ burial_memory.date_of_death|date:'Y' }}</h5>#}
                             <blockquote class="blockquote">
@@ -51,8 +48,8 @@
                                 <footer class="blockquote-footer" style="color: white">This website is administered by: <cite title="Source Title">{{ burial_memory.by.get_full_name }}</cite></footer>
 {#                                <h5 class="description">Details here...</h5>#}
                             </blockquote>
-                            <br />
-                            <button id="share_memorial" class="btn btn-warning btn-round btn-lg">
+                            <br>
+                            <button id="share_memorial" class="btn btn-warning btn-round btn-md">
                                 <i class="fa fa-share-alt" aria-hidden="true"></i> Share Memory
                             </button>
                             <script>
@@ -172,67 +169,69 @@
 
                                         <br/>
                                         <!-- Tribute form -->
-                                        <div class="container align-content-center">
-                                            <div class="row align-content-center">
-                                                <div class="col-md-12">
-                                                    <h3 class="text-center"><i class="fa fa-pencil"></i> Leave a Tribute</h3>
-                                                    <div class="media media-post">
-                                                        <form
-                                                            class="form"
-                                                            hx-post="{% url 'burial_memories:add_tribute' burial_memory.slug %}"
-                                                            hx-target="#tribute_list"
-                                                            _="on htmx:afterRequest reset() me">
-                                                            {% csrf_token %}
-                                                            <div class=" row text-center">
-                                                                <!--RADIO Candle-->
-                                                                <div class="col-md-4 mr-auto ml-auto">
-                                                                    <input type="radio" class="radio_item" value="candle" name="category" id="candle">
-                                                                    <label class="label_item" for="candle">
-                                                                        <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-candles-pharmaceutical-flaticons-lineal-color-flat-icons-2.png"/>
-                                                                        <h5>Light a candle</h5>
-                                                                    </label>
-                                                                </div>
+                                        <div class="section section-gray">
+                                            <div class="container tim-container">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h3 class="text-center"><i class="fa fa-pencil"></i> Leave a Tribute</h3>
+                                                        <div class="media media-post">
+                                                            <form
+                                                                class="form"
+                                                                hx-post="{% url 'burial_memories:add_tribute' burial_memory.slug %}"
+                                                                hx-target="#tribute_list"
+                                                                _="on htmx:afterRequest reset() me">
+                                                                {% csrf_token %}
+                                                                <div class=" row text-center">
+                                                                    <!--RADIO Candle-->
+                                                                    <div class="col-md-4 mr-auto ml-auto">
+                                                                        <input type="radio" class="radio_item"
+                                                                               value="candle" name="category"
+                                                                               id="candle">
+                                                                        <label class="label_item" for="candle">
+                                                                            <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/000000/external-candles-pharmaceutical-flaticons-lineal-color-flat-icons-2.png"/>
+                                                                            <h5>Light a candle</h5>
+                                                                        </label>
+                                                                    </div>
 
-                                                                <!--RADIO Flower-->
-                                                                <div class="col-md-4 mr-auto ml-auto">
-                                                                    <input type="radio" class="radio_item" value="flower" name="category" id="flower">
-                                                                    <label class="label_item" for="flower">
-                                                                        <img src="https://img.icons8.com/color/64/000000/bunch-flowers.png"/>
-                                                                        <h5>Lay a flower</h5>
-                                                                    </label>
-                                                                </div>
+                                                                    <!--RADIO Flower-->
+                                                                    <div class="col-md-4 mr-auto ml-auto">
+                                                                        <input type="radio" class="radio_item"
+                                                                               value="flower" name="category"
+                                                                               id="flower">
+                                                                        <label class="label_item" for="flower">
+                                                                            <img src="https://img.icons8.com/color/64/000000/bunch-flowers.png"/>
+                                                                            <h5>Lay a flower</h5>
+                                                                        </label>
+                                                                    </div>
 
-                                                                <!--RADIO Note-->
-                                                                <div class="col-md-4 mr-auto ml-auto">
-                                                                    <input type="radio" class="radio_item" value="note" name="category" id="note">
-                                                                    <label class="label_item" for="note">
-                                                                        <img src="https://img.icons8.com/color/64/000000/scroll.png"/>
-                                                                        <h5>Leave a note</h5>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="media-body">
-                                                                <br/>
-                                                                <div class="row content-center">
-                                                                    <div class="col-md-12">
-                                                                        <div class="form-group">
-                                                                            <textarea name="tribute" class="form-control" id="tribute" placeholder="Write your tribute" rows="3" required></textarea>
-                                                                        </div>
+                                                                    <!--RADIO Note-->
+                                                                    <div class="col-md-4 mr-auto ml-auto">
+                                                                        <input type="radio" class="radio_item"
+                                                                               value="note" name="category" id="note">
+                                                                        <label class="label_item" for="note">
+                                                                            <img src="https://img.icons8.com/color/64/000000/scroll.png"/>
+                                                                            <h5>Leave a note</h5>
+                                                                        </label>
                                                                     </div>
                                                                 </div>
-                                                                <div class="media-footer">
+                                                                <div class="form-group">
+                                                                    <textarea name="tribute" class="form-control" id="tribute" placeholder="Write your tribute" rows="3" required></textarea>
+                                                                </div>
+                                                                <div class="form-group">
                                                                     {% if request.user.is_authenticated %}
                                                                         <button type="submit" class="btn btn-primary pull-right">Post Your Tribute</button>
                                                                     {% else %}
                                                                         <a href="{% url 'accounts:login' %}?next={{ request.path|urlencode }}" type="submit" class="btn btn-primary pull-right">Post Your Tribute</a>
                                                                     {% endif %}
                                                                 </div>
-                                                            </div>
-                                                        </form>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
+
 
                                     </div>
                                 </div>

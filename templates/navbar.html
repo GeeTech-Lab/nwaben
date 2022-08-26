@@ -9,11 +9,11 @@
 
 
 <!-- Navbar -->
-{% if request.path == home or request.path == login or request.path == register or request.path == about or request.path == profile  or request.path == album_list or request.path == memorial_list %}
+{#{% if request.path == home or request.path == login or request.path == register or request.path == about or request.path == profile  or request.path == album_list or request.path == memorial_list %}#}
     <nav class="navbar navbar-expand-lg nav-down navbar-absolute navbar-transparent" color-on-scroll="500">
-{% else %}
-    <nav class="navbar navbar-expand-lg navbar-absolute nav-down">
-{% endif %}
+{#{% else %}#}
+{#    <nav class="navbar navbar-expand-lg navbar-absolute nav-down">#}
+{#{% endif %}#}
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="{% url 'home' %}" rel="tooltip" title="nwaben" data-placement="bottom" target="_blank">
